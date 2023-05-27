@@ -47,7 +47,8 @@ const createMovies = (req, res, next) => {
 };
 
 const getMovies = (req, res, next) => {
-  Movies.find()
+  const id = req.user._id;
+  Movies.find({ owner: id })
     .then((card) => {
       res.send(card);
     })

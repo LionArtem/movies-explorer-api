@@ -31,10 +31,8 @@ const createUsers = (req, res, next) => {
           );
           next(error);
         } else {
-          const error = new IncorrectErr('не корректные данные');
-          next(error);
+          next(err);
         }
-        next(err);
       }));
 };
 
@@ -91,17 +89,26 @@ const getUsersMe = (req, res, next) => {
 const patchUsersInfo = (req, res, next) => {
   const id = req.user._id;
   const { name, email } = req.body;
-  User.findByIdAndUpdate(
-    id,
-    { name, email },
-    {
-      new: true, // обработчик then получит на вход обновлённую запись
-      runValidators: true,
-    },
-  )
-    .then((user) => {
-      res.send(user);
-    })
+  User.findById(id).then((user) => {
+    if (user) {
+      if (user.email === email) {
+        throw new IncorrectErr('не корректные данные: ввидите новый email');
+      }
+      User.findByIdAndUpdate(
+        id,
+        { name, email },
+        {
+          new: true, // обработчик then получит на вход обновлённую запись
+          runValidators: true,
+        },
+      )
+        .then((patchUser) => {
+          res.send(patchUser);
+        });
+      return;
+    }
+    throw new NotFoundError('пользователь не найден');
+  })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         const erros = new IncorrectErr('Некорректный данные');
