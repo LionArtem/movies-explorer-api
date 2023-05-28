@@ -11,13 +11,13 @@ const sigRouter = require('./routes/sig');
 const NotFoundError = require('./errors/not-found-err');
 const centralErrorHandling = require('./middlewares/centralErrorHandling');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, DATABASE__PORT, DATABASA__NAME } = process.env;
 const app = express();
 
 app.use(express.json()); // для собирания JSON-формата
 app.use(express.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
-mongoose.connect('mongodb://127.0.0.1/bitfilmsdb');
+mongoose.connect(`mongodb://${DATABASE__PORT}/${DATABASA__NAME}`);
 
 app.use(requestLogger);
 

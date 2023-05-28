@@ -21,7 +21,7 @@ moviesRouter.post(
         description: Joi.string().required(),
         image: Joi.string().required().pattern(regularLink),
         trailerLink: Joi.string().required().pattern(regularLink),
-        thumbnail: Joi.string().required().min(2).pattern(regularLink),
+        thumbnail: Joi.string().required().pattern(regularLink),
         movieId: Joi.number().required(),
         nameRU: Joi.string().required(),
         nameEN: Joi.string().required(),

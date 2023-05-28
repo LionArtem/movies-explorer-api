@@ -92,7 +92,7 @@ const patchUsersInfo = (req, res, next) => {
   User.findById(id).then((user) => {
     if (user) {
       if (user.email === email) {
-        throw new IncorrectErr('не корректные данные: ввидите новый email');
+        throw new RepeatsEmailError('не корректные данные: ввидите новый email');
       }
       User.findByIdAndUpdate(
         id,
@@ -104,6 +104,15 @@ const patchUsersInfo = (req, res, next) => {
       )
         .then((patchUser) => {
           res.send(patchUser);
+        }).catch((err) => {
+          if (err.code === 11000) {
+            const error = new RepeatsEmailError(
+              'Пользователь с таким email зарегистрирован',
+            );
+            next(error);
+          } else {
+            next(err);
+          }
         });
       return;
     }

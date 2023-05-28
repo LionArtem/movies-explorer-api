@@ -82,7 +82,7 @@ const deleteMovies = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        const error = new NotFoundError('Не корректные данные');
+        const error = new IncorrectErr('Не корректные данные');
         next(error);
       } else {
         next(err);
