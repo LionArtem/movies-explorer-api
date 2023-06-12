@@ -9,7 +9,7 @@ export default function Footer() {
         <p>Учебный проект Яндекс.Практикум х BeatFilm.</p>
       </div>
       <div className={Style.conteiner_footer}>
-        <p>&copy; {new Date().getFullYear()}</p>
+        <p className={Style.date}>&copy; {new Date().getFullYear()}</p>
         <div>
           <p>Яндекс.Практикум</p>
           <p>Github</p>
