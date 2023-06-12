@@ -1,0 +1,50 @@
+.root {
+  padding: 0px 70px 20px;
+  .title {
+    border-bottom: 1px solid #e8e8e8;
+    p {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      margin: 0px 0px 20px;
+      color: #a0a0a0;
+    }
+  }
+  .conteiner_footer {
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      margin: 20px 0px 0px;
+    }
+    div {
+      display: flex;
+      align-self: flex-end;
+      p {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        margin: 0px 20px 0px 0px;
+      }
+      p:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .root {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

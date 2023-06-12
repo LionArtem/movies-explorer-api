@@ -1,0 +1,114 @@
+.conteiner {
+  width: 396px;
+  margin: auto;
+  padding: 70px 0px 70px;
+  h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0px 0px 40px;
+  }
+  .logo {
+    background-image: url(../../image/logo.png);
+    width: 38px;
+    height: 38px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: filter 0.5s linear;
+  }
+  .logo:hover {
+    filter: drop-shadow(3px 3px #8d9190);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  label {
+    color: #a0a0a0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 10px;
+  }
+  input {
+    all: unset;
+    background: #f9f9f9;
+    border-radius: 8px;
+    // height: 46px;
+    padding: 15px;
+  }
+  .input_password {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #ff3055;
+  }
+  span {
+    height: 12px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #ff3055;
+    padding-top: 10px;
+  }
+  button {
+    all: unset;
+    margin: 69px 0px 16px;
+    width: 396px;
+    height: 45px;
+    text-align: center;
+    background: #3456f3;
+    border-radius: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+  }
+  button:hover {
+    opacity: 0.7;
+  }
+}
+
+.button_auth {
+  display: flex;
+  justify-content: center;
+  .discription {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #a0a0a0;
+    margin: 0;
+  }
+  .button_login {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #3456f3;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+  }
+  .button_login:hover {
+    opacity: 0.7;
+  }
+}

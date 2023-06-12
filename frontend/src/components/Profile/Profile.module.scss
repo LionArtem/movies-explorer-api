@@ -1,0 +1,69 @@
+.title {
+  text-align: center;
+  margin: 74px 0px 105px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 410px;
+  margin: auto;
+  label {
+    width: min-content;
+    position: relative;
+    top: 14px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  input {
+    all: unset;
+    width: 410px;
+    margin: auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .name {
+    padding: 0px 0px 16px;
+  }
+  .email {
+    border-bottom: none;
+  }
+  button {
+    all: unset;
+    margin: 220px 0px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: text-shadow 0.3s linear;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  button:hover {
+    text-shadow: 1px 1px #524e4e;
+  }
+}
+.sign_out {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ff3055;
+  transition: text-shadow 0.3s linear;
+  cursor: pointer;
+  margin: 0px 0px 70px;
+}
+
+.sign_out:hover {
+  text-shadow: 1px 1px #524e4e;
+}

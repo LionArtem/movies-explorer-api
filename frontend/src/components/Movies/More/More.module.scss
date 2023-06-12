@@ -1,0 +1,25 @@
+.more {
+  padding: 50px 0px 80px;
+
+  div {
+    background: #f9f9f9;
+    border-radius: 6px;
+    height: 36px;
+    display: flex;
+    cursor: pointer;
+    p {
+      margin: auto;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .more {
+    padding-top: 70px;
+  }
+}
