@@ -7,6 +7,11 @@
   line-height: 169px;
   text-align: center;
 }
+@media screen and (max-width: 768px) {
+  .title {
+    margin-top: 408px;
+  }
+}
 .discription {
   margin: 0px 0px 184px;
   font-family: 'Inter';
@@ -31,4 +36,10 @@
 
 .button:hover {
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .button {
+    margin-bottom: 220px;
+  }
 }
