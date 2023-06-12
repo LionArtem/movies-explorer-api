@@ -5,7 +5,7 @@ export default function Register() {
   return (
     <>
       <PopupForm
-        title={'Добро пожаловать!'}
+        title={'Рады видеть!'}
         textButton="Зарегистрироваться"
         textRegistr="Уже зарегистрированны?"
         textLogin="Войти"

@@ -11,7 +11,7 @@ export default function Logit() {
   return (
     <>
       <PopupForm
-        title={'Рады видеть!'}
+        title={'Добро пожаловать!'}
         textButton="Войти"
         textRegistr="Ещё не зарегистрированны?"
         textLogin="Регистрация"
