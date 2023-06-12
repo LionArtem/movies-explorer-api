@@ -1,6 +1,17 @@
 .title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
   text-align: center;
   margin: 74px 0px 105px;
+}
+@media screen and (max-width: 768px) {
+  .title {
+    margin-top: 236px;
+    margin-bottom: 83px;
+  }
 }
 .form {
   display: flex;
@@ -50,6 +61,11 @@
   button:hover {
     text-shadow: 1px 1px #524e4e;
   }
+  @media screen and (max-width: 768px) {
+    button {
+      margin-top: 210px;
+    }
+  }
 }
 .sign_out {
   font-family: 'Inter';
@@ -66,4 +82,10 @@
 
 .sign_out:hover {
   text-shadow: 1px 1px #524e4e;
+}
+
+@media screen and (max-width: 768px) {
+  .sign_out {
+    margin-bottom: 269px;
+  }
 }
