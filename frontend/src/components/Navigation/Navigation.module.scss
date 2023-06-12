@@ -15,6 +15,11 @@
       margin-left: 38px;
     }
   }
+  @media screen and (max-width: 320px) {
+    .logo {
+      margin-left: 14px;
+    }
+  }
   .auth {
     display: flex;
     flex-direction: row;
@@ -31,6 +36,13 @@
     }
     .registr:hover {
       text-shadow: 1px 1px #bab4b5;
+    }
+    @media screen and (max-width:320px){
+      .registr{
+        margin-right: 14px;
+        margin-top: 11px;
+        font-size: 10px;
+      }
     }
     .sign {
       all: unset;
@@ -50,14 +62,29 @@
         line-height: 16px;
         margin: 8px 0px 0px;
       }
+      @media screen and (max-width: 320px) {
+        p {
+          margin-top: 5px;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .sign:hover {
+      filter: drop-shadow(3px 3px #8d9190);
     }
     @media screen and (max-width: 768px) {
       .sign {
         margin-right: 30px;
       }
     }
-    .sign:hover {
-      filter: drop-shadow(3px 3px #8d9190);
+    @media screen and (max-width: 320px) {
+      .sign {
+        margin-right: 14px;
+        margin-top: 6px;
+        width: 54px;
+        height: 26px;
+      }
     }
   }
 }
