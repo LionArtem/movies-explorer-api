@@ -22,5 +22,11 @@
     a:last-child {
       margin-right: 0px;
     }
+    @media screen and (max-width: 320px) {
+      a {
+        font-size: 11px;
+        margin-right: 24px;
+      }
+    }
   }
 }
