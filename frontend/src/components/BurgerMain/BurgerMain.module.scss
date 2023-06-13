@@ -23,6 +23,13 @@
     background-size: cover;
     margin: 22px 22px 105px auto;
   }
+  @media screen and (max-width: 320px) {
+    .close {
+      margin-top: 14px;
+      margin-right: 14px;
+      margin-bottom: 100px;
+    }
+  }
   ul {
     all: unset;
     display: flex;
@@ -32,7 +39,6 @@
   }
   li {
     all: unset;
-    width: content;
     text-align: center;
     font-family: 'Inter';
     font-style: normal;
@@ -44,6 +50,12 @@
     margin-bottom: 22px;
     a {
       all: unset;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    li {
+      margin-bottom: 17px;
+      padding-bottom: 7px;
     }
   }
   .link_activ {
@@ -65,5 +77,10 @@
       line-height: 16px;
       padding: 0;
     }
+  }
+}
+@media screen and (max-width: 320px) {
+  .main {
+    width: 320px;
   }
 }
