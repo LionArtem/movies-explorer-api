@@ -18,7 +18,7 @@ export default function PopupForm({
       <h1>{title}</h1>
       <form className={Style.form}>
         <div className={Style.input_conteiner}>
-          {window.location.pathname === '/signin' && (
+          {window.location.pathname === '/signup' && (
             <>
               <label>Имя</label>
               <input defaultValue="artem" />
