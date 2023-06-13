@@ -4,6 +4,12 @@
   row-gap: 40px;
   padding-bottom: 10px;
 }
+@media screen and (max-width: 320px) {
+  .root {
+    row-gap: 20px;
+    padding-bottom: 20px;
+  }
+}
 .conteiner {
   background-color: #f9f9f9;
   display: flex;
@@ -19,6 +25,11 @@
       line-height: 22px;
       margin: 0px 0px 13px 0px;
     }
+    @media screen and (max-width: 320px) {
+      h1 {
+        margin-bottom: 8px;
+      }
+    }
     p {
       margin: 0px 0px 30px;
       font-family: 'Inter';
@@ -27,23 +38,34 @@
       font-size: 11px;
       line-height: 13px;
     }
+    @media screen and (max-width: 320px) {
+      p {
+        margin-bottom: 0px;
+      }
+    }
+
+    .like {
+      width: 14px;
+      height: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
     .like_active {
       background-image: url(../../../image/save5.png);
-      width: 14px;
-      height: 12px;
-      cursor: pointer;  
     }
-    .like {
+    .like_off {
       background-image: url(../../../image/icon__COLOR_stroke-2.png);
-      width: 14px;
-      height: 12px;
-      cursor: pointer;
     }
     .delete {
       background-image: url(../../../image/d5.png);
-      width: 14px;
-      height: 12px;
-      cursor: pointer;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .discription {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 12px;
     }
   }
   img {
@@ -51,7 +73,19 @@
     height: 122px;
     background-size: cover;
   }
+  @media screen and (max-width: 320px) {
+    img {
+      width: 300px;
+      height: 168px;
+    }
+  }
 }
 .conteiner:last-child {
   margin-bottom: 0px;
+}
+@media screen and (max-width: 320px) {
+  .conteiner {
+    flex-direction: column-reverse;
+    padding: 0;
+  }
 }

@@ -5,8 +5,7 @@
   align-items: center;
   border-bottom: 1px solid #e8e8e8;
   padding: 0px 0px 40px;
-  .checkbox_on {
-    background-image: url(.././../../image/smalltumb.png);
+  .checkbox {
     width: 34px;
     height: 14px;
     background-size: 100% 100%;
@@ -14,20 +13,14 @@
     cursor: pointer;
     transition: filter 0.5s linear;
   }
-  .checkbox_on:hover {
+  .checkbox:hover {
     filter: drop-shadow(3px 3px #8d9190);
+  }
+  .checkbox_on {
+    background-image: url(.././../../image/smalltumb.png);
   }
   .checkbox_off {
     background-image: url(.././../../image/smalltumboff.png);
-    width: 34px;
-    height: 14px;
-    background-size: 100% 100%;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: filter 0.5s linear;
-  }
-  .checkbox_off:hover {
-    filter: drop-shadow(3px 3px #8d9190);
   }
   p {
     margin: 0;
@@ -37,5 +30,12 @@
   .checkbox_conteiner {
     margin-left: 30px;
     margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .checkbox_conteiner {
+    margin-left: 14px;
+    margin-right: 14px;
   }
 }

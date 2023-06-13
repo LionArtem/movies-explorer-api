@@ -12,3 +12,11 @@
     padding-right: 30px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .conteiner {
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
