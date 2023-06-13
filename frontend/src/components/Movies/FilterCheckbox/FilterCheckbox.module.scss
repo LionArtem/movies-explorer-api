@@ -2,6 +2,7 @@
   display: flex;
   margin: 0px 70px 10px;
   justify-content: center;
+  align-items: center;
   border-bottom: 1px solid #e8e8e8;
   padding: 0px 0px 40px;
   .checkbox_on {
@@ -9,6 +10,7 @@
     width: 34px;
     height: 14px;
     background-size: 100% 100%;
+    margin-right: 10px;
     cursor: pointer;
     transition: filter 0.5s linear;
   }
@@ -17,6 +19,10 @@
   }
   .checkbox_off {
     background-image: url(.././../../image/smalltumboff.png);
+    width: 34px;
+    height: 14px;
+    background-size: 100% 100%;
+    margin-right: 10px;
     cursor: pointer;
     transition: filter 0.5s linear;
   }

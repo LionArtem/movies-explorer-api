@@ -1,6 +1,6 @@
 .conteiner {
   display: flex;
-  text-align: center;
+  align-items: center;
   width: 100%;
   a {
     all: unset;
@@ -21,12 +21,17 @@
       margin-left: 30px;
     }
   }
+  @media screen and (max-width: 320px) {
+    .logo {
+      margin-left: 14px;
+    }
+  }
   .movies {
     display: flex;
     margin: 0px 0px 0px 44px;
 
     p {
-      margin: 10px 0px 0px 16px;
+      margin: 0px 0px 0px 16px;
     }
     p:hover {
       text-shadow: 1px 1px #bab4b5;
@@ -45,9 +50,12 @@
   }
 
   .user_conteiner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100px;
     height: 32px;
-    margin: 10px 70px 0px auto;
+    margin: 0px 70px 0px auto;
     background: #f9f9f9;
     border-radius: 20px;
     cursor: pointer;
@@ -58,7 +66,7 @@
       font-weight: 500;
       font-size: 14px;
       line-height: 16px;
-      margin: 8px 0px 0px;
+      margin: 0;
     }
   }
   .user_conteiner:hover {
@@ -76,5 +84,10 @@
     width: 44px;
     height: 44px;
     margin: 0px 30px 0px auto;
+  }
+  @media screen and (max-width: 320px) {
+    .burger {
+      margin-right: 14px;
+    }
   }
 }
