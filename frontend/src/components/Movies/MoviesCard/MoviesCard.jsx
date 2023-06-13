@@ -13,7 +13,7 @@ export default function MoviesCard({ listMovies }) {
               <p>{obj.time}</p>
             </div>
             {location === '/saved-movies' ? (
-              <div className={Style.delete}></div>
+              <div className={`${Style.like} ${Style.delete}`}></div>
             ) : (
               <div
                 className={
