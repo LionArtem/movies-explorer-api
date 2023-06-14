@@ -8,7 +8,7 @@ export default function Navigationmovies() {
   const [stateMainBurger, isStateMainBurger] = React.useState(false);
   return (
     <>
-      <div className={Style.conteiner}>
+      <section className={Style.conteiner}>
         <Link to={'/'}>
           <div className={Style.logo}></div>
         </Link>
@@ -29,7 +29,7 @@ export default function Navigationmovies() {
           onClick={() => isStateMainBurger(true)}
           className={Style.burger}
         ></div>
-      </div>
+      </section>
       {stateMainBurger && <BurgerMain isStateMainBurger={isStateMainBurger} />}
     </>
   );

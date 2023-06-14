@@ -4,7 +4,7 @@ import Style from './FilterCheckbox.module.scss';
 export default function FilterCheckbox() {
   const [stateTogl, isStateTogl] = React.useState(true);
   return (
-    <div className={Style.checkbox_conteiner}>
+    <section className={Style.checkbox_conteiner}>
       <div
         onClick={() => isStateTogl(!stateTogl)}
         className={`${Style.checkbox} ${
@@ -12,6 +12,6 @@ export default function FilterCheckbox() {
         }`}
       ></div>
       <p>Короткометражки</p>
-    </div>
+    </section>
   );
 }

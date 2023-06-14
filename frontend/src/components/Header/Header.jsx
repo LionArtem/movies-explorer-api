@@ -4,8 +4,8 @@ import Navigation from '../Navigation/Navigation';
 
 export default function Header() {
   return (
-    <div className={Style.conteiner}>
+    <header className={Style.conteiner}>
       <Navigation />
-    </div>
+    </header>
   );
 }

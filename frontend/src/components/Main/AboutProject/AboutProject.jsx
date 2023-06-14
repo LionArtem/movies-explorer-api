@@ -3,7 +3,7 @@ import Style from './AboutProject.module.scss';
 
 export default function AboutProject() {
   return (
-    <div id="about-project" className={Style.conteiner}>
+    <section id="about-project" className={Style.conteiner}>
       <div className={Style.title}>
         <h2>О проекте</h2>
       </div>
@@ -33,6 +33,6 @@ export default function AboutProject() {
         <p>back-end</p>
         <p>front-end</p>
       </div>
-    </div>
+    </section>
   );
 }

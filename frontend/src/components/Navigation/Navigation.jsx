@@ -5,7 +5,7 @@ import Style from './Navigation.module.scss';
 
 export default function Navigation() {
   return (
-    <div className={Style.conteiner}>
+    <section className={Style.conteiner}>
       <div className={Style.logo}></div>
       <div className={Style.auth}>
         <Link to={'/signup'}>
@@ -15,6 +15,6 @@ export default function Navigation() {
           <p>Войти</p>
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

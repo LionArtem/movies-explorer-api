@@ -5,7 +5,7 @@ import { listTechs } from '.././../../utils/constants';
 
 export default function Techs() {
   return (
-    <div id='techs' className={Style.conteiner}>
+    <section id='techs' className={Style.conteiner}>
       <div className={Style.title}>
         <h2>Технологии</h2>
       </div>
@@ -21,6 +21,6 @@ export default function Techs() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

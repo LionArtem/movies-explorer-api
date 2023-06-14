@@ -5,7 +5,7 @@ import { listWebsite } from '../../../utils/constants';
 
 export default function Portfolio() {
   return (
-    <div className={Style.conteiner}>
+    <section className={Style.conteiner}>
       <h2>Портфолио</h2>
       <ul>
         {listWebsite.map((obj, i) => (
@@ -17,6 +17,6 @@ export default function Portfolio() {
           </a>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

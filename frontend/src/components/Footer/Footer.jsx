@@ -4,7 +4,7 @@ import Style from './Footer.module.scss';
 
 export default function Footer() {
   return (
-    <div className={Style.root}>
+    <footer className={Style.root}>
       <div className={Style.title}>
         <p>Учебный проект Яндекс.Практикум х BeatFilm.</p>
       </div>
@@ -15,6 +15,6 @@ export default function Footer() {
           <p>Github</p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

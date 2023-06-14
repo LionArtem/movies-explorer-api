@@ -10,15 +10,17 @@ import { listMovies } from '../../utils/constants';
 
 export default function Movies() {
   return (
-    <div>
+    <>
       <HeaderMovies />
-      <SearchForm />
-      <FilterCheckbox />
-      <MoviesCardList>
-        <MoviesCard listMovies={listMovies} />
-        <More />
-      </MoviesCardList>
+      <main>
+        <SearchForm />
+        <FilterCheckbox />
+        <MoviesCardList>
+          <MoviesCard listMovies={listMovies} />
+          <More />
+        </MoviesCardList>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

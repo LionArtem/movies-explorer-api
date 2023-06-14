@@ -5,8 +5,8 @@ import NavigationMovies from '../../NavigationMovies/NavigationMovies';
 
 export default function HeaderMovies() {
   return (
-    <div className={Style.conteiner}>
+    <header className={Style.conteiner}>
       <NavigationMovies />
-    </div>
+    </header>
   );
 }

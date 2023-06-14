@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function BurgerMain({ isStateMainBurger }) {
   return (
-    <>
+    <section>
       <div className={Style.overley}></div>
       <div className={Style.main}>
         <div
@@ -40,6 +40,6 @@ export default function BurgerMain({ isStateMainBurger }) {
           </ul>
         </nav>
       </div>
-    </>
+    </section>
   );
 }
