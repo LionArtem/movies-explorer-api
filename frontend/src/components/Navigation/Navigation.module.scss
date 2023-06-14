@@ -23,6 +23,9 @@
   .auth {
     display: flex;
     flex-direction: row;
+    a {
+      all: unset;
+    }
     .registr {
       color: #ffffff;
       font-family: 'Inter';
@@ -37,8 +40,8 @@
     .registr:hover {
       text-shadow: 1px 1px #bab4b5;
     }
-    @media screen and (max-width:320px){
-      .registr{
+    @media screen and (max-width: 320px) {
+      .registr {
         margin-right: 14px;
         margin-top: 11px;
         font-size: 10px;
