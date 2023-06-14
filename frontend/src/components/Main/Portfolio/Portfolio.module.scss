@@ -46,7 +46,7 @@
         font-size: 28px;
       }
     }
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 360px) {
       a {
         font-size: 18px;
         line-height: 28px;
@@ -65,7 +65,7 @@
         width: 27px;
       }
     }
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 360px) {
       div {
         width: 18px;
         height: 28px;
@@ -86,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .conteiner {
     padding-left: 14px;
     padding-right: 14px;

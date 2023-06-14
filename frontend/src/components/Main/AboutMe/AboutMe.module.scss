@@ -1,5 +1,6 @@
 .conteiner {
   padding: 110px 70px 100px;
+  
   .title {
     border-bottom: 1px solid black;
     padding: 0px 0px 23px 0px;
@@ -14,7 +15,7 @@
       letter-spacing: -0.04em;
     }
   }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 360px) {
     .title {
       padding-bottom: 28px;
       margin-bottom: 60px;
@@ -48,7 +49,7 @@
         }
       }
 
-      @media screen and (max-width: 320px) {
+      @media screen and (max-width: 360px) {
         h2 {
           font-size: 30px;
           line-height: 36px;
@@ -72,7 +73,7 @@
           margin-bottom: 20px;
         }
       }
-      @media screen and (max-width: 320px) {
+      @media screen and (max-width: 360px) {
         h3 {
           font-size: 11px;
           line-height: 16px;
@@ -80,7 +81,7 @@
       }
 
       p {
-        margin: 0px;
+        margin: 0px 10px 0px 0px;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
@@ -90,16 +91,20 @@
 
       @media screen and (max-width: 768px) {
         p {
-          width: 364px;
           font-size: 12px;
           line-height: 18px;
           margin-bottom: 40px;
         }
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 720px) {
         p {
-          width: 292px;
+          margin-right: 0px;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        p {
           font-size: 11px;
           line-height: 16px;
         }
@@ -127,6 +132,7 @@
       height: 100%;
       object-fit: cover;
       border-radius: 10px;
+      border: 1px solid red;
     }
 
     @media screen and (max-width: 768px) {
@@ -134,15 +140,15 @@
         width: 255px;
       }
     }
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 360px) {
       img {
-        width: 292px;
+        width: 100%;
         height: 352px;
         margin-bottom: 40px;
       }
     }
   }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 720px) {
     .conteiner_about {
       flex-direction: column-reverse;
     }
@@ -155,7 +161,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .conteiner {
     padding: 70px 14px;
   }

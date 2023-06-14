@@ -15,7 +15,7 @@
       margin-left: 38px;
     }
   }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 360px) {
     .logo {
       margin-left: 14px;
     }
@@ -40,7 +40,7 @@
     .registr:hover {
       text-shadow: 1px 1px #bab4b5;
     }
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 360px) {
       .registr {
         margin-right: 14px;
         margin-top: 11px;
@@ -65,7 +65,7 @@
         line-height: 16px;
         margin: 8px 0px 0px;
       }
-      @media screen and (max-width: 320px) {
+      @media screen and (max-width: 360px) {
         p {
           margin-top: 5px;
           font-size: 10px;
@@ -81,7 +81,7 @@
         margin-right: 30px;
       }
     }
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 360px) {
       .sign {
         margin-right: 14px;
         margin-top: 6px;
