@@ -4,7 +4,7 @@
   row-gap: 40px;
   padding-bottom: 10px;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 414px) {
   .root {
     row-gap: 20px;
     padding-bottom: 20px;
@@ -83,7 +83,7 @@
 .conteiner:last-child {
   margin-bottom: 0px;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
   .conteiner {
     flex-direction: column-reverse;
     padding: 0;
