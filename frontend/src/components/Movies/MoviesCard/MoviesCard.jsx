@@ -4,29 +4,29 @@ import Style from './MoviesCard.module.scss';
 export default function MoviesCard({ listMovies }) {
   const location = window.location.pathname;
   return (
-    <div className={Style.root}>
+    <ul className={Style.root}>
       {listMovies.map((obj, i) => (
-        <div className={Style.conteiner} key={i}>
+        <li className={Style.conteiner} key={i}>
           <div className={Style.discription}>
             <div>
               <h1>{obj.title}</h1>
               <p>{obj.time}</p>
             </div>
             {location === '/saved-movies' ? (
-              <div className={`${Style.like} ${Style.delete}`}></div>
+              <button className={`${Style.like} ${Style.delete}`}></button>
             ) : (
-              <div
+              <button
                 className={
                   obj.like
                     ? `${Style.like} ${Style.like_active}`
                     : `${Style.like} ${Style.like_off}`
                 }
-              ></div>
+              ></button>
             )}
           </div>
           <img src={obj.preview} alt={`заставка к фильму ${obj.title}`} />
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
