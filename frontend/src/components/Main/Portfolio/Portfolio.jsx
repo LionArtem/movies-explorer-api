@@ -9,12 +9,12 @@ export default function Portfolio() {
       <h2>Портфолио</h2>
       <ul>
         {listWebsite.map((obj, i) => (
-          <li className={Style.list_website} key={i}>
-            <a target="_blank" rel="noreferrer" href={obj.link}>
-              {obj.title}
-            </a>
-            <div></div>
-          </li>
+          <a target="_blank" rel="noreferrer" href={obj.link}>
+            <li className={Style.list_website} key={i}>
+              <h3 className={Style.title}>{obj.title}</h3>
+              <div></div>
+            </li>
+          </a>
         ))}
       </ul>
     </div>

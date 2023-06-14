@@ -15,6 +15,21 @@
   ul {
     margin: 0px 0px 106px;
     padding: 0;
+    a {
+      all: unset;
+      display: block;
+      cursor: pointer;
+      border-bottom: 1px solid #e8e8e8;
+      transition: transform 0.4s linear;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      a:hover {
+        transform: translateX(5px);
+      }
+    }
+    a:last-child {
+      border-bottom: none;
+    }
   }
   @media screen and (max-width: 320px) {
     margin-bottom: 149px;
@@ -23,9 +38,8 @@
     all: unset;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #e8e8e8;
-    a {
-      all: unset;
+
+    .title {
       width: 100%;
       font-family: 'Inter';
       font-style: normal;
@@ -33,21 +47,20 @@
       font-size: 30px;
       line-height: 50px;
       letter-spacing: -0.04em;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: transform 0.3s linear;
+      margin: 20px 0px 0px;
+      // transition: transform 0.3s linear;
     }
+    // .title:hover {
+    //   transform: translateX(5px);
+    // }
 
-    a:hover {
-      transform: translateX(5px);
-    }
     @media screen and (max-width: 768px) {
-      a {
+      .title {
         font-size: 28px;
       }
     }
     @media screen and (max-width: 360px) {
-      a {
+      .title {
         font-size: 18px;
         line-height: 28px;
       }
@@ -73,9 +86,6 @@
         margin-bottom: 19px;
       }
     }
-  }
-  .list_website:last-child {
-    border-bottom: none;
   }
 }
 
