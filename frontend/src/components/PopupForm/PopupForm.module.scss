@@ -3,7 +3,7 @@
   margin: auto;
   padding: 70px 0px 70px;
   h1 {
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -60,7 +60,7 @@
     flex-direction: column;
     label {
       color: #a0a0a0;
-      font-family: 'Inter';
+      font-family: 'Inter', Arial, sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 10px;
@@ -69,7 +69,7 @@
     }
     input {
       all: unset;
-      font-family: 'Inter';
+      font-family: 'Inter', Arial, sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 13px;
@@ -83,7 +83,7 @@
     }
     span {
       height: 12px;
-      font-family: 'Inter';
+      font-family: 'Inter', Arial, sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 10px;
@@ -127,7 +127,7 @@
   display: flex;
   justify-content: center;
   p {
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
