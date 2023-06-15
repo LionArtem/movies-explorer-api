@@ -21,15 +21,16 @@ export default function PopupForm({
           {window.location.pathname === '/signup' && (
             <>
               <label>Имя</label>
-              <input defaultValue="artem" />
+              <input required defaultValue="artem" />
               <span></span>
             </>
           )}
           <label>Email</label>
-          <input type="email" defaultValue="artem@mail.ru" />
+          <input required type="email" defaultValue="artem@mail.ru" />
           <span></span>
           <label>Пароль</label>
           <input
+            required
             className={Style.input_password}
             type="password"
             defaultValue="12381238"

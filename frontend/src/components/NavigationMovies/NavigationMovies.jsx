@@ -11,11 +11,21 @@ export default function Navigationmovies() {
   const openBurgerPopup = () => {
     isStateMainBurger(!stateMainBurger);
     body.classList.add('bodyNotScrolling');
+    document.addEventListener('keydown', closeByEscape);
   };
+
+  function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+      isStateMainBurger(false);
+      body.classList.remove('bodyNotScrolling');
+      document.removeEventListener('keydown', closeByEscape);
+    }
+  }
 
   const closeBurgerPopup = () => {
     isStateMainBurger(!stateMainBurger);
     body.classList.remove('bodyNotScrolling');
+    document.removeEventListener('keydown', closeByEscape);
   };
 
   return (

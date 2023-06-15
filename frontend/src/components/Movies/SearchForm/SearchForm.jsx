@@ -5,7 +5,7 @@ export default function SearchForm() {
   return (
     <section>
       <form className={Style.form}>
-        <input placeholder="Фильм" />
+        <input required placeholder="Фильм" />
         <button />
       </form>
     </section>

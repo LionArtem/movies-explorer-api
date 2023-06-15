@@ -11,13 +11,16 @@ export default function Profile() {
       <h1 className={Style.title}>Привет, кто то!</h1>
       <form className={Style.form}>
         <label>имя</label>
-        <input className={Style.name}
+        <input
+          required
+          className={Style.name}
           value={nameValue}
           onChange={(e) => isNameValue(e.target.value)}
         ></input>
         <label>Email</label>
         <input
-        className={Style.email}
+          required
+          className={Style.email}
           value={emailValue}
           onChange={(e) => isEmailValue(e.target.value)}
         ></input>
