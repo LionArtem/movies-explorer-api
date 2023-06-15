@@ -6,6 +6,18 @@ import BurgerMain from '../BurgerMain/BurgerMain';
 
 export default function Navigationmovies() {
   const [stateMainBurger, isStateMainBurger] = React.useState(false);
+  const body = document.getElementById('body');
+
+  const openBurgerPopup = () => {
+    isStateMainBurger(!stateMainBurger);
+    body.classList.add('bodyNotScrolling');
+  };
+
+  const closeBurgerPopup = () => {
+    isStateMainBurger(!stateMainBurger);
+    body.classList.remove('bodyNotScrolling');
+  };
+
   return (
     <>
       <section className={Style.conteiner}>
@@ -25,12 +37,9 @@ export default function Navigationmovies() {
             <p className={Style.user}>Aккаунт</p>
           </Link>
         </div>
-        <div
-          onClick={() => isStateMainBurger(true)}
-          className={Style.burger}
-        ></div>
+        <div onClick={() => openBurgerPopup()} className={Style.burger}></div>
       </section>
-      {stateMainBurger && <BurgerMain isStateMainBurger={isStateMainBurger} />}
+      {stateMainBurger && <BurgerMain closeBurgerPopup={closeBurgerPopup} />}
     </>
   );
 }
