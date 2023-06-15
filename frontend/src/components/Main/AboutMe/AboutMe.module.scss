@@ -23,10 +23,10 @@
       line-height: 22px;
     }
   }
-  .conteiner_about {
+  .about {
     display: flex;
     justify-content: space-between;
-    .conteiner_text {
+    .discription {
       max-width: 600px;
       display: flex;
       flex-direction: column;
@@ -148,7 +148,7 @@
     }
   }
   @media screen and (max-width: 720px) {
-    .conteiner_about {
+    .about {
       flex-direction: column-reverse;
     }
   }

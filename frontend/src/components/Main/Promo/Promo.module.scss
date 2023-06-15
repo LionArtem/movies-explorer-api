@@ -4,19 +4,19 @@
   display: flex;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 1);
-  .landing {
+  .img {
     margin: 82px auto 122px;
     background-image: url(../../../image/pic__COLOR_landing-logo.png);
     width: 320px;
     height: 320px;
   }
   @media screen and (max-width: 768px) {
-    .landing {
+    .img {
       margin-top: 224px;
     }
   }
   @media screen and (max-width: 480px) {
-    .landing {
+    .img {
       width: 248px;
       height: 248px;
       background-size: cover;

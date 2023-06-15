@@ -1,4 +1,4 @@
-.more {
+.conteiner {
   padding: 50px 0px 80px;
 
   div {
@@ -19,13 +19,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  .more {
+  .conteiner {
     padding-top: 70px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .more {
+  .conteiner {
     padding-top: 50px;
     padding-bottom: 159px;
   }

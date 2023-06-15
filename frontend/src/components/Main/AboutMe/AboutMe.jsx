@@ -9,8 +9,8 @@ export default function AboutMe() {
       <div className={Style.title}>
         <h2>Студент</h2>
       </div>
-      <div className={Style.conteiner_about}>
-        <div className={Style.conteiner_text}>
+      <div className={Style.about}>
+        <div className={Style.discription}>
           <div>
             <h2>Artem</h2>
             <h3>Фронтенд-разработчик, 34 лет</h3>

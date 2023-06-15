@@ -3,7 +3,7 @@ import Style from './More.module.scss';
 
 export default function More() {
   return (
-    <div className={Style.more}>
+    <div className={Style.conteiner}>
       <div>
         <p>Ещё</p>
       </div>
