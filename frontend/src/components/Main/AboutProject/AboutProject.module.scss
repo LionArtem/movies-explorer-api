@@ -30,6 +30,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    column-gap: 30px;
     grid-template-areas:
       'title_stages title_performance'
       'description_stages description_performance';
