@@ -38,21 +38,17 @@
     all: unset;
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
     .title {
-      width: 100%;
+      width: 90%;
       font-family: 'Inter', Arial, sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 30px;
       line-height: 50px;
       letter-spacing: -0.04em;
-      margin: 20px 0px 0px;
-      // transition: transform 0.3s linear;
+      margin: 20px 0px;
     }
-    // .title:hover {
-    //   transform: translateX(5px);
-    // }
 
     @media screen and (max-width: 768px) {
       .title {
@@ -68,20 +64,21 @@
     div {
       background-image: url(../../../image/text__COLOR_font-main.png);
       width: 29px;
-      height: 60px;
+      height: 29px;
+      background-size: cover;
       background-repeat: no-repeat;
-      margin: 20px 0px 9px;
     }
 
     @media screen and (max-width: 768px) {
       div {
         width: 27px;
+        height: 27px;
       }
     }
     @media screen and (max-width: 360px) {
       div {
         width: 18px;
-        height: 28px;
+        height: 18px;
         margin-top: 20px;
         margin-bottom: 19px;
       }
