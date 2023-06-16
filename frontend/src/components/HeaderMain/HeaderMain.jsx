@@ -1,11 +1,10 @@
 import React from 'react';
+import Style from './HeaderMain.module.scss';
 import { Link } from 'react-router-dom';
 
-import Style from './Navigation.module.scss';
-
-export default function Navigation() {
+export default function HeaderMain() {
   return (
-    <section className={Style.conteiner}>
+    <header className={Style.conteiner}>
       <div className={Style.logo}></div>
       <div className={Style.auth}>
         <Link to={'/signup'}>
@@ -15,6 +14,6 @@ export default function Navigation() {
           <p>Войти</p>
         </Link>
       </div>
-    </section>
+    </header>
   );
 }

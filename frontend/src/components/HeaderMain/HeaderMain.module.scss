@@ -2,8 +2,10 @@
   margin-left: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   text-align: center;
-  padding-top: 18px;
+  height: 74px;
+  background: rgba(7, 48, 66, 1);
   .logo {
     background-image: url(../../image/logo.png);
     width: 38px;
@@ -91,3 +93,4 @@
     }
   }
 }
+

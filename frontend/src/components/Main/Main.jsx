@@ -1,6 +1,6 @@
 import React from 'react';
 import Promo from './Promo/Promo';
-import Header from '../Header/Header';
+import HeaderMain from '../HeaderMain/HeaderMain';
 import NavTab from './NavTab/NavTab';
 import AboutProject from './AboutProject/AboutProject';
 import Techs from './Techs/Techs';
@@ -11,7 +11,7 @@ import Footer from '../Footer/Footer';
 export default function Main() {
   return (
     <>
-      <Header />
+      <HeaderMain />
       <main>
         <Promo />
         <NavTab />
