@@ -35,10 +35,10 @@ export default function HeaderMovies() {
       </Link>
       <div className={Style.movies}>
         <Link to={'/movies'}>
-          <p>Фильмы</p>
+          <p className={Style.text_movie}>Фильмы</p>
         </Link>
         <Link to={'/saved-movies'}>
-          <p>Сохраненные фильмы</p>
+          <p className={Style.text_save_movie} >Сохраненные фильмы</p>
         </Link>
       </div>
       <div className={Style.user_conteiner}>
