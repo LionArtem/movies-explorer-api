@@ -1,0 +1,122 @@
+.title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  margin: 74px 0px 105px;
+}
+@media screen and (max-width: 768px) {
+  .title {
+    margin-top: 236px;
+    margin-bottom: 83px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .title {
+    margin-top: 70px;
+    margin-bottom: 80px;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 410px;
+  margin: auto;
+  label {
+    width: min-content;
+    position: relative;
+    top: 14px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  input {
+    all: unset;
+    width: 410px;
+    margin: auto;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  @media screen and (max-width: 320px) {
+    input {
+      width: 260px;
+    }
+  }
+  .name {
+    padding: 0px 0px 16px;
+  }
+  .email {
+    border-bottom: none;
+  }
+  button {
+    all: unset;
+    margin: 220px 0px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: text-shadow 0.3s linear;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  button:hover {
+    text-shadow: 1px 1px #524e4e;
+  }
+  @media screen and (max-width: 768px) {
+    button {
+      margin-top: 210px;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    button {
+      margin-top: 379px;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .form {
+    width: 260px;
+  }
+}
+.sign_out {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ff3055;
+  transition: text-shadow 0.3s linear;
+  cursor: pointer;
+  margin: 0px 0px 70px;
+}
+
+.sign_out:hover {
+  text-shadow: 1px 1px #524e4e;
+}
+
+@media screen and (max-width: 768px) {
+  .sign_out {
+    margin-bottom: 269px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .sign_out {
+    margin-bottom: 40px;
+    font-size: 12px;
+  line-height: 15px;
+  }
+}

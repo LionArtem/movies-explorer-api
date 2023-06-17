@@ -1,0 +1,101 @@
+.conteiner {
+  padding: 0px 70px;
+  h2 {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #a0a0a0;
+    margin: 0px 0px 50px;
+  }
+  @media screen and (max-width: 320px) {
+    margin-bottom: 40px;
+  }
+  ul {
+    margin: 0px 0px 106px;
+    padding: 0;
+    a {
+      all: unset;
+      display: block;
+      cursor: pointer;
+      border-bottom: 1px solid #e8e8e8;
+      transition: transform 0.4s linear;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      a:hover {
+        transform: translateX(5px);
+      }
+    }
+    a:last-child {
+      border-bottom: none;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    margin-bottom: 149px;
+  }
+  .list_website {
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      width: 90%;
+      font-family: 'Inter', Arial, sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 50px;
+      letter-spacing: -0.04em;
+      margin: 20px 0px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .title {
+        font-size: 28px;
+      }
+    }
+    @media screen and (max-width: 360px) {
+      .title {
+        font-size: 18px;
+        line-height: 28px;
+      }
+    }
+    div {
+      background-image: url(../../../image/text__COLOR_font-main.svg);
+      width: 29px;
+      height: 29px;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    @media screen and (max-width: 768px) {
+      div {
+        width: 27px;
+        height: 27px;
+      }
+    }
+    @media screen and (max-width: 360px) {
+      div {
+        width: 18px;
+        height: 18px;
+        margin-top: 20px;
+        margin-bottom: 19px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .conteiner {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .conteiner {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

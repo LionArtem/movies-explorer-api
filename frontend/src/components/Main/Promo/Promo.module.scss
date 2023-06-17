@@ -1,0 +1,69 @@
+.conteiner {
+  background-color: #073042;
+  height: 524px;
+  display: flex;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 1);
+  .img {
+    margin: 82px auto 122px;
+    background-image: url(../../../image/pic__COLOR_landing-logo.svg);
+    width: 320px;
+    height: 320px;
+  }
+  @media screen and (max-width: 768px) {
+    .img {
+      margin-top: 224px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .img {
+      width: 248px;
+      height: 248px;
+      background-size: cover;
+      margin-top: 142px;
+    }
+  }
+  .overlye {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    h1 {
+      margin: 184px auto 0px;
+      max-width: 730px;
+      font-family: Inter;
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 58px;
+      letter-spacing: -0.04em;
+      text-align: center;
+      color: rgba(255, 255, 255, 1);
+    }
+    @media screen and (max-width: 768px) {
+      h1 {
+        margin-top: 326px;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 31px;
+        line-height: 39px;
+        margin-top: 207px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .conteiner {
+    height: 784px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .conteiner {
+    height: 570px;
+  }
+}

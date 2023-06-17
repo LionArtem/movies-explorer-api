@@ -1,0 +1,32 @@
+.conteiner {
+  padding: 50px 0px 80px;
+
+  div {
+    background: #f9f9f9;
+    border-radius: 6px;
+    height: 36px;
+    display: flex;
+    cursor: pointer;
+    p {
+      margin: auto;
+      font-family: 'Inter', Arial, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .conteiner {
+    padding-top: 70px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .conteiner {
+    padding-top: 50px;
+    padding-bottom: 159px;
+  }
+}
