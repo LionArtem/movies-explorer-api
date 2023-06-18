@@ -8,14 +8,20 @@ import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
 import Logit from './components/Login/Logit';
 import NotFound from './components/NotFound/NotFound';
+import { useSelector } from 'react-redux';
+import { selectAuth } from './redax/slices/authSlice';
 
 function App() {
+  const { loggedIn } = useSelector(selectAuth);
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/saved-movies" element={<SavedMovies />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/movies" element={loggedIn ? <Movies /> : <Register />} />
+      <Route
+        path="/saved-movies"
+        element={loggedIn ? <SavedMovies /> : <Register />}
+      />
+      <Route path="/profile" element={loggedIn ? <Profile /> : <Register />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Logit />} />
       <Route path="/not-found" element={<NotFound />} />
