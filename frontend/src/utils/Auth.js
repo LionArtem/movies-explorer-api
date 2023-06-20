@@ -4,36 +4,19 @@ class Auth {
     this.headers = headers;
   }
 
-  // getPaginationPage(currentPage) {
-  //   return fetch(`${this.baseUrl}?page=${currentPage}&limit=10`, {
-  //     headers: this.headers,
-  //   }).then(this._checkResponse);
-  // }
-
-  // getAllMessage() {
-  //   return fetch(this.baseUrl, {
-  //     headers: this.headers,
-  //   }).then(this._checkResponse);
-  // }
-
-  // deletePost(id) {
-  //   return fetch(`${this.baseUrl}/${id}`, {
-  //     method: 'DELETE',
-  //   }).then(this._checkResponse);
-  // }
-
-  addUser(email, password,) {
+  addUser(name, email, password) {
     return fetch(`${this.baseUrl}/signup`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
+        name,
         email,
         password,
       }),
     }).then(this._checkResponse);
   }
 
-  loginUser(email, password,) {
+  loginUser(email, password) {
     return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
       headers: this.headers,
@@ -48,7 +31,14 @@ class Auth {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return res
+      .text()
+      .then((err) =>
+        Promise.reject({
+          errMessage: JSON.parse(err).message,
+          errStatus: res.status,
+        })
+      );
   };
 }
 

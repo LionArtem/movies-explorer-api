@@ -5,14 +5,15 @@ import Main from './components/Main/Main';
 import Movies from './components/Movies/Movies';
 import SavedMovies from './components/SavedMovies/SavedMovies';
 import Profile from './components/Profile/Profile';
-import Register from './components/Register/Register';
-import Logit from './components/Login/Logit';
+import Register from './components/AuthForm/Register';
+import Logit from './components/AuthForm/Logit';
 import NotFound from './components/NotFound/NotFound';
 import { useSelector } from 'react-redux';
-import { selectAuth } from './redax/slices/authSlice';
+import { selectRegistration } from './redax/slices/registrationSlice';
 
 function App() {
-  const { loggedIn } = useSelector(selectAuth);
+  const { loggedIn } = useSelector(selectRegistration);
+  console.log(loggedIn);
   return (
     <Routes>
       <Route path="/" element={<Main />} />
