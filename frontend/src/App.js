@@ -13,7 +13,6 @@ import { selectRegistration } from './redax/slices/registrationSlice';
 
 function App() {
   const { loggedIn } = useSelector(selectRegistration);
-  console.log(loggedIn);
   return (
     <Routes>
       <Route path="/" element={<Main />} />
