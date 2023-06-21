@@ -6,6 +6,7 @@ import {
   selectformValidetion,
   resetValues,
   setValid,
+  setValue,
 } from '../../redax/slices/formValidetionSlice';
 import {
   selectRegistration,
@@ -24,6 +25,7 @@ export default function PopupForm({
   const dispatch = useDispatch();
   const { valid } = useSelector(selectformValidetion);
   const { errMessage } = useSelector(selectRegistration);
+  const { value, errors } = useSelector(selectformValidetion);
   return (
     <div className={Style.conteiner}>
       <Link to={'/'}>
@@ -38,7 +40,49 @@ export default function PopupForm({
       </Link>
       <h1>{title}</h1>
       <form onSubmit={(evt) => handlelSubmit(evt)} className={Style.form}>
-        {children}
+        <div className={Style.input_conteiner}>
+          {children}
+          <label>Email</label>
+          <input
+            pattern="[a-zA-Z0-9._\-]+@[a-zA-Z0-9._\-]+\.[a-zA-Z0-9_\-]+"
+            onChange={(evt) =>
+              dispatch(
+                setValue({
+                  value: evt.target.value,
+                  name: evt.target.name,
+                  errors: evt.target.validationMessage,
+                  valid: evt.target.closest('form').checkValidity(),
+                })
+              )
+            }
+            value={value.email ? value.email : ''}
+            name="email"
+            required
+            type="email"
+          />
+          <span>{errors.email}</span>
+          <label>Пароль</label>
+          <input
+            onChange={(evt) =>
+              dispatch(
+                setValue({
+                  value: evt.target.value,
+                  name: evt.target.name,
+                  errors: evt.target.validationMessage,
+                  valid: evt.target.closest('form').checkValidity(),
+                })
+              )
+            }
+            value={value.password ? value.password : ''}
+            name="password"
+            required
+            className={Style.input_password}
+            type="password"
+            minLength={8}
+            maxLength={20}
+          ></input>
+          <span>{errors.password}</span>
+        </div>
         {valid ? (
           <button type="submit">{textButton}</button>
         ) : (
