@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import registration from './slices/registrationSlice';
 import formValidetion from './slices/formValidetionSlice';
 
+import auth from './slices/authSlice';
+
 export const store = configureStore({
-  reducer: { registration, formValidetion },
+  reducer: { formValidetion, auth },
 });

@@ -1,35 +1,45 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import PopupForm from '../PopupForm/PopupForm';
 
-import { useSelector } from 'react-redux';
-import { selectformValidetion } from '../../redax/slices/formValidetionSlice';
-import { auth } from '../../utils/Auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetValues, setValid } from '../../redax/slices/formValidetionSlice';
+import {
+  fetchLoginUser,
+  selectAuth,
+  remuveErrMessage,
+} from '../../redax/slices/authSlice';
 
 export default function Logit() {
-  const { value } = useSelector(selectformValidetion);
-  const { email, password } = value;
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { errMessage, textButtonLogin } = useSelector(selectAuth);
+
   const handlelSubmit = (evt) => {
     evt.preventDefault();
-    auth
-      .loginUser(email, password)
+    dispatch(fetchLoginUser())
       .then((res) => {
-        console.log(res);
+        if (res.meta.requestStatus === 'fulfilled') {
+          navigate('/movies', { replace: true });
+          dispatch(resetValues());
+          dispatch(setValid());
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    //navigate('/movies', { replace: true });
+      .finally(
+       dispatch(remuveErrMessage()));
   };
   return (
     <>
       <PopupForm
         title={'Добро пожаловать!'}
-        textButton="Войти"
+        textButton={textButtonLogin}
         textRegistr="Ещё не зарегистрированны?"
         textLogin="Регистрация"
         link="/signup"
         handlelSubmit={handlelSubmit}
+        errMessage={errMessage}
+        remuveErrMessage={remuveErrMessage}
       ></PopupForm>
     </>
   );

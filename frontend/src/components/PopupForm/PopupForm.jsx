@@ -8,10 +8,6 @@ import {
   setValid,
   setValue,
 } from '../../redax/slices/formValidetionSlice';
-import {
-  selectRegistration,
-  remuveErrMessage,
-} from '../../redax/slices/registrationSlice';
 
 export default function PopupForm({
   title,
@@ -20,11 +16,12 @@ export default function PopupForm({
   textLogin,
   link,
   handlelSubmit,
+  errMessage,
+  remuveErrMessage,
   children,
 }) {
   const dispatch = useDispatch();
   const { valid } = useSelector(selectformValidetion);
-  const { errMessage } = useSelector(selectRegistration);
   const { value, errors } = useSelector(selectformValidetion);
   return (
     <div className={Style.conteiner}>

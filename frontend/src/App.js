@@ -9,10 +9,10 @@ import Register from './components/AuthForm/Register';
 import Logit from './components/AuthForm/Logit';
 import NotFound from './components/NotFound/NotFound';
 import { useSelector } from 'react-redux';
-import { selectRegistration } from './redax/slices/registrationSlice';
+import { selectAuth } from './redax/slices/authSlice';
 
 function App() {
-  const { loggedIn } = useSelector(selectRegistration);
+  const { loggedIn } = useSelector(selectAuth);
   return (
     <Routes>
       <Route path="/" element={<Main />} />
