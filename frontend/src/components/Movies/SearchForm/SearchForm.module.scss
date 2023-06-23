@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 44px;
   align-items: center;
-  padding: 80px 70px 29px;
+  padding: 80px 70px 0px;
   input {
     background: #f9f9f9;
     border-radius: 8px;
@@ -18,7 +18,6 @@
   }
   @media screen and (max-width: 320px) {
     input {
-      
       padding-top: 13px;
       padding-left: 13px;
       padding-bottom: 13px;
@@ -54,4 +53,41 @@
     padding-right: 14px;
     padding-bottom: 46px;
   }
+}
+
+.conteiner_span {
+  display: flex;
+  align-items: center;
+  height: 29px;
+}
+
+@keyframes opacityList {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.span {
+  display: none;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  color: rgb(254, 3, 3);
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  animation: opacityList 2s linear;
+}
+
+.add_span {
+  display: flex;
 }

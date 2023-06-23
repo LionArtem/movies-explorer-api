@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { moviesApi } from '../../utils/MoviesApi';
 
 export const fetchGetAllMovies = createAsyncThunk(
-  'page/fetchAddUser',
+  'page/fetchGetAllMovies',
   async (params, thunkAPI) => {
     const data = await moviesApi.getAllMovies();
     return data;
@@ -10,15 +10,20 @@ export const fetchGetAllMovies = createAsyncThunk(
 );
 
 const initialState = {
-  moviesAll:{}
+  moviesAll: {},
+  errorText: true,
+  value: '',
 };
 
-const moviesSliceSlice = createSlice({
+const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    setLoggedIn(state) {
-      state.loggedIn = true;
+    isErrText(state) {
+      state.errorText = !state.errorText;
+    },
+    setValue(state, action) {
+      state.value = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -26,18 +31,20 @@ const moviesSliceSlice = createSlice({
       console.log('запрос movies');
     });
     builder.addCase(fetchGetAllMovies.fulfilled, (state, { payload }) => {
-    console.log(payload);
+      console.log(state.value);
+      console.log(payload);
+      console.log(
+        payload.filter((element) => element.nameRU.includes(state.value))
+      );
+      payload.filter((element) => element.nameRU);
     });
     builder.addCase(fetchGetAllMovies.rejected, (state, action) => {
-     console.log('error get movies');
+      console.log('error get movies');
     });
   },
 });
 
-export const selectMovies = (state) => state.auth;
+export const selectMovies = (state) => state.movies;
 
-export const {
-  setLoggedIn,
-  remuveErrMessage,
-} = moviesSliceSlice.actions;
-export default moviesSliceSlice.reducer;
+export const { isErrText, setValue } = moviesSlice.actions;
+export default moviesSlice.reducer;

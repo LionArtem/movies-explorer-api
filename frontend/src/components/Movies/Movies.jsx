@@ -1,9 +1,12 @@
 import React from 'react';
 
-import Style from "./Movies.module.scss";
-import {useDispatch} from "react-redux";
-import {fetchGetAllMovies} from "../../redax/slices/MoviesSlice";
-
+import Style from './Movies.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchGetAllMovies,
+  isErrText,
+  setValue,
+} from '../../redax/slices/MoviesSlice';
 
 import Footer from '../Footer/Footer';
 import HeaderMovies from './HeaderMovies/HeaderMovies';
@@ -15,12 +18,18 @@ import More from './More/More';
 //import { listMovies } from '../../utils/constants';
 
 export default function Movies() {
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
 
-  const getMovies=(evt)=>{
-    evt.preventDefault()
-    dispatch(fetchGetAllMovies())
-  }
+  const getMovies = (evt) => {
+    evt.preventDefault();
+    if (evt.target.checkValidity()) {
+      dispatch(setValue(evt.target[0].value));
+      dispatch(fetchGetAllMovies())
+    } else {
+      dispatch(isErrText());
+      setTimeout(() => dispatch(isErrText()), 2000);
+    }
+  };
 
   return (
     <>
@@ -29,15 +38,19 @@ export default function Movies() {
         <SearchForm getMovies={getMovies} />
         <FilterCheckbox />
         <MoviesCardList>
-          <MoviesCard >  <button
-                className={
-                  'listMovies.like'
-                    ? `${Style.button} ${Style.like_active}`
-                    : `${Style.button} ${Style.like_off}`
-                }
-              ></button></MoviesCard>
+          <MoviesCard>
+            {' '}
+            <button
+              className={
+                'listMovies.like'
+                  ? `${Style.button} ${Style.like_active}`
+                  : `${Style.button} ${Style.like_off}`
+              }
+            ></button>
+          </MoviesCard>
           <More />
         </MoviesCardList>
+        y
       </main>
       <Footer />
     </>
