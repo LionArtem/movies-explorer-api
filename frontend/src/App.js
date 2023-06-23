@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Routes, Route } from 'react-router-dom';
 import Main from './components/Main/Main';
@@ -9,10 +10,18 @@ import Register from './components/AuthForm/Register';
 import Logit from './components/AuthForm/Logit';
 import NotFound from './components/NotFound/NotFound';
 import { useSelector } from 'react-redux';
-import { selectAuth } from './redax/slices/authSlice';
+import { selectAuth, setLoggedIn } from './redax/slices/authSlice';
 
 function App() {
   const { loggedIn } = useSelector(selectAuth);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch(setLoggedIn());
+    }
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Main />} />

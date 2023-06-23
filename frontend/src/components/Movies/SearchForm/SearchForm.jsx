@@ -1,12 +1,12 @@
 import React from 'react';
 import Style from './SearchForm.module.scss';
 
-export default function SearchForm() {
+export default function SearchForm({ getMovies }) {
   return (
     <section>
-      <form className={Style.form}>
+      <form onSubmit={(evt) => getMovies(evt)} className={Style.form}>
         <input required placeholder="Фильм" />
-        <button />
+        <button type="submit" />
       </form>
     </section>
   );

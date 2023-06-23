@@ -45,24 +45,6 @@
         margin-bottom: 0px;
       }
     }
-
-    .button {
-      all: unset;
-      width: 14px;
-      height: 12px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      cursor: pointer;
-    }
-    .like_active {
-      background-image: url(../../../image/icon__COLOR_main-3.svg);
-    }
-    .like_off {
-      background-image: url(../../../image/icon__COLOR_stroke-2.svg);
-    }
-    .delete {
-      background-image: url(../../../image/close.svg);
-    }
   }
   @media screen and (max-width: 480px) {
     .discription {

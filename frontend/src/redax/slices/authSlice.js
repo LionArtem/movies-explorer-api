@@ -60,7 +60,6 @@ const authSlice = createSlice({
       console.log('авторизация');
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
-      console.log(action.payload.token);
       localStorage.setItem('token', action.payload.token);
       state.user = { name: action.payload.name, email: action.payload.email };
       state.loggedIn = true;
@@ -76,11 +75,7 @@ const authSlice = createSlice({
 export const selectAuth = (state) => state.auth;
 
 export const {
-  addErrMessage,
-  setTextButtonRegister,
-  addUser,
   setLoggedIn,
   remuveErrMessage,
-  setTextButtonLogin,
 } = authSlice.actions;
 export default authSlice.reducer;
