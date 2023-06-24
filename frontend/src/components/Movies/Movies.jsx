@@ -6,6 +6,7 @@ import {
   fetchGetAllMovies,
   isErrText,
   setValue,
+  selectMovies,
 } from '../../redax/slices/MoviesSlice';
 
 import Footer from '../Footer/Footer';
@@ -15,16 +16,16 @@ import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import MoviesCard from './MoviesCard/MoviesCard';
 import More from './More/More';
-//import { listMovies } from '../../utils/constants';
 
 export default function Movies() {
   const dispatch = useDispatch();
+  const { moviesAll } = useSelector(selectMovies);
 
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
       dispatch(setValue(evt.target[0].value));
-      dispatch(fetchGetAllMovies())
+      dispatch(fetchGetAllMovies());
     } else {
       dispatch(isErrText());
       setTimeout(() => dispatch(isErrText()), 2000);
@@ -38,8 +39,7 @@ export default function Movies() {
         <SearchForm getMovies={getMovies} />
         <FilterCheckbox />
         <MoviesCardList>
-          <MoviesCard>
-            {' '}
+          <MoviesCard moviesAll={moviesAll}>
             <button
               className={
                 'listMovies.like'

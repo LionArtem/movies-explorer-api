@@ -1,20 +1,25 @@
 import React from 'react';
 import Style from './MoviesCard.module.scss';
 
-export default function MoviesCard({ listMovies, children }) {
+export default function MoviesCard({ moviesAll, children }) {
   return (
     <ul className={Style.list}>
-      {listMovies
-        ? listMovies.map((obj, i) => (
+      {moviesAll.length > 0
+        ? moviesAll.map((obj, i) => (
             <li className={Style.conteiner} key={i}>
               <div className={Style.discription}>
                 <div>
-                  <h1>{obj.title}</h1>
-                  <p>{obj.time}</p>
+                  <h1>{obj.nameRU}</h1>
+                  <p>{`${Math.floor(obj.duration / 60)}ч ${
+                    obj.duration % 60
+                  }м`}</p>
                 </div>
                 {children}
               </div>
-              <img src={obj.preview} alt={`заставка к фильму ${obj.title}`} />
+              <img
+                src={`https://api.nomoreparties.co${obj.image.url}`}
+                alt={`заставка к фильму ${obj.nameRU}`}
+              />
             </li>
           ))
         : ''}

@@ -10,7 +10,7 @@ export const fetchGetAllMovies = createAsyncThunk(
 );
 
 const initialState = {
-  moviesAll: {},
+  moviesAll: [],
   errorText: true,
   value: '',
 };
@@ -34,9 +34,13 @@ const moviesSlice = createSlice({
       console.log(state.value);
       console.log(payload);
       console.log(
-        payload.filter((element) => element.nameRU.includes(state.value))
+        payload.filter((element) =>
+          element.nameRU.toLowerCase().includes(state.value.toLowerCase())
+        )
       );
-      payload.filter((element) => element.nameRU);
+      state.moviesAll = payload.filter((element) =>
+        element.nameRU.toLowerCase().includes(state.value.toLowerCase())
+      );
     });
     builder.addCase(fetchGetAllMovies.rejected, (state, action) => {
       console.log('error get movies');
