@@ -19,6 +19,9 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    addLike(state, action) {
+      state.moviesAll = action.payload;
+    },
     isErrText(state) {
       state.errorText = !state.errorText;
     },
@@ -46,8 +49,9 @@ const moviesSlice = createSlice({
           trailerLink: element.trailerLink,
           nameRU: element.nameRU,
           nameEN: element.nameEN,
-          thumbnail: element.thumbnail,
-          movieId: element.movieId,
+          thumbnail: element.image.previewUrl,
+          movieId: element.id,
+          like: false,
         };
         arrMovies.push(discripshion);
       });
@@ -61,5 +65,5 @@ const moviesSlice = createSlice({
 
 export const selectMovies = (state) => state.movies;
 
-export const { isErrText, setValue } = moviesSlice.actions;
+export const { isErrText, setValue, addLike } = moviesSlice.actions;
 export default moviesSlice.reducer;

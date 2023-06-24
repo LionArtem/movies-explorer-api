@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Style from './Movies.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchGetAllMovies,
@@ -20,7 +19,6 @@ import More from './More/More';
 export default function Movies() {
   const dispatch = useDispatch();
   const { moviesAll } = useSelector(selectMovies);
-  console.log(moviesAll);
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
@@ -32,10 +30,6 @@ export default function Movies() {
     }
   };
 
-  const saveMoviesButton = () => {
-    console.log('click');
-  };
-
   return (
     <>
       <HeaderMovies />
@@ -43,15 +37,7 @@ export default function Movies() {
         <SearchForm getMovies={getMovies} />
         <FilterCheckbox />
         <MoviesCardList>
-          <MoviesCard moviesAll={moviesAll} isClickLake={saveMoviesButton}>
-            <button
-              className={
-                'listMovies.like'
-                  ? `${Style.button} ${Style.like_active}`
-                  : `${Style.button} ${Style.like_off}`
-              }
-            ></button>
-          </MoviesCard>
+          <MoviesCard moviesAll={moviesAll} />
           <More />
         </MoviesCardList>
       </main>
