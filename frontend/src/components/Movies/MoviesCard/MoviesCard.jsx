@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from './MoviesCard.module.scss';
 
-export default function MoviesCard({ moviesAll, children }) {
+export default function MoviesCard({ moviesAll, children, isClickLake }) {
   return (
     <ul className={Style.list}>
       {moviesAll.length > 0
@@ -14,10 +14,10 @@ export default function MoviesCard({ moviesAll, children }) {
                     obj.duration % 60
                   }м`}</p>
                 </div>
-                {children}
+                <div onClick={() => isClickLake()}>{children}</div>
               </div>
               <img
-                src={`https://api.nomoreparties.co${obj.image.url}`}
+                src={`https://api.nomoreparties.co${obj.image}`}
                 alt={`заставка к фильму ${obj.nameRU}`}
               />
             </li>

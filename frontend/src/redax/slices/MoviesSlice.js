@@ -31,16 +31,27 @@ const moviesSlice = createSlice({
       console.log('запрос movies');
     });
     builder.addCase(fetchGetAllMovies.fulfilled, (state, { payload }) => {
-      console.log(state.value);
-      console.log(payload);
-      console.log(
-        payload.filter((element) =>
-          element.nameRU.toLowerCase().includes(state.value.toLowerCase())
-        )
-      );
-      state.moviesAll = payload.filter((element) =>
+      const moviesSearch = payload.filter((element) =>
         element.nameRU.toLowerCase().includes(state.value.toLowerCase())
       );
+      const arrMovies = [];
+      moviesSearch.forEach((element) => {
+        const discripshion = {
+          country: element.country,
+          director: element.director,
+          duration: element.duration,
+          year: element.year,
+          description: element.description,
+          image: element.image.url,
+          trailerLink: element.trailerLink,
+          nameRU: element.nameRU,
+          nameEN: element.nameEN,
+          thumbnail: element.thumbnail,
+          movieId: element.movieId,
+        };
+        arrMovies.push(discripshion);
+      });
+      state.moviesAll = arrMovies;
     });
     builder.addCase(fetchGetAllMovies.rejected, (state, action) => {
       console.log('error get movies');

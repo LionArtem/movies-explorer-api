@@ -20,7 +20,7 @@ import More from './More/More';
 export default function Movies() {
   const dispatch = useDispatch();
   const { moviesAll } = useSelector(selectMovies);
-
+  console.log(moviesAll);
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
@@ -32,6 +32,10 @@ export default function Movies() {
     }
   };
 
+  const saveMoviesButton = () => {
+    console.log('click');
+  };
+
   return (
     <>
       <HeaderMovies />
@@ -39,7 +43,7 @@ export default function Movies() {
         <SearchForm getMovies={getMovies} />
         <FilterCheckbox />
         <MoviesCardList>
-          <MoviesCard moviesAll={moviesAll}>
+          <MoviesCard moviesAll={moviesAll} isClickLake={saveMoviesButton}>
             <button
               className={
                 'listMovies.like'
@@ -50,7 +54,6 @@ export default function Movies() {
           </MoviesCard>
           <More />
         </MoviesCardList>
-        y
       </main>
       <Footer />
     </>
