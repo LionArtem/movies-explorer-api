@@ -1,10 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { moviesApi } from '../../utils/MoviesApi';
+import { mainApi } from '../../utils/MainApi';
 
 export const fetchGetAllMovies = createAsyncThunk(
   'page/fetchGetAllMovies',
   async (params, thunkAPI) => {
     const data = await moviesApi.getAllMovies();
+    return data;
+  }
+);
+
+export const fetchAddMovies = createAsyncThunk(
+  'page/fetchAddMovies',
+  async (params, thunkAPI) => {
+    const data = await mainApi.addMovies(params);
     return data;
   }
 );
@@ -61,11 +70,11 @@ const moviesSlice = createSlice({
           duration: element.duration,
           year: element.year,
           description: element.description,
-          image: element.image.url,
+          image: `https://api.nomoreparties.co${element.image.url}`,
           trailerLink: element.trailerLink,
           nameRU: element.nameRU,
           nameEN: element.nameEN,
-          thumbnail: element.image.previewUrl,
+          thumbnail: `https://api.nomoreparties.co${element.image.url}`,
           movieId: element.id,
           like: false,
         };
@@ -91,6 +100,17 @@ const moviesSlice = createSlice({
       state.showPreloader = !state.showPreloader;
       state.textAnswer = !state.textAnswer;
       console.log('error get movies');
+    });
+
+    builder.addCase(fetchAddMovies.pending, (state) => {
+      console.log('add movies');
+    });
+    builder.addCase(fetchAddMovies.fulfilled, (state, { payload }) => {
+      console.log(payload);
+    });
+    builder.addCase(fetchAddMovies.rejected, (state, action) => {
+      console.log(action);
+      console.log('error add movies');
     });
   },
 });

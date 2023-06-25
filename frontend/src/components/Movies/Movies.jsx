@@ -24,7 +24,6 @@ export default function Movies() {
   React.useEffect(() => {
     if (localStorage.getItem('moviesCard')) {
       dispatch(setValue(localStorage.getItem('valueSearch')));
-      // dispatch(fetchGetAllMovies());
       dispatch(
         setAddMoviesInPage(JSON.parse(localStorage.getItem('moviesCard')))
       );

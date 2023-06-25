@@ -27,7 +27,10 @@ export default function Profile() {
         <button>Редактировать</button>
       </form>
       <p
-        onClick={() => localStorage.removeItem('token')}
+        onClick={() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('moviesCard');
+        }}
         className={Style.sign_out}
       >
         Выйти из аккаунта

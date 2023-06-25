@@ -10,6 +10,16 @@ class MoviesApi {
     }).then(this._checkResponse);
   }
 
+  //  addMovies(objMovies) {
+  //   return fetch(this.baseUrl, {
+  //     method: 'POST',
+  //     headers: this.headers,
+  //     body: JSON.stringify({
+  //       massege: objMovies,
+  //     }),
+  //   }).then(this._checkResponse);
+  // }
+
   // getAllMessage() {
   //   return fetch(this.baseUrl, {
   //     headers: this.headers,
@@ -19,16 +29,6 @@ class MoviesApi {
   // deletePost(id) {
   //   return fetch(`${this.baseUrl}/${id}`, {
   //     method: 'DELETE',
-  //   }).then(this._checkResponse);
-  // }
-
-  // addPost(messageValue) {
-  //   return fetch(this.baseUrl, {
-  //     method: 'POST',
-  //     headers: this.headers,
-  //     body: JSON.stringify({
-  //       massege: messageValue,
-  //     }),
   //   }).then(this._checkResponse);
   // }
 

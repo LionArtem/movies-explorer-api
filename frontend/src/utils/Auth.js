@@ -32,14 +32,6 @@ class Auth {
       return res.json();
     }
     return res.text().then((err) => Promise.reject(err));
-    // return res
-    //   .text()
-    //   .then((err) =>
-    //     Promise.reject({
-    //       errMessage: JSON.parse(err).message,
-    //       errStatus: res.status,
-    //     })
-    //   );
   };
 }
 

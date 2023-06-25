@@ -5,24 +5,26 @@ import Style from './MoviesCard.module.scss';
 
 import Preloader from '../Preloader/Preloader';
 
-import { addLike, selectMovies } from '../../../redax/slices/MoviesSlice';
+import {
+  addLike,
+  selectMovies,
+  fetchAddMovies,
+} from '../../../redax/slices/MoviesSlice';
 
 export default function MoviesCard({ moviesInPage }) {
-  window.addEventListener('resize', (event) => {
-    console.log(event.currentTarget.innerWidth);
-  });
   const dispatch = useDispatch();
 
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
 
   const saveMoviesButton = (id) => {
-    const movis = moviesInPage.map((obj) => {
-      if (obj.movieId === id) {
-        return { ...obj, like: !obj.like };
-      }
-      return obj;
-    });
-    dispatch(addLike(movis));
+    dispatch(fetchAddMovies(id));
+    // const movis = moviesInPage.map((obj) => {
+    //   if (obj.movieId === id.movieId) {
+    //     return { ...obj, like: !obj.like };
+    //   }
+    //   return obj;
+    // });
+    // dispatch(addLike(movis));
   };
 
   return (
@@ -38,7 +40,7 @@ export default function MoviesCard({ moviesInPage }) {
                 }м`}</p>
               </a>
               <button
-                onClick={() => saveMoviesButton(obj.movieId)}
+                onClick={() => saveMoviesButton(obj)}
                 className={
                   obj.like
                     ? `${Style.button} ${Style.like_active}`
@@ -47,7 +49,8 @@ export default function MoviesCard({ moviesInPage }) {
               ></button>
             </div>
             <img
-              src={`https://api.nomoreparties.co${obj.image}`}
+              src={obj.image}
+              //src={`https://api.nomoreparties.co${obj.image}`}
               alt={`заставка к фильму ${obj.nameRU}`}
             />
           </li>
