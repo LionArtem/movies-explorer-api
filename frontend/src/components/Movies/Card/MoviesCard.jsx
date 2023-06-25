@@ -8,7 +8,9 @@ import Preloader from '../Preloader/Preloader';
 import { addLike, selectMovies } from '../../../redax/slices/MoviesSlice';
 
 export default function MoviesCard({ moviesInPage }) {
-  console.log(moviesInPage);
+  window.addEventListener('resize', (event) => {
+    console.log(event.currentTarget.innerWidth);
+  });
   const dispatch = useDispatch();
 
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);

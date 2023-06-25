@@ -13,18 +13,26 @@ import HeaderMovies from './HeaderMovies/HeaderMovies';
 import SearchForm from './SearchForm/SearchForm';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
-import MoviesCard from './MoviesCard/MoviesCard';
+import MoviesCard from './Card/MoviesCard';
 import More from './More/More';
 
 export default function Movies() {
   const dispatch = useDispatch();
-  const { moviesInPage, moviesAll } = useSelector(selectMovies);
-  console.log(moviesAll);
+  const { moviesInPage, moviesAll, value } = useSelector(selectMovies);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('valueSearch')) {
+      dispatch(setValue(localStorage.getItem('valueSearch')));
+      dispatch(fetchGetAllMovies());
+    }
+  }, []);
+
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
-      dispatch(setValue(evt.target[0].value));
+      // dispatch(setValue(evt.target[0].value));
       dispatch(fetchGetAllMovies());
+      localStorage.setItem('valueSearch', value);
     } else {
       dispatch(isErrText());
       setTimeout(() => dispatch(isErrText()), 2000);

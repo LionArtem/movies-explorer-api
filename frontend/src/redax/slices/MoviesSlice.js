@@ -25,7 +25,7 @@ const moviesSlice = createSlice({
   reducers: {
     addMoviesInPage(state, action) {
       const lenghtListMovies = state.moviesInPage.length;
-      const plusMore = lenghtListMovies + 7;
+      const plusMore = lenghtListMovies + lenghtListMovies;
       state.moviesAll.slice(lenghtListMovies, plusMore).forEach((element) => {
         state.moviesInPage.push(element);
       });
@@ -68,7 +68,11 @@ const moviesSlice = createSlice({
         arrMovies.push(discripshion);
       });
       state.moviesAll = arrMovies;
-      state.moviesInPage = arrMovies.slice(0, 7);
+      if (window.innerWidth > 320) {
+        state.moviesInPage = arrMovies.slice(0, 7);
+      } else {
+        state.moviesInPage = arrMovies.slice(0, 5);
+      }
       state.showPreloader = !state.showPreloader;
       if (arrMovies >= 0) {
         state.swowNodFaund = !state.swowNodFaund;

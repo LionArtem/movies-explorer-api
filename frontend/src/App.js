@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import Main from './components/Main/Main';
 import Movies from './components/Movies/Movies';
-import SavedMovies from './components/SavedMovies/SavedMovies';
+import SavedMovies from './components/Movies/SavedMovies';
 import Profile from './components/Profile/Profile';
 import Register from './components/AuthForm/Register';
 import Logit from './components/AuthForm/Logit';

@@ -1,11 +1,12 @@
 import React from 'react';
 import Style from './SearchForm.module.scss';
 
-import { useSelector } from 'react-redux';
-import { selectMovies } from '../../../redax/slices/MoviesSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMovies, setValue } from '../../../redax/slices/MoviesSlice';
 
 export default function SearchForm({ getMovies }) {
-  const { errorText } = useSelector(selectMovies);
+  const dispatch = useDispatch();
+  const { errorText, value } = useSelector(selectMovies);
   return (
     <section>
       <form
@@ -13,7 +14,12 @@ export default function SearchForm({ getMovies }) {
         onSubmit={(evt) => getMovies(evt)}
         className={Style.form}
       >
-        <input required placeholder="Фильм" />
+        <input
+          value={value}
+          onChange={(evt) => dispatch(setValue(evt.target.value))}
+          required
+          placeholder="Фильм"
+        />
         <button type="submit" />
       </form>
       <div className={Style.conteiner_span}>
