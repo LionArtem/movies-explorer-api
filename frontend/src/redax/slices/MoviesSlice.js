@@ -13,6 +13,9 @@ const initialState = {
   moviesAll: [],
   errorText: true,
   value: '',
+  showPreloader: false,
+  swowNodFaund: false,
+  textAnswer: false,
 };
 
 const moviesSlice = createSlice({
@@ -32,6 +35,7 @@ const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchGetAllMovies.pending, (state) => {
       console.log('запрос movies');
+      state.showPreloader = !state.showPreloader;
     });
     builder.addCase(fetchGetAllMovies.fulfilled, (state, { payload }) => {
       const moviesSearch = payload.filter((element) =>
@@ -56,8 +60,15 @@ const moviesSlice = createSlice({
         arrMovies.push(discripshion);
       });
       state.moviesAll = arrMovies;
+      state.showPreloader = !state.showPreloader;
+      if (arrMovies >= 0) {
+        state.swowNodFaund = !state.swowNodFaund;
+        state.textRezult = 'Не чего не найдено';
+      }
     });
     builder.addCase(fetchGetAllMovies.rejected, (state, action) => {
+      state.showPreloader = !state.showPreloader;
+      state.textAnswer = !state.textAnswer;
       console.log('error get movies');
     });
   },

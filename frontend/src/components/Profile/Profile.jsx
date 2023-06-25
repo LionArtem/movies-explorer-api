@@ -3,8 +3,8 @@ import Style from './Profile.module.scss';
 import HeaderMovies from '../Movies/HeaderMovies/HeaderMovies';
 
 export default function Profile() {
-  const [nameValue, isNameValue] = React.useState('имя');
-  const [emailValue, isEmailValue] = React.useState('Email');
+  const [nameValue, isNameValue] = React.useState('');
+  const [emailValue, isEmailValue] = React.useState('');
   return (
     <>
       <HeaderMovies />

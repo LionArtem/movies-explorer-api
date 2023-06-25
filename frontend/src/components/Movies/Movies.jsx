@@ -38,7 +38,7 @@ export default function Movies() {
         <FilterCheckbox />
         <MoviesCardList>
           <MoviesCard moviesAll={moviesAll} />
-          <More />
+          <More moviesAll={moviesAll} />
         </MoviesCardList>
       </main>
       <Footer />

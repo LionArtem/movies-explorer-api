@@ -1,12 +1,16 @@
 import React from 'react';
 import Style from './More.module.scss';
 
-export default function More() {
+export default function More({ moviesAll }) {
   return (
     <div className={Style.conteiner}>
-      <div>
-        <p>Ещё</p>
-      </div>
+      {moviesAll.length > 0 ? (
+        <div>
+          <p>Ещё</p>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
