@@ -7,14 +7,14 @@ import Preloader from '../Preloader/Preloader';
 
 import { addLike, selectMovies } from '../../../redax/slices/MoviesSlice';
 
-export default function MoviesCard({ moviesAll }) {
-  console.log(moviesAll);
+export default function MoviesCard({ moviesInPage }) {
+  console.log(moviesInPage);
   const dispatch = useDispatch();
 
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
 
   const saveMoviesButton = (id) => {
-    const movis = moviesAll.map((obj) => {
+    const movis = moviesInPage.map((obj) => {
       if (obj.movieId === id) {
         return { ...obj, like: !obj.like };
       }
@@ -25,8 +25,8 @@ export default function MoviesCard({ moviesAll }) {
 
   return (
     <ul className={Style.list}>
-      {moviesAll.length > 0 ? (
-        moviesAll.map((obj) => (
+      {moviesInPage.length > 0 ? (
+        moviesInPage.map((obj) => (
           <li className={Style.conteiner} key={obj.movieId}>
             <div className={Style.discription}>
               <a target="blank" href={`${obj.trailerLink}`}>

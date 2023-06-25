@@ -11,6 +11,7 @@ export const fetchGetAllMovies = createAsyncThunk(
 
 const initialState = {
   moviesAll: [],
+  moviesInPage: [],
   errorText: true,
   value: '',
   showPreloader: false,
@@ -22,6 +23,13 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    addMoviesInPage(state, action) {
+      const lenghtListMovies = state.moviesInPage.length;
+      const plusMore = lenghtListMovies + 7;
+      state.moviesAll.slice(lenghtListMovies, plusMore).forEach((element) => {
+        state.moviesInPage.push(element);
+      });
+    },
     addLike(state, action) {
       state.moviesAll = action.payload;
     },
@@ -60,6 +68,7 @@ const moviesSlice = createSlice({
         arrMovies.push(discripshion);
       });
       state.moviesAll = arrMovies;
+      state.moviesInPage = arrMovies.slice(0, 7);
       state.showPreloader = !state.showPreloader;
       if (arrMovies >= 0) {
         state.swowNodFaund = !state.swowNodFaund;
@@ -76,5 +85,6 @@ const moviesSlice = createSlice({
 
 export const selectMovies = (state) => state.movies;
 
-export const { isErrText, setValue, addLike } = moviesSlice.actions;
+export const { isErrText, setValue, addLike, addMoviesInPage } =
+  moviesSlice.actions;
 export default moviesSlice.reducer;

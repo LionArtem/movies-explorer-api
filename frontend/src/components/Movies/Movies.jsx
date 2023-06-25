@@ -18,7 +18,8 @@ import More from './More/More';
 
 export default function Movies() {
   const dispatch = useDispatch();
-  const { moviesAll } = useSelector(selectMovies);
+  const { moviesInPage, moviesAll } = useSelector(selectMovies);
+  console.log(moviesAll);
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
@@ -37,8 +38,8 @@ export default function Movies() {
         <SearchForm getMovies={getMovies} />
         <FilterCheckbox />
         <MoviesCardList>
-          <MoviesCard moviesAll={moviesAll} />
-          <More moviesAll={moviesAll} />
+          <MoviesCard moviesInPage={moviesInPage} />
+          <More moviesAll={moviesAll} moviesInPage={moviesInPage} />
         </MoviesCardList>
       </main>
       <Footer />
