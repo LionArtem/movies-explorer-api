@@ -23,6 +23,9 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    setAddMoviesInPage(state, action) {
+      state.moviesInPage = action.payload;
+    },
     addMoviesInPage(state, action) {
       const lenghtListMovies = state.moviesInPage.length;
       const plusMore = lenghtListMovies + lenghtListMovies;
@@ -31,7 +34,8 @@ const moviesSlice = createSlice({
       });
     },
     addLike(state, action) {
-      state.moviesAll = action.payload;
+      state.moviesInPage = action.payload;
+      localStorage.setItem('moviesCard', JSON.stringify(action.payload));
     },
     isErrText(state) {
       state.errorText = !state.errorText;
@@ -70,6 +74,10 @@ const moviesSlice = createSlice({
       state.moviesAll = arrMovies;
       if (window.innerWidth > 320) {
         state.moviesInPage = arrMovies.slice(0, 7);
+        localStorage.setItem(
+          'moviesCard',
+          JSON.stringify(arrMovies.slice(0, 7))
+        );
       } else {
         state.moviesInPage = arrMovies.slice(0, 5);
       }
@@ -89,6 +97,11 @@ const moviesSlice = createSlice({
 
 export const selectMovies = (state) => state.movies;
 
-export const { isErrText, setValue, addLike, addMoviesInPage } =
-  moviesSlice.actions;
+export const {
+  isErrText,
+  setValue,
+  addLike,
+  addMoviesInPage,
+  setAddMoviesInPage,
+} = moviesSlice.actions;
 export default moviesSlice.reducer;

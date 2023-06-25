@@ -6,6 +6,7 @@ import {
   isErrText,
   setValue,
   selectMovies,
+  setAddMoviesInPage,
 } from '../../redax/slices/MoviesSlice';
 
 import Footer from '../Footer/Footer';
@@ -21,16 +22,18 @@ export default function Movies() {
   const { moviesInPage, moviesAll, value } = useSelector(selectMovies);
 
   React.useEffect(() => {
-    if (localStorage.getItem('valueSearch')) {
+    if (localStorage.getItem('moviesCard')) {
       dispatch(setValue(localStorage.getItem('valueSearch')));
-      dispatch(fetchGetAllMovies());
+      // dispatch(fetchGetAllMovies());
+      dispatch(
+        setAddMoviesInPage(JSON.parse(localStorage.getItem('moviesCard')))
+      );
     }
   }, []);
 
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
-      // dispatch(setValue(evt.target[0].value));
       dispatch(fetchGetAllMovies());
       localStorage.setItem('valueSearch', value);
     } else {
