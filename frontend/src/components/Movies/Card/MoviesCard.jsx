@@ -7,7 +7,10 @@ import Preloader from '../Preloader/Preloader';
 
 import { addLike, selectMovies } from '../../../redax/slices/MoviesSlice';
 
-import { fetchAddMovies } from '../../../redax/slices/MoviesSavedSlice';
+import {
+  fetchAddMovies,
+  fetchDeleteSavedMovies,
+} from '../../../redax/slices/MoviesSavedSlice';
 
 export default function MoviesCard({ moviesInPage }) {
   const dispatch = useDispatch();
@@ -15,17 +18,35 @@ export default function MoviesCard({ moviesInPage }) {
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
 
   const saveMoviesButton = (obj) => {
-    dispatch(fetchAddMovies(obj)).then((res) => {
-      if (res.meta.requestStatus === 'fulfilled') {
-        const movis = moviesInPage.map((element) => {
-          if (element.movieId === obj.movieId) {
-            return { ...element, like: !element.like };
-          }
-          return element;
-        });
-        dispatch(addLike(movis));
-      }
-    });
+    console.log(obj);
+    console.log(obj.like);
+    if (!obj.like) {
+      dispatch(fetchAddMovies(obj)).then((res) => {
+        if (res.meta.requestStatus === 'fulfilled') {
+          const movis = moviesInPage.map((element) => {
+            if (element.movieId === obj.movieId) {
+              return { ...element, like: !element.like, _id: res.payload._id };
+            }
+            return element;
+          });
+          dispatch(addLike(movis));
+        }
+      });
+    } else {
+      console.log(obj.like);
+      console.log(obj._id);
+      dispatch(fetchDeleteSavedMovies(obj._id)).then((res) => {
+        if (res.meta.requestStatus === 'fulfilled') {
+          const movis = moviesInPage.map((element) => {
+            if (element.movieId === obj.movieId) {
+              return { ...element, like: !element.like };
+            }
+            return element;
+          });
+          dispatch(addLike(movis));
+        }
+      });
+    }
   };
 
   return (
