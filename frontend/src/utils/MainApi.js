@@ -24,11 +24,11 @@ class MainApi {
     }).then(this._checkResponse);
   }
 
-  // getAllMessage() {
-  //   return fetch(this.baseUrl, {
-  //     headers: this.headers,
-  //   }).then(this._checkResponse);
-  // }
+  getSavedMovies() {
+    return fetch(this.baseUrl, {
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
 
   // deletePost(id) {
   //   return fetch(`${this.baseUrl}/${id}`, {

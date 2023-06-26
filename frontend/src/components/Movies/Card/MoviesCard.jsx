@@ -5,11 +5,9 @@ import Style from './MoviesCard.module.scss';
 
 import Preloader from '../Preloader/Preloader';
 
-import {
-  addLike,
-  selectMovies,
-  fetchAddMovies,
-} from '../../../redax/slices/MoviesSlice';
+import { addLike, selectMovies } from '../../../redax/slices/MoviesSlice';
+
+import { fetchAddMovies } from '../../../redax/slices/MoviesSavedSlice';
 
 export default function MoviesCard({ moviesInPage }) {
   const dispatch = useDispatch();
@@ -18,13 +16,13 @@ export default function MoviesCard({ moviesInPage }) {
 
   const saveMoviesButton = (id) => {
     dispatch(fetchAddMovies(id));
-    // const movis = moviesInPage.map((obj) => {
-    //   if (obj.movieId === id.movieId) {
-    //     return { ...obj, like: !obj.like };
-    //   }
-    //   return obj;
-    // });
-    // dispatch(addLike(movis));
+    const movis = moviesInPage.map((obj) => {
+      if (obj.movieId === id.movieId) {
+        return { ...obj, like: !obj.like };
+      }
+      return obj;
+    });
+    dispatch(addLike(movis));
   };
 
   return (
