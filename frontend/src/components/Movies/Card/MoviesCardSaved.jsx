@@ -6,6 +6,7 @@ import { selectMovies, setValue } from '../../../redax/slices/MoviesSlice';
 import {
   fetchGatSavedMovies,
   selectSavedMovies,
+  fetchDeleteSavedMovies,
 } from '../../../redax/slices/MoviesSavedSlice';
 
 import Preloader from '../Preloader/Preloader';
@@ -20,6 +21,10 @@ export default function MoviesCardSaved() {
     dispatch(fetchGatSavedMovies());
   }, []);
 
+  const deleteMoviesButton = (obj) => {
+    dispatch(fetchDeleteSavedMovies(obj._id));
+  };
+
   return (
     <ul className={Style.list}>
       {moviesSaved.length > 0 ? (
@@ -33,7 +38,7 @@ export default function MoviesCardSaved() {
                 }м`}</p>
               </a>
               <button
-                //onClick={() => saveMoviesButton(obj)}
+                onClick={() => deleteMoviesButton(obj)}
                 className={`${Style.button} ${Style.delete}`}
               ></button>
             </div>

@@ -17,6 +17,14 @@ export const fetchGatSavedMovies = createAsyncThunk(
   }
 );
 
+export const fetchDeleteSavedMovies = createAsyncThunk(
+    'page/fetchDeleteSavedMovies',
+    async (params, thunkAPI) => {
+      const data = await mainApi.deleteSaveMovies(params);
+      return data;
+    }
+  );
+
 const initialState = {
   moviesSaved: [],
 };
@@ -48,6 +56,17 @@ const moviesSavedSlice = createSlice({
       console.log(action);
       console.log('error get saved movies');
     });
+
+    builder.addCase(fetchDeleteSavedMovies.pending, (state) => {
+        console.log('delete saved movies');
+      });
+      builder.addCase(fetchDeleteSavedMovies.fulfilled, (state, { payload }) => {
+        console.log(payload);
+      });
+      builder.addCase(fetchDeleteSavedMovies.rejected, (state, action) => {
+        console.log(action);
+        console.log('error delete saved movies');
+      });
   },
 });
 

@@ -30,11 +30,12 @@ class MainApi {
     }).then(this._checkResponse);
   }
 
-  // deletePost(id) {
-  //   return fetch(`${this.baseUrl}/${id}`, {
-  //     method: 'DELETE',
-  //   }).then(this._checkResponse);
-  // }
+  deleteSaveMovies(id) {
+    return fetch(`${this.baseUrl}/${id}`, {
+      method: 'DELETE',
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
 
   _checkResponse = (res) => {
     if (res.ok) {
