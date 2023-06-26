@@ -14,15 +14,18 @@ export default function MoviesCard({ moviesInPage }) {
 
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
 
-  const saveMoviesButton = (id) => {
-    dispatch(fetchAddMovies(id));
-    const movis = moviesInPage.map((obj) => {
-      if (obj.movieId === id.movieId) {
-        return { ...obj, like: !obj.like };
+  const saveMoviesButton = (obj) => {
+    dispatch(fetchAddMovies(obj)).then((res) => {
+      if (res.meta.requestStatus === 'fulfilled') {
+        const movis = moviesInPage.map((element) => {
+          if (element.movieId === obj.movieId) {
+            return { ...element, like: !element.like };
+          }
+          return element;
+        });
+        dispatch(addLike(movis));
       }
-      return obj;
     });
-    dispatch(addLike(movis));
   };
 
   return (

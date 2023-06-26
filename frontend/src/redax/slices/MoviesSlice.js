@@ -5,7 +5,8 @@ export const fetchGetAllMovies = createAsyncThunk(
   'page/fetchGetAllMovies',
   async (params, thunkAPI) => {
     const data = await moviesApi.getAllMovies();
-    return data;
+    const arrMoviesSaved = thunkAPI.getState().moviesSaved.moviesSaved;
+    return { data, arrMoviesSaved };
   }
 );
 
@@ -49,12 +50,21 @@ const moviesSlice = createSlice({
       console.log('запрос movies');
       state.showPreloader = !state.showPreloader;
     });
-    builder.addCase(fetchGetAllMovies.fulfilled, (state, { payload }) => {
-      const moviesSearch = payload.filter((element) =>
+    builder.addCase(fetchGetAllMovies.fulfilled, (state, action) => {
+      console.log(action.payload.arrMoviesSaved);
+      const arrMoviesSaved = action.payload.arrMoviesSaved;
+      const moviesSearch = action.payload.data.filter((element) =>
         element.nameRU.toLowerCase().includes(state.value.toLowerCase())
       );
       const arrMovies = [];
       moviesSearch.forEach((element) => {
+        let like;
+        if (arrMoviesSaved.find((obj) => obj.movieId === element.id)) {
+          like = true;
+        } else {
+          like = false;
+        }
+        arrMoviesSaved.find((obj) => obj.movieId === element.id);
         const discripshion = {
           country: element.country,
           director: element.director,
@@ -67,7 +77,7 @@ const moviesSlice = createSlice({
           nameEN: element.nameEN,
           thumbnail: `https://api.nomoreparties.co${element.image.url}`,
           movieId: element.id,
-          like: false,
+          like: like,
         };
         arrMovies.push(discripshion);
       });

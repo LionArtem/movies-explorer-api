@@ -15,6 +15,7 @@ export default function MoviesCardSaved() {
   const dispatch = useDispatch();
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
   const { moviesSaved } = useSelector(selectSavedMovies);
+  console.log(moviesSaved);
 
   React.useEffect(() => {
     dispatch(setValue(''));

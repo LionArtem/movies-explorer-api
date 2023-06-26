@@ -11,6 +11,7 @@ import Logit from './components/AuthForm/Logit';
 import NotFound from './components/NotFound/NotFound';
 import { useSelector } from 'react-redux';
 import { selectAuth, setLoggedIn } from './redax/slices/authSlice';
+import { fetchGatSavedMovies } from './redax/slices/MoviesSavedSlice';
 
 function App() {
   const { loggedIn } = useSelector(selectAuth);
@@ -20,6 +21,11 @@ function App() {
     if (localStorage.getItem('token')) {
       dispatch(setLoggedIn());
     }
+  }, []);
+
+  React.useEffect(() => {
+    //dispatch(setValue(''));
+    dispatch(fetchGatSavedMovies());
   }, []);
 
   return (
