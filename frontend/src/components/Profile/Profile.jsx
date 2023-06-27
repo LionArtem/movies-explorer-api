@@ -1,8 +1,10 @@
 import React from 'react';
 import Style from './Profile.module.scss';
+import { useNavigate } from 'react-router-dom';
 import HeaderMovies from '../Movies/HeaderMovies/HeaderMovies';
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [nameValue, isNameValue] = React.useState('');
   const [emailValue, isEmailValue] = React.useState('');
   return (
@@ -30,6 +32,7 @@ export default function Profile() {
         onClick={() => {
           localStorage.removeItem('token');
           localStorage.removeItem('moviesCard');
+          navigate('/', { replace: true });
         }}
         className={Style.sign_out}
       >

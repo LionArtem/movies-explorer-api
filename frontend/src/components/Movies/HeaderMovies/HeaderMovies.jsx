@@ -8,7 +8,6 @@ import Style from './HeaderMovies.module.scss';
 export default function HeaderMovies() {
   const [stateMainBurger, isStateMainBurger] = React.useState(false);
   const body = document.getElementById('body');
-  console.log(window.location.pathname);
 
   const openBurgerPopup = () => {
     isStateMainBurger(!stateMainBurger);
