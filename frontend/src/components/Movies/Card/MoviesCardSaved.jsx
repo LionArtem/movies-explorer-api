@@ -35,7 +35,6 @@ export default function MoviesCardSaved() {
       }
     });
   };
-
   return (
     <ul className={Style.list}>
       {moviesSaved.length > 0 ? (

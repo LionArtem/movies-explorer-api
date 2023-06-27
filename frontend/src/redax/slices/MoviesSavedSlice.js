@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { mainApi } from '../../utils/MainApi';
+import { mainApi } from '../../App';
 
 export const fetchAddMovies = createAsyncThunk(
   'page/fetchAddMovies',
@@ -61,10 +61,10 @@ const moviesSavedSlice = createSlice({
       console.log('delete saved movies');
     });
     builder.addCase(fetchDeleteSavedMovies.fulfilled, (state, { payload }) => {
-      //console.log(payload);
       const arrNewSavedMovies = [];
       state.moviesSaved.forEach((element) => {
-        if (!element.movieId === payload.movieId) {
+        if (element.movieId === payload.movieId) {
+        } else {
           arrNewSavedMovies.push(element);
         }
       });
