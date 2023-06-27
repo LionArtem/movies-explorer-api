@@ -24,7 +24,6 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    //dispatch(setValue(''));
     dispatch(fetchGatSavedMovies());
   }, []);
 

@@ -2,7 +2,11 @@ import React from 'react';
 import Style from './MoviesCard.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMovies, setValue } from '../../../redax/slices/MoviesSlice';
+import {
+  selectMovies,
+  setValue,
+  addLike,
+} from '../../../redax/slices/MoviesSlice';
 import {
   fetchGatSavedMovies,
   selectSavedMovies,
@@ -11,11 +15,13 @@ import {
 
 import Preloader from '../Preloader/Preloader';
 
+import { deleteLikeinPage } from '../../../utils/constants';
+
 export default function MoviesCardSaved() {
   const dispatch = useDispatch();
-  const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
+  const { showPreloader, swowNodFaund, textAnswer, moviesInPage } =
+    useSelector(selectMovies);
   const { moviesSaved } = useSelector(selectSavedMovies);
-  console.log(moviesSaved);
 
   React.useEffect(() => {
     dispatch(setValue(''));
@@ -23,7 +29,11 @@ export default function MoviesCardSaved() {
   }, []);
 
   const deleteMoviesButton = (obj) => {
-    dispatch(fetchDeleteSavedMovies(obj._id));
+    dispatch(fetchDeleteSavedMovies(obj._id)).then((res) => {
+      if (res.meta.requestStatus === 'fulfilled') {
+        dispatch(addLike(deleteLikeinPage(res, obj, moviesInPage)));
+      }
+    });
   };
 
   return (

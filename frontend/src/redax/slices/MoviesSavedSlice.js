@@ -18,12 +18,12 @@ export const fetchGatSavedMovies = createAsyncThunk(
 );
 
 export const fetchDeleteSavedMovies = createAsyncThunk(
-    'page/fetchDeleteSavedMovies',
-    async (params, thunkAPI) => {
-      const data = await mainApi.deleteSaveMovies(params);
-      return data;
-    }
-  );
+  'page/fetchDeleteSavedMovies',
+  async (params, thunkAPI) => {
+    const data = await mainApi.deleteSaveMovies(params);
+    return data;
+  }
+);
 
 const initialState = {
   moviesSaved: [],
@@ -38,7 +38,7 @@ const moviesSavedSlice = createSlice({
       console.log('add movies');
     });
     builder.addCase(fetchAddMovies.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      //console.log(payload);
     });
     builder.addCase(fetchAddMovies.rejected, (state, action) => {
       console.log(action);
@@ -58,15 +58,22 @@ const moviesSavedSlice = createSlice({
     });
 
     builder.addCase(fetchDeleteSavedMovies.pending, (state) => {
-        console.log('delete saved movies');
+      console.log('delete saved movies');
+    });
+    builder.addCase(fetchDeleteSavedMovies.fulfilled, (state, { payload }) => {
+      //console.log(payload);
+      const arrNewSavedMovies = [];
+      state.moviesSaved.forEach((element) => {
+        if (!element.movieId === payload.movieId) {
+          arrNewSavedMovies.push(element);
+        }
       });
-      builder.addCase(fetchDeleteSavedMovies.fulfilled, (state, { payload }) => {
-        console.log(payload);
-      });
-      builder.addCase(fetchDeleteSavedMovies.rejected, (state, action) => {
-        console.log(action);
-        console.log('error delete saved movies');
-      });
+      state.moviesSaved = arrNewSavedMovies;
+    });
+    builder.addCase(fetchDeleteSavedMovies.rejected, (state, action) => {
+      console.log(action);
+      console.log('error delete saved movies');
+    });
   },
 });
 

@@ -12,14 +12,14 @@ import {
   fetchDeleteSavedMovies,
 } from '../../../redax/slices/MoviesSavedSlice';
 
+import { deleteLikeinPage } from '../../../utils/constants';
+
 export default function MoviesCard({ moviesInPage }) {
   const dispatch = useDispatch();
 
   const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
 
   const saveMoviesButton = (obj) => {
-    console.log(obj);
-    console.log(obj.like);
     if (!obj.like) {
       dispatch(fetchAddMovies(obj)).then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
@@ -33,17 +33,9 @@ export default function MoviesCard({ moviesInPage }) {
         }
       });
     } else {
-      console.log(obj.like);
-      console.log(obj._id);
       dispatch(fetchDeleteSavedMovies(obj._id)).then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
-          const movis = moviesInPage.map((element) => {
-            if (element.movieId === obj.movieId) {
-              return { ...element, like: !element.like };
-            }
-            return element;
-          });
-          dispatch(addLike(movis));
+          dispatch(addLike(deleteLikeinPage(res, obj, moviesInPage)));
         }
       });
     }

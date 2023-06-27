@@ -1,5 +1,3 @@
-import previewMovies from '../image/pic__COLOR_pic.png';
-
 const listTechs = [
   'HTML',
   'CSS',
@@ -26,4 +24,16 @@ const listWebsite = [
   { title: 'Какой то сайт', link: '' },
 ];
 
-export { listTechs, listWebsite };
+const deleteLikeinPage = (res, obj, moviesInPage) => {
+  if (res.meta.requestStatus === 'fulfilled') {
+    const movis = moviesInPage.map((element) => {
+      if (element.movieId === obj.movieId) {
+        return { ...element, like: !element.like };
+      }
+      return element;
+    });
+    return movis;
+  }
+};
+
+export { listTechs, listWebsite, deleteLikeinPage };
