@@ -25,6 +25,7 @@ export default function MoviesCardSaved() {
 
   React.useEffect(() => {
     dispatch(setValue(''));
+    console.log(localStorage.getItem('token'));
     dispatch(fetchGatSavedMovies());
   }, []);
 

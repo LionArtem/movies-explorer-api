@@ -60,10 +60,12 @@ const authSlice = createSlice({
       console.log('авторизация');
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
+      
       localStorage.setItem('token', action.payload.token);
       state.user = { name: action.payload.name, email: action.payload.email };
       state.loggedIn = true;
       state.textButtonLogin = 'Войти';
+      console.log(localStorage.getItem('token'));
     });
     builder.addCase(fetchLoginUser.rejected, (state, action) => {
       state.errMessage = JSON.parse(action.error.message).message;

@@ -13,27 +13,36 @@ import {
   selectAuth,
   remuveErrMessage,
   fetchAddUser,
+  fetchLoginUser,
 } from '../../redax/slices/authSlice';
 
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { value, errors } = useSelector(selectformValidetion);
-  const { textButtonRegister,errMessage } = useSelector(selectAuth);
+  const { textButtonRegister, errMessage } = useSelector(selectAuth);
 
   const handlelSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(fetchAddUser())
-      .then((res) => {
-        if (res.meta.requestStatus === 'fulfilled') {
-          navigate('/movies', { replace: true });
-          dispatch(resetValues());
-          dispatch(setValid());
-        }
-      })
-      .finally(
-        dispatch(remuveErrMessage())
-      );
+    dispatch(fetchAddUser()).then((res) => {
+      if (res.meta.requestStatus === 'fulfilled') {
+        dispatch(fetchLoginUser())
+          .then((res) => {
+            if (res.meta.requestStatus === 'fulfilled') {
+              navigate('/movies', { replace: true });
+              dispatch(resetValues());
+              dispatch(setValid());
+            }
+          })
+          .finally(dispatch(remuveErrMessage()));
+        // navigate('/movies', { replace: true });
+        // dispatch(resetValues());
+        // dispatch(setValid());
+      }
+    });
+    // .finally(
+    //   dispatch(remuveErrMessage())
+    // );
   };
 
   return (

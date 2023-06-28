@@ -7,12 +7,12 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    console.log(authorization);
     const err = new AuthorizationError('Необходима авторизация');
     next(err);
     return;
   }
   const token = authorization.replace('Bearer ', '');
+  console.log(token);
   let payload;
   try {
     // попытаемся верифицировать токен

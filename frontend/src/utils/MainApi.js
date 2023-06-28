@@ -46,4 +46,12 @@ class MainApi {
   };
 }
 
-export { MainApi };
+const mainApi = new MainApi({
+  baseUrl: 'http://localhost:3000/movies',
+  headers: {
+    authorization: `Bearer ${localStorage.getItem('token')}`,
+    'content-type': 'application/json',
+  },
+});
+
+export { mainApi };
