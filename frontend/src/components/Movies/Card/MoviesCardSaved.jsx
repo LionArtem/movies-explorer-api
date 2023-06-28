@@ -13,6 +13,8 @@ import {
   fetchDeleteSavedMovies,
 } from '../../../redax/slices/MoviesSavedSlice';
 
+import { selectAuth } from '../../../redax/slices/authSlice';
+
 import Preloader from '../Preloader/Preloader';
 
 import { deleteLikeinPage } from '../../../utils/constants';
@@ -22,15 +24,15 @@ export default function MoviesCardSaved() {
   const { showPreloader, swowNodFaund, textAnswer, moviesInPage } =
     useSelector(selectMovies);
   const { moviesSaved } = useSelector(selectSavedMovies);
+  const { token } = useSelector(selectAuth);
 
   React.useEffect(() => {
     dispatch(setValue(''));
-    console.log(localStorage.getItem('token'));
-    dispatch(fetchGatSavedMovies());
+    dispatch(fetchGatSavedMovies(token));
   }, []);
 
   const deleteMoviesButton = (obj) => {
-    dispatch(fetchDeleteSavedMovies(obj._id)).then((res) => {
+    dispatch(fetchDeleteSavedMovies(obj._id, token)).then((res) => {
       if (res.meta.requestStatus === 'fulfilled') {
         dispatch(addLike(deleteLikeinPage(res, obj, moviesInPage)));
       }

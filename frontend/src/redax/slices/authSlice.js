@@ -27,6 +27,7 @@ const initialState = {
   user: {},
   textButtonRegister: 'Зарегистрироваться',
   textButtonLogin: 'Войти',
+  token: '',
 };
 
 const authSlice = createSlice({
@@ -60,8 +61,8 @@ const authSlice = createSlice({
       console.log('авторизация');
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
-      
       localStorage.setItem('token', action.payload.token);
+      state.token = action.payload.token
       state.user = { name: action.payload.name, email: action.payload.email };
       state.loggedIn = true;
       state.textButtonLogin = 'Войти';
@@ -76,8 +77,5 @@ const authSlice = createSlice({
 
 export const selectAuth = (state) => state.auth;
 
-export const {
-  setLoggedIn,
-  remuveErrMessage,
-} = authSlice.actions;
+export const { setLoggedIn, remuveErrMessage } = authSlice.actions;
 export default authSlice.reducer;

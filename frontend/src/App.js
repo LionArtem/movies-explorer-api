@@ -12,19 +12,9 @@ import NotFound from './components/NotFound/NotFound';
 import { useSelector } from 'react-redux';
 import { selectAuth, setLoggedIn } from './redax/slices/authSlice';
 import { fetchGatSavedMovies } from './redax/slices/MoviesSavedSlice';
-//import { MainApi } from './utils/MainApi';
-console.log(localStorage.getItem('token'));
-
-// export const mainApi = new MainApi({
-//   baseUrl: 'http://localhost:3000/movies',
-//   headers: {
-//     authorization: `Bearer ${localStorage.getItem('token')}`,
-//     'content-type': 'application/json',
-//   },
-// });
 
 function App() {
-  const { loggedIn } = useSelector(selectAuth);
+  const { loggedIn, token } = useSelector(selectAuth);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -32,7 +22,7 @@ function App() {
       dispatch(setLoggedIn());
       dispatch(fetchGatSavedMovies());
     }
-  }, []);
+  }, [token]);
 
   return (
     <Routes>

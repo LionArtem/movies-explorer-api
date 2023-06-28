@@ -17,8 +17,6 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import MoviesCard from './Card/MoviesCard';
 import More from './More/More';
 
-console.log(localStorage.getItem('token'));
-
 export default function Movies() {
   const dispatch = useDispatch();
   const { moviesInPage, moviesAll, value } = useSelector(selectMovies);

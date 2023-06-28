@@ -24,16 +24,28 @@ class MainApi {
     }).then(this._checkResponse);
   }
 
-  getSavedMovies() {
+  getSavedMovies(token) {
     return fetch(this.baseUrl, {
-      headers: this.headers,
+      // headers: this.headers,
+      headers: {
+        authorization: `Bearer ${
+          localStorage.getItem('token') ? localStorage.getItem('token') : token
+        }`,
+        'content-type': 'application/json',
+      },
     }).then(this._checkResponse);
   }
 
-  deleteSaveMovies(id) {
+  deleteSaveMovies(id,token) {
     return fetch(`${this.baseUrl}/${id}`, {
       method: 'DELETE',
-      headers: this.headers,
+      // headers: this.headers,
+      headers: {
+        authorization: `Bearer ${
+          localStorage.getItem('token') ? localStorage.getItem('token') : token
+        }`,
+        'content-type': 'application/json',
+      },
     }).then(this._checkResponse);
   }
 
