@@ -2,8 +2,11 @@ import React from 'react';
 import Style from './Profile.module.scss';
 import { useNavigate } from 'react-router-dom';
 import HeaderMovies from '../Movies/HeaderMovies/HeaderMovies';
+import { useDispatch } from 'react-redux';
+import { setValue, resetMoviesInPage } from '../../redax/slices/MoviesSlice';
 
 export default function Profile() {
+  const dispath = useDispatch();
   const navigate = useNavigate();
   const [nameValue, isNameValue] = React.useState('');
   const [emailValue, isEmailValue] = React.useState('');
@@ -32,6 +35,9 @@ export default function Profile() {
         onClick={() => {
           localStorage.removeItem('token');
           localStorage.removeItem('moviesCard');
+          localStorage.removeItem('valueSearch');
+          dispath(setValue(''));
+          dispath(resetMoviesInPage());
           navigate('/', { replace: true });
         }}
         className={Style.sign_out}

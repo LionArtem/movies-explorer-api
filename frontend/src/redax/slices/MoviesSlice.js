@@ -24,6 +24,9 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    resetMoviesInPage(state, action) {
+      state.moviesInPage = [];
+    },
     setAddMoviesInPage(state, action) {
       state.moviesInPage = action.payload;
     },
@@ -113,5 +116,6 @@ export const {
   addLike,
   addMoviesInPage,
   setAddMoviesInPage,
+  resetMoviesInPage
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

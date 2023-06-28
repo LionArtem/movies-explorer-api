@@ -4,10 +4,16 @@ class MainApi {
     this.headers = headers;
   }
 
-  addMovies(objMovies) {
+  addMovies(objMovies,token) {
     return fetch(this.baseUrl, {
       method: 'POST',
-      headers: this.headers,
+      // headers: this.headers,
+      headers: {
+        authorization: `Bearer ${
+          localStorage.getItem('token') ? localStorage.getItem('token') : token
+        }`,
+        'content-type': 'application/json',
+      },
       body: JSON.stringify({
         country: objMovies.country,
         director: objMovies.director,
