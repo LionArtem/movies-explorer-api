@@ -4,7 +4,7 @@ import Style from './MoviesCard.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMovies,
-  setValue,
+  setValueSearch,
   addLike,
 } from '../../../redax/slices/MoviesSlice';
 import {
@@ -27,7 +27,7 @@ export default function MoviesCardSaved() {
   const { token } = useSelector(selectAuth);
 
   React.useEffect(() => {
-    dispatch(setValue(''));
+    dispatch(setValueSearch(''));
     dispatch(fetchGatSavedMovies(token));
   }, []);
 

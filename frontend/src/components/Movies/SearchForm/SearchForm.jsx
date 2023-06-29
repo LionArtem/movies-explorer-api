@@ -2,7 +2,7 @@ import React from 'react';
 import Style from './SearchForm.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMovies, setValue } from '../../../redax/slices/MoviesSlice';
+import { selectMovies, setValueSearch } from '../../../redax/slices/MoviesSlice';
 
 export default function SearchForm({ getMovies }) {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function SearchForm({ getMovies }) {
       >
         <input
           value={value}
-          onChange={(evt) => dispatch(setValue(evt.target.value))}
+          onChange={(evt) => dispatch(setValueSearch(evt.target.value))}
           required
           placeholder="Фильм"
         />

@@ -14,7 +14,7 @@ const initialState = {
   moviesAll: [],
   moviesInPage: [],
   errorText: true,
-  value: '',
+  valueSearch: '',
   showPreloader: false,
   swowNodFaund: false,
   textAnswer: false,
@@ -44,8 +44,8 @@ const moviesSlice = createSlice({
     isErrText(state) {
       state.errorText = !state.errorText;
     },
-    setValue(state, action) {
-      state.value = action.payload;
+    setValueSearch(state, action) {
+      state.valueSearch = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -57,7 +57,7 @@ const moviesSlice = createSlice({
       console.log(action.payload.arrMoviesSaved);
       const arrMoviesSaved = action.payload.arrMoviesSaved;
       const moviesSearch = action.payload.data.filter((element) =>
-        element.nameRU.toLowerCase().includes(state.value.toLowerCase())
+        element.nameRU.toLowerCase().includes(state.valueSearch.toLowerCase())
       );
       const arrMovies = [];
       moviesSearch.forEach((element) => {
@@ -112,7 +112,7 @@ export const selectMovies = (state) => state.movies;
 
 export const {
   isErrText,
-  setValue,
+  setValueSearch,
   addLike,
   addMoviesInPage,
   setAddMoviesInPage,

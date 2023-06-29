@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchGetAllMovies,
   isErrText,
-  setValue,
+  setValueSearch,
   selectMovies,
   setAddMoviesInPage,
 } from '../../redax/slices/MoviesSlice';
@@ -23,7 +23,7 @@ export default function Movies() {
 
   React.useEffect(() => {
     if (localStorage.getItem('moviesCard')) {
-      dispatch(setValue(localStorage.getItem('valueSearch')));
+      dispatch(setValueSearch(localStorage.getItem('valueSearch')));
       dispatch(
         setAddMoviesInPage(JSON.parse(localStorage.getItem('moviesCard')))
       );

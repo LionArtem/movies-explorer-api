@@ -24,7 +24,6 @@ export const fetchLoginUser = createAsyncThunk(
 const initialState = {
   loggedIn: false,
   errMessage: '',
-  user: {},
   textButtonRegister: 'Зарегистрироваться',
   textButtonLogin: 'Войти',
   token: '',
@@ -62,11 +61,11 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
-      state.token = action.payload.token
-      state.user = { name: action.payload.name, email: action.payload.email };
+      console.log(action.payload);
+      localStorage.setItem('name', action.payload.name);
+      state.token = action.payload.token;
       state.loggedIn = true;
       state.textButtonLogin = 'Войти';
-      console.log(localStorage.getItem('token'));
     });
     builder.addCase(fetchLoginUser.rejected, (state, action) => {
       state.errMessage = JSON.parse(action.error.message).message;

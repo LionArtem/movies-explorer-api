@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import PopupForm from '../PopupForm/PopupForm';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { resetValues, setValid } from '../../redax/slices/formValidetionSlice';
+import {
+  resetValues,
+  setValid,
+  savedValues,
+} from '../../redax/slices/formValidetionSlice';
 import {
   fetchLoginUser,
   selectAuth,
@@ -21,13 +25,13 @@ export default function Logit() {
     dispatch(fetchLoginUser())
       .then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
+          dispatch(savedValues());
           navigate('/movies', { replace: true });
           dispatch(resetValues());
           dispatch(setValid());
         }
       })
-      .finally(
-       dispatch(remuveErrMessage()));
+      .finally(dispatch(remuveErrMessage()));
   };
   return (
     <>

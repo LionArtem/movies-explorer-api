@@ -114,12 +114,15 @@
     background: #c8cddf;
     cursor: default;
   }
+
   button:hover {
     opacity: 0.7;
   }
-  button:hover {
+
+  .button_off:hover {
     opacity: 1;
   }
+
   @media screen and (max-width: 480px) {
     button {
       margin-top: 157px;

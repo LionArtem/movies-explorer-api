@@ -21,8 +21,7 @@ export default function PopupForm({
   children,
 }) {
   const dispatch = useDispatch();
-  const { valid } = useSelector(selectformValidetion);
-  const { value, errors } = useSelector(selectformValidetion);
+  const { value, errors, valid } = useSelector(selectformValidetion);
   return (
     <div className={Style.conteiner}>
       <Link to={'/'}>

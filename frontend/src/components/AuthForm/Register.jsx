@@ -8,6 +8,7 @@ import {
   resetValues,
   setValid,
   setValue,
+  savedValues,
 } from '../../redax/slices/formValidetionSlice';
 import {
   selectAuth,
@@ -29,20 +30,15 @@ export default function Register() {
         dispatch(fetchLoginUser())
           .then((res) => {
             if (res.meta.requestStatus === 'fulfilled') {
+              dispatch(savedValues());
               navigate('/movies', { replace: true });
               dispatch(resetValues());
               dispatch(setValid());
             }
           })
           .finally(dispatch(remuveErrMessage()));
-        // navigate('/movies', { replace: true });
-        // dispatch(resetValues());
-        // dispatch(setValid());
       }
     });
-    // .finally(
-    //   dispatch(remuveErrMessage())
-    // );
   };
 
   return (

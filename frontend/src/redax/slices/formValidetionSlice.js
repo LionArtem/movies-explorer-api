@@ -16,6 +16,10 @@ const formValidetionSlice = createSlice({
       state.errors = { ...state.errors, [name]: errors };
       state.valid = valid;
     },
+    savedValues(state) {
+  
+      localStorage.setItem('email', state.value.email);
+    },
     resetValues(state) {
       state.value = {};
     },
@@ -27,5 +31,6 @@ const formValidetionSlice = createSlice({
 
 export const selectformValidetion = (state) => state.formValidetion;
 
-export const { setValue, resetValues, setValid } = formValidetionSlice.actions;
+export const { setValue, resetValues, setValid, savedValues } =
+  formValidetionSlice.actions;
 export default formValidetionSlice.reducer;

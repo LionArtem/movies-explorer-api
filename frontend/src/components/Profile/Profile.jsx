@@ -1,15 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import Style from './Profile.module.scss';
 import { useNavigate } from 'react-router-dom';
 import HeaderMovies from '../Movies/HeaderMovies/HeaderMovies';
 import { useDispatch } from 'react-redux';
-import { setValue, resetMoviesInPage } from '../../redax/slices/MoviesSlice';
+import {
+  setValueSearch,
+  resetMoviesInPage,
+} from '../../redax/slices/MoviesSlice';
+import {
+  selectformValidetion,
+  setValue,
+} from '../../redax/slices/formValidetionSlice';
 
 export default function Profile() {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [nameValue, isNameValue] = React.useState('');
-  const [emailValue, isEmailValue] = React.useState('');
+  const { valid, value, errors } = useSelector(selectformValidetion);
+  console.log(valid);
   return (
     <>
       <HeaderMovies />
@@ -17,27 +26,62 @@ export default function Profile() {
       <form className={Style.form}>
         <label>имя</label>
         <input
-          required
           className={Style.name}
-          value={nameValue}
-          onChange={(e) => isNameValue(e.target.value)}
+          pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+          name="name"
+          onChange={(evt) =>
+            dispatch(
+              setValue({
+                value: evt.target.value,
+                name: evt.target.name,
+                errors: evt.target.validationMessage,
+                valid: evt.target.closest('form').checkValidity(),
+              })
+            )
+          }
+          value={value.name ? value.name : localStorage.getItem('name')}
+          required
+          minLength="2"
+          maxLength="30"
         ></input>
+        <span className={Style.span}>{errors.name}</span>
         <label>Email</label>
         <input
           required
           className={Style.email}
-          value={emailValue}
-          onChange={(e) => isEmailValue(e.target.value)}
+          pattern="[a-zA-Z0-9._\-]+@[a-zA-Z0-9._\-]+\.[a-zA-Z0-9_\-]+"
+          onChange={(evt) =>
+            dispatch(
+              setValue({
+                value: evt.target.value,
+                name: evt.target.name,
+                errors: evt.target.validationMessage,
+                valid: evt.target.closest('form').checkValidity(),
+              })
+            )
+          }
+          value={value.email ? value.email : localStorage.getItem('email')}
+          name="email"
+          type="email"
         ></input>
-        <button>Редактировать</button>
+        <span className={Style.span}>{errors.email}</span>
+        {valid ? (
+          <button>Редактировать</button>
+        ) : (
+          <button disabled className={Style.button_off}>
+            Редактировать
+          </button>
+        )}
       </form>
       <p
         onClick={() => {
           localStorage.removeItem('token');
           localStorage.removeItem('moviesCard');
           localStorage.removeItem('valueSearch');
-          dispath(setValue(''));
-          dispath(resetMoviesInPage());
+          localStorage.removeItem('name');
+          localStorage.removeItem('email');
+          dispatch(setValueSearch(''));
+          dispatch(resetMoviesInPage());
           navigate('/', { replace: true });
         }}
         className={Style.sign_out}
