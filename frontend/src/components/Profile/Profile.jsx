@@ -18,7 +18,33 @@ export default function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { valid, value, errors } = useSelector(selectformValidetion);
-  console.log(valid);
+  const user = {
+    name: localStorage.getItem('name'),
+    email: localStorage.getItem('email'),
+  };
+  const checkValue = (value, name, email) => {
+    let userName;
+    let userEmail;
+
+    if (value.name === undefined) {
+      userName = user.name;
+    } else {
+      userName = value.name;
+    }
+
+    if (value.email === undefined) {
+      userEmail = user.email;
+    } else {
+      userEmail = value.email;
+    }
+
+    if (userName === name && userEmail === email) {
+      return false;
+    } else {
+      return true;
+    }
+
+  };
   return (
     <>
       <HeaderMovies />
@@ -39,7 +65,7 @@ export default function Profile() {
               })
             )
           }
-          value={value.name ? value.name : localStorage.getItem('name')}
+          value={value.name ? value.name : user.name}
           required
           minLength="2"
           maxLength="30"
@@ -60,12 +86,12 @@ export default function Profile() {
               })
             )
           }
-          value={value.email ? value.email : localStorage.getItem('email')}
+          value={value.email ? value.email : user.email}
           name="email"
           type="email"
         ></input>
         <span className={Style.span}>{errors.email}</span>
-        {valid ? (
+        {valid && checkValue(value, user.name, user.email) ? (
           <button>Редактировать</button>
         ) : (
           <button disabled className={Style.button_off}>
