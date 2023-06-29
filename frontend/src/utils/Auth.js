@@ -27,6 +27,18 @@ class Auth {
     }).then(this._checkResponse);
   }
 
+  getUser(token) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: {
+        authorization: `Bearer ${
+          localStorage.getItem('token') ? localStorage.getItem('token') : token
+        }`,
+        'content-type': 'application/json',
+      },
+      // headers: this.headers,
+    }).then(this._checkResponse);
+  }
+
   _checkResponse = (res) => {
     if (res.ok) {
       return res.json();

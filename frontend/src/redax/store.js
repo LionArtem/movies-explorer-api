@@ -4,7 +4,8 @@ import formValidetion from './slices/formValidetionSlice';
 import auth from './slices/authSlice';
 import movies from './slices/MoviesSlice';
 import moviesSaved from './slices/MoviesSavedSlice';
+import user from './slices/userSlice';
 
 export const store = configureStore({
-  reducer: { formValidetion, auth, movies, moviesSaved },
+  reducer: { formValidetion, auth, movies, moviesSaved, user },
 });

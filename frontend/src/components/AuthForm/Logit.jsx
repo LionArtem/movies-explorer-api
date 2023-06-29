@@ -25,7 +25,7 @@ export default function Logit() {
     dispatch(fetchLoginUser())
       .then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
-          dispatch(savedValues());
+          //dispatch(savedValues());
           navigate('/movies', { replace: true });
           dispatch(resetValues());
           dispatch(setValid());
