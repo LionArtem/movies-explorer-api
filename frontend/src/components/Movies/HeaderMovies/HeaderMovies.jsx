@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import BurgerMain from '../../BurgerMain/BurgerMain';
 
 import Style from './HeaderMovies.module.scss';
+import { useDispatch } from 'react-redux';
+import { resetAnswerRequest } from '../../../redax/slices/userSlice';
 
 export default function HeaderMovies() {
+  const dispatch = useDispatch();
   const [stateMainBurger, isStateMainBurger] = React.useState(false);
   const body = document.getElementById('body');
 
@@ -31,7 +34,10 @@ export default function HeaderMovies() {
   return (
     <header className={Style.conteiner}>
       <Link to={'/'}>
-        <div className={Style.logo}></div>
+        <div
+          // onClick={() => dispatch(resetAnswerRequest())}
+          className={Style.logo}
+        ></div>
       </Link>
       <div className={Style.movies}>
         <Link to={'/movies'}>

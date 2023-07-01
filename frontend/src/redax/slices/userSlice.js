@@ -20,15 +20,17 @@ export const fetchPatchUser = createAsyncThunk(
 
 const initialState = {
   user: {},
-  errRequest: '',
+  answerRequest: '',
+  succsesAnswer: false,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    resetErrRequest(state) {
+    resetAnswerRequest(state) {
       state.errRequest = '';
+      state.answerRequest = false;
     },
   },
   extraReducers: (builder) => {
@@ -49,19 +51,19 @@ const userSlice = createSlice({
       console.log('запрос данных профиля');
     });
     builder.addCase(fetchPatchUser.fulfilled, (state, { payload }) => {
-      console.log(payload);
       state.user = {
         name: payload.name,
         email: payload.email,
       };
+      state.succsesAnswer = true;
+      state.answerRequest = 'Данные пользователя изменены успешно';
     });
     builder.addCase(fetchPatchUser.rejected, (state, action) => {
       if (JSON.parse(action.error.message).error) {
-        state.errRequest = `Ошибка: ${JSON.parse(action.error.message).error}`;
+        state.answerRequest = `Ошибка: ${JSON.parse(action.error.message).error}`;
       } else {
-        state.errRequest = JSON.parse(action.error.message).message;
+        state.answerRequest = JSON.parse(action.error.message).message;
       }
-      console.log(JSON.parse(action.error.message).message);
       console.log('ошибка запроса данных профиля');
     });
   },
@@ -69,6 +71,6 @@ const userSlice = createSlice({
 
 export const selectUser = (state) => state.user;
 
-export const { setLoggedIn, remuveErrMessage, resetErrRequest } =
+export const { setLoggedIn, remuveErrMessage, resetAnswerRequest } =
   userSlice.actions;
 export default userSlice.reducer;

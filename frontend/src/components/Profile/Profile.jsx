@@ -20,7 +20,7 @@ import {
   fetchGetUser,
   selectUser,
   fetchPatchUser,
-  resetErrRequest,
+  resetAnswerRequest,
 } from '../../redax/slices/userSlice';
 
 import { selectAuth } from '../../redax/slices/authSlice';
@@ -30,14 +30,14 @@ export default function Profile() {
   const navigate = useNavigate();
   const { valid, value, errors } = useSelector(selectformValidetion);
   const { token } = useSelector(selectAuth);
-  const { user, errRequest } = useSelector(selectUser);
+  const { user, answerRequest, succsesAnswer } = useSelector(selectUser);
 
   const editUser = (evt) => {
     evt.preventDefault();
   };
 
   React.useEffect(() => {
-    dispatch(fetchGetUser({token})).then((res) => {
+    dispatch(fetchGetUser({ token })).then((res) => {
       if (res.meta.requestStatus === 'fulfilled') {
         dispatch(
           defaultValues({
@@ -58,8 +58,8 @@ export default function Profile() {
   };
 
   const deleteErrRequest = () => {
-    if (errRequest.length > 0) {
-      dispatch(resetErrRequest());
+    if (answerRequest.length > 0) {
+      dispatch(resetAnswerRequest());
     }
   };
 
@@ -113,16 +113,23 @@ export default function Profile() {
         <span className={`${Style.span} ${Style.span_email}`}>
           {errors.email}
         </span>
-        <span className={`${Style.span} ${Style.span_err_request}`}>
-          {errRequest}
+        <span
+          className={
+            succsesAnswer
+              ? `${Style.span} ${Style.span_err_request} ${Style.span_seccses}`
+              : `${Style.span} ${Style.span_err_request}`
+          }
+        >
+          {answerRequest}
         </span>
         {valid && checkValue(value, user.name, user.email) ? (
           <button
-            onClick={() =>
+            onClick={() => {
               dispatch(
                 fetchPatchUser({ token, name: value.name, email: value.email })
-              )
-            }
+              );
+              setTimeout(() => dispatch(resetAnswerRequest()), 3000);
+            }}
             type="submit"
           >
             Редактировать
