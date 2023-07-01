@@ -27,12 +27,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/movies" element={loggedIn ? <Movies /> : <Register />} />
+      <Route path="/movies" element={loggedIn ? <Movies /> : <Main />} />
       <Route
         path="/saved-movies"
-        element={loggedIn ? <SavedMovies /> : <Register />}
+        element={loggedIn ? <SavedMovies /> : <Main />}
       />
-      <Route path="/profile" element={loggedIn ? <Profile /> : <Register />} />
+      <Route path="/profile" element={loggedIn ? <Profile /> : <Main />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Logit />} />
       <Route path="/not-found" element={<NotFound />} />
