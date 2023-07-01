@@ -61,8 +61,6 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
-      console.log(action.payload);
-      // localStorage.setItem('name', action.payload.name);
       state.token = action.payload.token;
       state.loggedIn = true;
       state.textButtonLogin = 'Войти';

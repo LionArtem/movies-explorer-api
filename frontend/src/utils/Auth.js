@@ -35,7 +35,22 @@ class Auth {
         }`,
         'content-type': 'application/json',
       },
-      // headers: this.headers,
+    }).then(this._checkResponse);
+  }
+
+  patchUser(token, name, email) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: `Bearer ${
+          localStorage.getItem('token') ? localStorage.getItem('token') : token
+        }`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        name,
+      }),
     }).then(this._checkResponse);
   }
 

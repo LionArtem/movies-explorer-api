@@ -44,16 +44,13 @@
     font-size: 11px;
     line-height: 13px;
     text-align: right;
-    
   }
   @media screen and (max-width: 320px) {
     input {
       width: 260px;
     }
   }
-  // .name {
-  //   padding: 0px 0px 16px;
-  // }
+
   .span {
     min-height: 12px;
     font-family: 'Inter', Arial, sans-serif;
@@ -64,15 +61,21 @@
     color: #ff3055;
     border-bottom: 1px solid #e8e8e8;
   }
-  .span:last-child{
+
+  .span_email {
     border-bottom: none;
   }
-  // .email {
-  //   border-bottom: none;
-  // }
+
+  .span_err_request {
+    min-height: 24px;
+    border-bottom: none;
+    margin-top: 50px;
+    text-align: center;
+  }
+
   button {
     all: unset;
-    margin: 220px 0px 16px;
+    margin: 146px 0px 16px;
     text-align: center;
     cursor: pointer;
     transition: text-shadow 0.3s linear;
@@ -88,6 +91,7 @@
 
   .button_off {
     cursor: default;
+    opacity: 0.5;
   }
 
   .button_off:hover {
@@ -96,14 +100,14 @@
 
   @media screen and (max-width: 768px) {
     button {
-      margin-top: 210px;
+      margin-top: 136px;
       font-size: 12px;
       line-height: 15px;
     }
   }
   @media screen and (max-width: 320px) {
     button {
-      margin-top: 379px;
+      margin-top: 305px;
     }
   }
 }

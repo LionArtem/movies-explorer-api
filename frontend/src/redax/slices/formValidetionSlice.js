@@ -11,7 +11,6 @@ const formValidetionSlice = createSlice({
   initialState,
   reducers: {
     defaultValues(state, action) {
-      console.log(action.payload);
       state.value = { name: action.payload.name, email: action.payload.email };
     },
     setValue(state, action) {
@@ -20,10 +19,6 @@ const formValidetionSlice = createSlice({
       state.errors = { ...state.errors, [name]: errors };
       state.valid = valid;
     },
-    // savedValues(state) {
-
-    //   localStorage.setItem('email', state.value.email);
-    // },
     resetValues(state) {
       state.value = {};
     },

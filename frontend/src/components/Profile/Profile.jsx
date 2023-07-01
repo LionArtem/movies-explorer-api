@@ -13,9 +13,15 @@ import {
   selectformValidetion,
   setValue,
   defaultValues,
+  resetValues,
 } from '../../redax/slices/formValidetionSlice';
 
-import { fetchGetUser, selectUser } from '../../redax/slices/userSlice';
+import {
+  fetchGetUser,
+  selectUser,
+  fetchPatchUser,
+  resetErrRequest,
+} from '../../redax/slices/userSlice';
 
 import { selectAuth } from '../../redax/slices/authSlice';
 
@@ -23,18 +29,16 @@ export default function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { valid, value, errors } = useSelector(selectformValidetion);
-  console.log(value);
   const { token } = useSelector(selectAuth);
-  const { user } = useSelector(selectUser);
+  const { user, errRequest } = useSelector(selectUser);
 
   const editUser = (evt) => {
     evt.preventDefault();
   };
 
   React.useEffect(() => {
-    dispatch(fetchGetUser(token)).then((res) => {
+    dispatch(fetchGetUser({token})).then((res) => {
       if (res.meta.requestStatus === 'fulfilled') {
-        console.log(res.payload.name);
         dispatch(
           defaultValues({
             name: res.payload.name,
@@ -45,33 +49,20 @@ export default function Profile() {
     });
   }, []);
 
-  // const user = {
-  //   name: localStorage.getItem('name'),
-  //   email: localStorage.getItem('email'),
-  // };
-  // const checkValue = (value, name, email) => {
-  //   let userName;
-  //   let userEmail;
+  const checkValue = (value, name, email) => {
+    if (value.name !== name || value.email !== email) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
-  //   if (value.name === undefined) {
-  //     userName = user.name;
-  //   } else {
-  //     userName = value.name;
-  //   }
+  const deleteErrRequest = () => {
+    if (errRequest.length > 0) {
+      dispatch(resetErrRequest());
+    }
+  };
 
-  //   if (value.email === undefined) {
-  //     userEmail = user.email;
-  //   } else {
-  //     userEmail = value.email;
-  //   }
-
-  //   if (userName === name && userEmail === email) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-
-  // };
   return (
     <>
       <HeaderMovies />
@@ -82,6 +73,7 @@ export default function Profile() {
           className={Style.name}
           pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
           name="name"
+          onClick={() => deleteErrRequest()}
           onChange={(evt) =>
             dispatch(
               setValue({
@@ -100,6 +92,7 @@ export default function Profile() {
         <span className={Style.span}>{errors.name}</span>
         <label>Email</label>
         <input
+          onClick={() => deleteErrRequest()}
           required
           className={Style.email}
           pattern="[a-zA-Z0-9._\-]+@[a-zA-Z0-9._\-]+\.[a-zA-Z0-9_\-]+"
@@ -117,9 +110,23 @@ export default function Profile() {
           name="email"
           type="email"
         ></input>
-        <span className={Style.span}>{errors.email}</span>
-        {valid ? (
-          <button type="submit">Редактировать</button>
+        <span className={`${Style.span} ${Style.span_email}`}>
+          {errors.email}
+        </span>
+        <span className={`${Style.span} ${Style.span_err_request}`}>
+          {errRequest}
+        </span>
+        {valid && checkValue(value, user.name, user.email) ? (
+          <button
+            onClick={() =>
+              dispatch(
+                fetchPatchUser({ token, name: value.name, email: value.email })
+              )
+            }
+            type="submit"
+          >
+            Редактировать
+          </button>
         ) : (
           <button disabled className={Style.button_off}>
             Редактировать
@@ -133,6 +140,7 @@ export default function Profile() {
           localStorage.removeItem('valueSearch');
           dispatch(setValueSearch(''));
           dispatch(resetMoviesInPage());
+          dispatch(resetValues());
           navigate('/', { replace: true });
         }}
         className={Style.sign_out}
