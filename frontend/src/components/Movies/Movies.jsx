@@ -45,7 +45,7 @@ export default function Movies() {
     <>
       <HeaderMovies />
       <main>
-        <SearchForm getMovies={getMovies} />
+        <SearchForm showMovies={getMovies} setValueSearch={setValueSearch}/>
         <FilterCheckbox />
         <MoviesCardList>
           <MoviesCard moviesInPage={moviesInPage} />

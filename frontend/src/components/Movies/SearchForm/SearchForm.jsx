@@ -2,16 +2,16 @@ import React from 'react';
 import Style from './SearchForm.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMovies, setValueSearch } from '../../../redax/slices/MoviesSlice';
+import { selectMovies } from '../../../redax/slices/MoviesSlice';
 
-export default function SearchForm({ getMovies }) {
+export default function SearchForm({ showMovies,setValueSearch }) {
   const dispatch = useDispatch();
   const { errorText, value } = useSelector(selectMovies);
   return (
     <section>
       <form
         noValidate
-        onSubmit={(evt) => getMovies(evt)}
+        onSubmit={(evt) => showMovies(evt)}
         className={Style.form}
       >
         <input
