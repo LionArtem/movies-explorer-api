@@ -145,6 +145,7 @@ export default function Profile() {
           localStorage.removeItem('token');
           localStorage.removeItem('moviesCard');
           localStorage.removeItem('valueSearch');
+          localStorage.removeItem('checkbox');
           dispatch(setValueSearch(''));
           dispatch(resetMoviesInPage());
           dispatch(resetValues());

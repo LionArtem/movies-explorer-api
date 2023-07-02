@@ -11,7 +11,8 @@ export default function More({ moviesInPage, moviesAll }) {
 
   return (
     <div className={Style.conteiner}>
-      {moviesInPage.length > 0 && !(moviesAll.length === moviesInPage.length) ? (
+      {moviesInPage.length > 0 &&
+      !(moviesAll.length === moviesInPage.length) ? (
         <div onClick={() => addMoreMovies()}>
           <p>Ещё</p>
         </div>

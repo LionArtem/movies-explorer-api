@@ -18,17 +18,32 @@ const initialState = {
   showPreloader: false,
   swowNodFaund: false,
   textAnswer: false,
+  stateTogl: false,
 };
 
 const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    addAllMovies(state) {
+      state.moviesAll = JSON.parse(localStorage.getItem('moviesCard'));
+    },
+    addStateTogl(state, action) {
+      console.log(action.payload);
+      state.stateTogl = action.payload;
+    },
+    isStateTogl(state) {
+      state.stateTogl = !state.stateTogl;
+    },
     resetMoviesInPage(state, action) {
       state.moviesInPage = [];
     },
     setAddMoviesInPage(state, action) {
-      state.moviesInPage = action.payload;
+      if (window.innerWidth > 320) {
+        state.moviesInPage = state.moviesAll.slice(0, 7);
+      } else {
+        state.moviesInPage = state.arrMovies.slice(0, 5);
+      }
     },
     addMoviesInPage(state, action) {
       const lenghtListMovies = state.moviesInPage.length;
@@ -54,11 +69,15 @@ const moviesSlice = createSlice({
       state.showPreloader = !state.showPreloader;
     });
     builder.addCase(fetchGetAllMovies.fulfilled, (state, action) => {
-      console.log(action.payload.arrMoviesSaved);
       const arrMoviesSaved = action.payload.arrMoviesSaved;
-      const moviesSearch = action.payload.data.filter((element) =>
+      let moviesSearch = action.payload.data.filter((element) =>
         element.nameRU.toLowerCase().includes(state.valueSearch.toLowerCase())
       );
+
+      if (state.stateTogl) {
+        moviesSearch = moviesSearch.filter((element) => element.duration <= 40);
+      }
+
       const arrMovies = [];
       moviesSearch.forEach((element) => {
         let like;
@@ -82,18 +101,18 @@ const moviesSlice = createSlice({
           movieId: element.id,
           like: like,
         };
+
         arrMovies.push(discripshion);
       });
+
       state.moviesAll = arrMovies;
+      localStorage.setItem('moviesCard', JSON.stringify(arrMovies));
       if (window.innerWidth > 320) {
         state.moviesInPage = arrMovies.slice(0, 7);
-        localStorage.setItem(
-          'moviesCard',
-          JSON.stringify(arrMovies.slice(0, 7))
-        );
       } else {
         state.moviesInPage = arrMovies.slice(0, 5);
       }
+
       state.showPreloader = !state.showPreloader;
       if (arrMovies >= 0) {
         state.swowNodFaund = !state.swowNodFaund;
@@ -116,6 +135,9 @@ export const {
   addLike,
   addMoviesInPage,
   setAddMoviesInPage,
-  resetMoviesInPage
+  resetMoviesInPage,
+  isStateTogl,
+  addAllMovies,
+  addStateTogl,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

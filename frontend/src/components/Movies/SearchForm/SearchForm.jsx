@@ -6,7 +6,7 @@ import { selectMovies } from '../../../redax/slices/MoviesSlice';
 
 export default function SearchForm({ showMovies,setValueSearch }) {
   const dispatch = useDispatch();
-  const { errorText, value } = useSelector(selectMovies);
+  const { errorText, valueSearch } = useSelector(selectMovies);
   return (
     <section>
       <form
@@ -15,7 +15,7 @@ export default function SearchForm({ showMovies,setValueSearch }) {
         className={Style.form}
       >
         <input
-          value={value}
+          value={valueSearch}
           onChange={(evt) => dispatch(setValueSearch(evt.target.value))}
           required
           placeholder="Фильм"

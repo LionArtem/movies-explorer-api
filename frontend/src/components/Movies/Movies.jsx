@@ -7,6 +7,9 @@ import {
   setValueSearch,
   selectMovies,
   setAddMoviesInPage,
+  addAllMovies,
+  isStateTogl,
+  addStateTogl
 } from '../../redax/slices/MoviesSlice';
 
 import Footer from '../Footer/Footer';
@@ -19,14 +22,16 @@ import More from './More/More';
 
 export default function Movies() {
   const dispatch = useDispatch();
-  const { moviesInPage, moviesAll, value } = useSelector(selectMovies);
+  const { moviesInPage, moviesAll, valueSearch, stateTogl } =
+    useSelector(selectMovies);
 
   React.useEffect(() => {
     if (localStorage.getItem('moviesCard')) {
       dispatch(setValueSearch(localStorage.getItem('valueSearch')));
-      dispatch(
-        setAddMoviesInPage(JSON.parse(localStorage.getItem('moviesCard')))
-      );
+      dispatch(addAllMovies());
+      dispatch(setAddMoviesInPage());
+      console.log(localStorage.getItem('checkbox'));
+      dispatch(addStateTogl(localStorage.getItem('checkbox')));
     }
   }, []);
 
@@ -34,7 +39,9 @@ export default function Movies() {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
       dispatch(fetchGetAllMovies());
-      localStorage.setItem('valueSearch', value);
+      console.log(valueSearch);
+      localStorage.setItem('valueSearch', valueSearch);
+      localStorage.setItem('checkbox', stateTogl);
     } else {
       dispatch(isErrText());
       setTimeout(() => dispatch(isErrText()), 2000);
@@ -45,7 +52,7 @@ export default function Movies() {
     <>
       <HeaderMovies />
       <main>
-        <SearchForm showMovies={getMovies} setValueSearch={setValueSearch}/>
+        <SearchForm showMovies={getMovies} setValueSearch={setValueSearch} />
         <FilterCheckbox />
         <MoviesCardList>
           <MoviesCard moviesInPage={moviesInPage} />
