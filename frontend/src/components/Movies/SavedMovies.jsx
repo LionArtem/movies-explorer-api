@@ -10,23 +10,43 @@ import MoviesCardSaved from './Card/MoviesCardSaved';
 import {
   setValueSearch,
   findSearchMovies,
+  selectSavedMovies,
+  isErrText,
+  isStateTogl,
+  addShortMovies
 } from '../../redax/slices/MoviesSavedSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SavedMovies() {
   const dispatch = useDispatch();
 
+  const { valueSearch, errorText, stateTogl } = useSelector(selectSavedMovies);
+
   const searchMovies = (evt) => {
     evt.preventDefault();
-    dispatch(findSearchMovies());
+    if (evt.target.checkValidity()) {
+      dispatch(findSearchMovies());
+    } else {
+      dispatch(isErrText());
+      setTimeout(() => dispatch(isErrText()), 2000);
+    }
   };
+
+  React.useEffect(() => {
+    dispatch(addShortMovies())
+  }, [stateTogl]);
 
   return (
     <div>
       <HeaderMovies />
       <main>
-        <SearchForm showMovies={searchMovies} setValueSearch={setValueSearch} />
-        <FilterCheckbox />
+        <SearchForm
+          showMovies={searchMovies}
+          setValueSearch={setValueSearch}
+          valueSearch={valueSearch}
+          errorText={errorText}
+        />
+        <FilterCheckbox stateTogl={stateTogl} isStateTogl={isStateTogl} />
         <MoviesCardList>
           <MoviesCardSaved />
         </MoviesCardList>

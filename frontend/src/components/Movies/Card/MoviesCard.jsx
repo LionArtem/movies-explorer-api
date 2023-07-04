@@ -12,6 +12,8 @@ import {
   fetchDeleteSavedMovies,
 } from '../../../redax/slices/MoviesSavedSlice';
 
+
+
 import { selectAuth } from '../../../redax/slices/authSlice';
 
 import { deleteLikeinPage } from '../../../utils/constants';
@@ -19,7 +21,8 @@ import { deleteLikeinPage } from '../../../utils/constants';
 export default function MoviesCard({ moviesInPage }) {
   const dispatch = useDispatch();
   const { token } = useSelector(selectAuth);
-  const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
+  const { showPreloader, swowNodFaund, textAnswer, stateTogl } =
+    useSelector(selectMovies);
 
   const saveMoviesButton = (obj) => {
     if (!obj.like) {
@@ -43,6 +46,8 @@ export default function MoviesCard({ moviesInPage }) {
     }
   };
 
+ 
+
   return (
     <ul className={Style.list}>
       {moviesInPage.length > 0 ? (
@@ -64,11 +69,7 @@ export default function MoviesCard({ moviesInPage }) {
                 }
               ></button>
             </div>
-            <img
-              src={obj.image}
-              //src={`https://api.nomoreparties.co${obj.image}`}
-              alt={`заставка к фильму ${obj.nameRU}`}
-            />
+            <img src={obj.image} alt={`заставка к фильму ${obj.nameRU}`} />
           </li>
         ))
       ) : showPreloader ? (

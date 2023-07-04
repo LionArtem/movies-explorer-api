@@ -28,21 +28,43 @@ export const fetchDeleteSavedMovies = createAsyncThunk(
 const initialState = {
   moviesSaved: [],
   valueSearch: '',
+  errorText: true,
+  stateTogl: false,
 };
 
 const moviesSavedSlice = createSlice({
   name: 'moviesSaved',
   initialState,
   reducers: {
+    addShortMovies(state, action) {
+      if (state.stateTogl) {
+        state.moviesSaved = state.moviesSaved.filter(
+          (element) => element.duration <= 40
+        );
+      } else {
+        state.moviesSaved = JSON.parse(localStorage.getItem('savedMovies'));
+      }
+    },
+    isStateTogl(state) {
+      state.stateTogl = !state.stateTogl;
+    },
+    isErrText(state) {
+      state.errorText = !state.errorText;
+    },
     setValueSearch(state, action) {
       state.valueSearch = action.payload;
     },
-    findSearchMovies(state, payload) {
+    findSearchMovies(state) {
       state.moviesSaved = JSON.parse(
         localStorage.getItem('savedMovies')
       ).filter((element) =>
         element.nameRU.toLowerCase().includes(state.valueSearch.toLowerCase())
       );
+      if (state.stateTogl) {
+        state.moviesSaved = state.moviesSaved.filter(
+          (element) => element.duration <= 40
+        );
+      }
     },
   },
   extraReducers: (builder) => {
@@ -61,7 +83,6 @@ const moviesSavedSlice = createSlice({
       console.log('get saved movies');
     });
     builder.addCase(fetchGatSavedMovies.fulfilled, (state, { payload }) => {
-      //console.log(payload);
       state.moviesSaved = payload;
       localStorage.setItem('savedMovies', JSON.stringify(payload));
     });
@@ -92,5 +113,11 @@ const moviesSavedSlice = createSlice({
 
 export const selectSavedMovies = (state) => state.moviesSaved;
 
-export const { findSearchMovies, setValueSearch } = moviesSavedSlice.actions;
+export const {
+  findSearchMovies,
+  setValueSearch,
+  isErrText,
+  isStateTogl,
+  addShortMovies,
+} = moviesSavedSlice.actions;
 export default moviesSavedSlice.reducer;

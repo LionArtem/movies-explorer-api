@@ -35,7 +35,6 @@ export default function HeaderMovies() {
     <header className={Style.conteiner}>
       <Link to={'/'}>
         <div
-          // onClick={() => dispatch(resetAnswerRequest())}
           className={Style.logo}
         ></div>
       </Link>

@@ -8,8 +8,9 @@ import {
   selectMovies,
   setAddMoviesInPage,
   addAllMovies,
+  addStateTogl,
+  addShortMovies,
   isStateTogl,
-  addStateTogl
 } from '../../redax/slices/MoviesSlice';
 
 import Footer from '../Footer/Footer';
@@ -22,16 +23,18 @@ import More from './More/More';
 
 export default function Movies() {
   const dispatch = useDispatch();
-  const { moviesInPage, moviesAll, valueSearch, stateTogl } =
+  const { moviesInPage, moviesAll, valueSearch, stateTogl, errorText } =
     useSelector(selectMovies);
 
   React.useEffect(() => {
-    if (localStorage.getItem('moviesCard')) {
-      dispatch(setValueSearch(localStorage.getItem('valueSearch')));
-      dispatch(addAllMovies());
+    if (localStorage.getItem('defaultMovies')) {
+      const { arrMovies, togl, value } = JSON.parse(
+        localStorage.getItem('defaultMovies')
+      );
+      dispatch(setValueSearch(value));
+      dispatch(addAllMovies(arrMovies));
       dispatch(setAddMoviesInPage());
-      console.log(localStorage.getItem('checkbox'));
-      dispatch(addStateTogl(localStorage.getItem('checkbox')));
+      dispatch(addStateTogl(togl));
     }
   }, []);
 
@@ -39,21 +42,28 @@ export default function Movies() {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
       dispatch(fetchGetAllMovies());
-      console.log(valueSearch);
-      localStorage.setItem('valueSearch', valueSearch);
-      localStorage.setItem('checkbox', stateTogl);
     } else {
       dispatch(isErrText());
       setTimeout(() => dispatch(isErrText()), 2000);
     }
   };
 
+
+  React.useEffect(() => {
+    dispatch(addShortMovies())
+  }, [stateTogl]);
+
   return (
     <>
       <HeaderMovies />
       <main>
-        <SearchForm showMovies={getMovies} setValueSearch={setValueSearch} />
-        <FilterCheckbox />
+        <SearchForm
+          showMovies={getMovies}
+          setValueSearch={setValueSearch}
+          valueSearch={valueSearch}
+          errorText={errorText}
+        />
+        <FilterCheckbox stateTogl={stateTogl} isStateTogl={isStateTogl} />
         <MoviesCardList>
           <MoviesCard moviesInPage={moviesInPage} />
           <More moviesAll={moviesAll} moviesInPage={moviesInPage} />

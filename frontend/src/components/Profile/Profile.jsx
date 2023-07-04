@@ -142,10 +142,7 @@ export default function Profile() {
       </form>
       <p
         onClick={() => {
-          localStorage.removeItem('token');
-          localStorage.removeItem('moviesCard');
-          localStorage.removeItem('valueSearch');
-          localStorage.removeItem('checkbox');
+          localStorage.clear();
           dispatch(setValueSearch(''));
           dispatch(resetMoviesInPage());
           dispatch(resetValues());

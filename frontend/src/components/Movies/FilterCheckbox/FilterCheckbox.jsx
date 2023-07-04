@@ -1,13 +1,9 @@
 import React from 'react';
 import Style from './FilterCheckbox.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { isStateTogl, selectMovies } from '../../../redax/slices/MoviesSlice';
-
-export default function FilterCheckbox() {
+export default function FilterCheckbox({ stateTogl, isStateTogl }) {
   const dispatch = useDispatch();
-  const { stateTogl } = useSelector(selectMovies);
-  console.log(stateTogl);
   return (
     <section className={Style.conteiner}>
       <div

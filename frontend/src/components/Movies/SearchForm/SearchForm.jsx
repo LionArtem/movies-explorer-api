@@ -2,11 +2,15 @@ import React from 'react';
 import Style from './SearchForm.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMovies } from '../../../redax/slices/MoviesSlice';
+//import { selectMovies } from '../../../redax/slices/MoviesSlice';
 
-export default function SearchForm({ showMovies,setValueSearch }) {
+export default function SearchForm({
+  showMovies,
+  setValueSearch,
+  errorText,
+  valueSearch,
+}) {
   const dispatch = useDispatch();
-  const { errorText, valueSearch } = useSelector(selectMovies);
   return (
     <section>
       <form

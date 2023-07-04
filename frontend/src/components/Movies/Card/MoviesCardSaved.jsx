@@ -31,6 +31,8 @@ export default function MoviesCardSaved() {
     dispatch(fetchGatSavedMovies(token));
   }, []);
 
+
+
   const deleteMoviesButton = (obj) => {
     dispatch(fetchDeleteSavedMovies(obj._id, token)).then((res) => {
       if (res.meta.requestStatus === 'fulfilled') {
