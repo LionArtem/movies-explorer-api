@@ -10,28 +10,6 @@ class MoviesApi {
     }).then(this._checkResponse);
   }
 
-  //  addMovies(objMovies) {
-  //   return fetch(this.baseUrl, {
-  //     method: 'POST',
-  //     headers: this.headers,
-  //     body: JSON.stringify({
-  //       massege: objMovies,
-  //     }),
-  //   }).then(this._checkResponse);
-  // }
-
-  // getAllMessage() {
-  //   return fetch(this.baseUrl, {
-  //     headers: this.headers,
-  //   }).then(this._checkResponse);
-  // }
-
-  // deletePost(id) {
-  //   return fetch(`${this.baseUrl}/${id}`, {
-  //     method: 'DELETE',
-  //   }).then(this._checkResponse);
-  // }
-
   _checkResponse = (res) => {
     if (res.ok) {
       return res.json();
