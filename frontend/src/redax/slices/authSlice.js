@@ -66,7 +66,7 @@ const authSlice = createSlice({
       state.textButtonLogin = 'Войти';
     });
     builder.addCase(fetchLoginUser.rejected, (state, action) => {
-      state.errMessage = JSON.parse(action.error.message).message;
+      //state.errMessage = JSON.parse(action.error.message).message;
       state.textButtonLogin = 'Войти';
     });
   },

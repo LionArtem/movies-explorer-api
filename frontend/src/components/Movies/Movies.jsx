@@ -48,9 +48,10 @@ export default function Movies() {
     }
   };
 
-
   React.useEffect(() => {
-    dispatch(addShortMovies())
+    if (localStorage.getItem('defaultMovies')) {
+      dispatch(addShortMovies());
+    }
   }, [stateTogl]);
 
   return (
