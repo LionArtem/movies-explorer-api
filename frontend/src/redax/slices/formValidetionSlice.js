@@ -30,6 +30,6 @@ const formValidetionSlice = createSlice({
 
 export const selectformValidetion = (state) => state.formValidetion;
 
-export const { setValue, resetValues, setValid, savedValues, defaultValues } =
+export const { setValue, resetValues, setValid, defaultValues } =
   formValidetionSlice.actions;
 export default formValidetionSlice.reducer;
