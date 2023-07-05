@@ -63,8 +63,8 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: 'http://localhost:3000',
-  //baseUrl: 'https://api.movies.nomoredomains.rocks',
+  //baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.movies.nomoredomains.rocks',
   headers: { 'content-type': 'application/json' },
 });
 
