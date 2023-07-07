@@ -7,9 +7,7 @@ import {
   setValueSearch,
   selectMovies,
   setAddMoviesInPage,
-  addAllMovies,
   addStateTogl,
-  addShortMovies,
   isStateTogl,
 } from '../../redax/slices/MoviesSlice';
 
@@ -28,11 +26,10 @@ export default function Movies() {
 
   React.useEffect(() => {
     if (localStorage.getItem('defaultMovies')) {
-      const { arrMovies, togl, value } = JSON.parse(
+      const { togl, value } = JSON.parse(
         localStorage.getItem('defaultMovies')
       );
       dispatch(setValueSearch(value));
-      dispatch(addAllMovies(arrMovies));
       dispatch(setAddMoviesInPage());
       dispatch(addStateTogl(togl));
     }
@@ -50,7 +47,7 @@ export default function Movies() {
 
   React.useEffect(() => {
     if (localStorage.getItem('defaultMovies')) {
-      dispatch(addShortMovies());
+      dispatch(fetchGetAllMovies());
     }
   }, [stateTogl]);
 

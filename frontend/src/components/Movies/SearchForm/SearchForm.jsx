@@ -1,8 +1,7 @@
 import React from 'react';
 import Style from './SearchForm.module.scss';
 
-import { useDispatch, useSelector } from 'react-redux';
-//import { selectMovies } from '../../../redax/slices/MoviesSlice';
+import { useDispatch } from 'react-redux';
 
 export default function SearchForm({
   showMovies,

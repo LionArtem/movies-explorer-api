@@ -25,22 +25,6 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    addShortMovies(state, action) {
-      if (state.stateTogl) {
-        state.moviesInPage = state.moviesAll.filter(
-          (element) => element.duration <= 40
-        );
-        state.moviesAll = state.moviesInPage;
-      } else {
-        const { arrMovies } = JSON.parse(localStorage.getItem('defaultMovies'));
-        state.moviesAll = arrMovies;
-        if (window.innerWidth > 320) {
-          state.moviesInPage = arrMovies.slice(0, 7);
-        } else {
-          state.moviesInPage = arrMovies.slice(0, 5);
-        }
-      }
-    },
     addAllMovies(state, action) {
       state.moviesAll = action.payload;
     },
@@ -73,7 +57,6 @@ const moviesSlice = createSlice({
       localStorage.setItem(
         'defaultMovies',
         JSON.stringify({
-          arrMovies: action.payload,
           togl,
           value,
         })
@@ -132,7 +115,6 @@ const moviesSlice = createSlice({
       localStorage.setItem(
         'defaultMovies',
         JSON.stringify({
-          arrMovies,
           togl: state.stateTogl,
           value: state.valueSearch,
         })
