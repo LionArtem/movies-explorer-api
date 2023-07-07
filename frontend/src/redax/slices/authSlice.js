@@ -33,6 +33,13 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    killAllStateAuth(state) {
+      state.loggedIn = false;
+      state.errMessage = '';
+      state.textButtonRegister = 'Зарегистрироваться';
+      state.textButtonLogin = 'Войти';
+      state.token = '';
+    },
     setLoggedIn(state, action) {
       state.loggedIn = action.payload;
     },
@@ -66,7 +73,7 @@ const authSlice = createSlice({
       state.textButtonLogin = 'Войти';
     });
     builder.addCase(fetchLoginUser.rejected, (state, action) => {
-      //state.errMessage = JSON.parse(action.error.message).message;
+      state.errMessage = JSON.parse(action.error.message).message;
       state.textButtonLogin = 'Войти';
     });
   },
@@ -74,5 +81,6 @@ const authSlice = createSlice({
 
 export const selectAuth = (state) => state.auth;
 
-export const { setLoggedIn, remuveErrMessage } = authSlice.actions;
+export const { setLoggedIn, remuveErrMessage, killAllStateAuth } =
+  authSlice.actions;
 export default authSlice.reducer;

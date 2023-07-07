@@ -5,15 +5,14 @@ import Style from './Profile.module.scss';
 import { useNavigate } from 'react-router-dom';
 import HeaderMovies from '../Movies/HeaderMovies/HeaderMovies';
 import { useDispatch } from 'react-redux';
-import {
-  setValueSearch,
-  resetMoviesInPage,
-} from '../../redax/slices/MoviesSlice';
+import { killAllStateMoviesSaved } from '../../redax/slices/MoviesSavedSlice';
+
+import { KillAllStateMovies } from '../../redax/slices/MoviesSlice';
 import {
   selectformValidetion,
   setValue,
   defaultValues,
-  resetValues,
+  killAllStateFormValidetion,
 } from '../../redax/slices/formValidetionSlice';
 
 import {
@@ -21,9 +20,10 @@ import {
   selectUser,
   fetchPatchUser,
   resetAnswerRequest,
+  killAllStateUser,
 } from '../../redax/slices/userSlice';
 
-import { selectAuth, setLoggedIn } from '../../redax/slices/authSlice';
+import { selectAuth, killAllStateAuth } from '../../redax/slices/authSlice';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -143,10 +143,11 @@ export default function Profile() {
       <p
         onClick={() => {
           localStorage.clear();
-          dispatch(setValueSearch(''));
-          dispatch(resetMoviesInPage());
-          dispatch(resetValues());
-          dispatch(setLoggedIn(false));
+          dispatch(killAllStateAuth());
+          dispatch(KillAllStateMovies());
+          dispatch(killAllStateFormValidetion());
+          dispatch(killAllStateMoviesSaved());
+          dispatch(killAllStateUser());
           navigate('/', { replace: true });
         }}
         className={Style.sign_out}

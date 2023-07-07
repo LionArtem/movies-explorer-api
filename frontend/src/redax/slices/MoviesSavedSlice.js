@@ -36,6 +36,12 @@ const moviesSavedSlice = createSlice({
   name: 'moviesSaved',
   initialState,
   reducers: {
+    killAllStateMoviesSaved(state) {
+      state.moviesSaved = [];
+      state.valueSearch = '';
+      state.errorText = true;
+      state.stateTogl = false;
+    },
     addShortMovies(state, action) {
       if (state.stateTogl) {
         state.moviesSaved = state.moviesSaved.filter(
@@ -119,5 +125,6 @@ export const {
   isErrText,
   isStateTogl,
   addShortMovies,
+  killAllStateMoviesSaved,
 } = moviesSavedSlice.actions;
 export default moviesSavedSlice.reducer;

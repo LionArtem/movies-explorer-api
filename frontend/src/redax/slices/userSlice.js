@@ -28,6 +28,11 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    killAllStateUser(state) {
+      state.user = {};
+      state.answerRequest = '';
+      state.succsesAnswer = false;
+    },
     resetAnswerRequest(state) {
       state.errRequest = '';
       state.answerRequest = false;
@@ -60,7 +65,9 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchPatchUser.rejected, (state, action) => {
       if (JSON.parse(action.error.message).error) {
-        state.answerRequest = `Ошибка: ${JSON.parse(action.error.message).error}`;
+        state.answerRequest = `Ошибка: ${
+          JSON.parse(action.error.message).error
+        }`;
       } else {
         state.answerRequest = JSON.parse(action.error.message).message;
       }
@@ -71,6 +78,10 @@ const userSlice = createSlice({
 
 export const selectUser = (state) => state.user;
 
-export const { setLoggedIn, remuveErrMessage, resetAnswerRequest } =
-  userSlice.actions;
+export const {
+  setLoggedIn,
+  remuveErrMessage,
+  resetAnswerRequest,
+  killAllStateUser,
+} = userSlice.actions;
 export default userSlice.reducer;

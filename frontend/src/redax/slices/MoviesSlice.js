@@ -25,8 +25,15 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    addAllMovies(state, action) {
-      state.moviesAll = action.payload;
+    KillAllStateMovies(state) {
+      state.moviesAll = [];
+      state.moviesInPage = [];
+      state.errorText = true;
+      state.valueSearch = '';
+      state.showPreloader = false;
+      state.swowNodFaund = false;
+      state.textAnswer = false;
+      state.stateTogl = false;
     },
     addStateTogl(state, action) {
       state.stateTogl = action.payload;
@@ -162,8 +169,8 @@ export const {
   setAddMoviesInPage,
   resetMoviesInPage,
   isStateTogl,
-  addAllMovies,
   addStateTogl,
   addShortMovies,
+  KillAllStateMovies
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

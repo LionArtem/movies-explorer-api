@@ -10,6 +10,11 @@ const formValidetionSlice = createSlice({
   name: 'formValidetion',
   initialState,
   reducers: {
+    killAllStateFormValidetion(state) {
+      state.value = {};
+      state.errors = {};
+      state.valid = false;
+    },
     defaultValues(state, action) {
       state.value = { name: action.payload.name, email: action.payload.email };
     },
@@ -30,6 +35,11 @@ const formValidetionSlice = createSlice({
 
 export const selectformValidetion = (state) => state.formValidetion;
 
-export const { setValue, resetValues, setValid, defaultValues } =
-  formValidetionSlice.actions;
+export const {
+  setValue,
+  resetValues,
+  setValid,
+  defaultValues,
+  killAllStateFormValidetion,
+} = formValidetionSlice.actions;
 export default formValidetionSlice.reducer;
