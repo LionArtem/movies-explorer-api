@@ -33,8 +33,8 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLoggedIn(state) {
-      state.loggedIn = true;
+    setLoggedIn(state, action) {
+      state.loggedIn = action.payload;
     },
     remuveErrMessage(state) {
       state.errMessage = '';

@@ -23,7 +23,7 @@ import {
   resetAnswerRequest,
 } from '../../redax/slices/userSlice';
 
-import { selectAuth } from '../../redax/slices/authSlice';
+import { selectAuth, setLoggedIn } from '../../redax/slices/authSlice';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -146,6 +146,7 @@ export default function Profile() {
           dispatch(setValueSearch(''));
           dispatch(resetMoviesInPage());
           dispatch(resetValues());
+          dispatch(setLoggedIn(false));
           navigate('/', { replace: true });
         }}
         className={Style.sign_out}
