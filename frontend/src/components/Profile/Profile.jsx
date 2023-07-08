@@ -66,7 +66,7 @@ export default function Profile() {
   return (
     <>
       <HeaderMovies />
-      <h1 className={Style.title}>Привет, кто то!</h1>
+      <h1 className={Style.title}>Привет, {user.name}!</h1>
       <form className={Style.form} onSubmit={(evt) => editUser(evt)}>
         <label>имя</label>
         <input
