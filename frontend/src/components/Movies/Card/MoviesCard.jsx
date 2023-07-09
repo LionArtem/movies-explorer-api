@@ -19,15 +19,21 @@ import { deleteLikeinPage } from '../../../utils/constants';
 export default function MoviesCard({ moviesInPage }) {
   const dispatch = useDispatch();
   const { token } = useSelector(selectAuth);
-  const { showPreloader, swowNodFaund, textAnswer } =
-    useSelector(selectMovies);
-  const saveMoviesButton = (obj) => {
+  const { showPreloader, swowNodFaund, textAnswer } = useSelector(selectMovies);
+
+  const saveMoviesButton = (obj, evt) => {
+    evt.preventDefault();
+    evt.stopPropagation();
     if (!obj.like) {
       dispatch(fetchAddMovies(obj, token)).then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
           const movis = moviesInPage.map((element) => {
             if (element.movieId === obj.movieId) {
-              return { ...element, like: !element.like, _id: res.payload._id };
+              return {
+                ...element,
+                like: !element.like,
+                _id: res.payload._id,
+              };
             }
             return element;
           });
@@ -35,6 +41,8 @@ export default function MoviesCard({ moviesInPage }) {
         }
       });
     } else {
+      console.log(obj);
+      console.log(obj._id);
       dispatch(fetchDeleteSavedMovies(obj._id)).then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
           dispatch(addLike(deleteLikeinPage(res, obj, moviesInPage)));
@@ -47,30 +55,30 @@ export default function MoviesCard({ moviesInPage }) {
     <ul className={Style.list}>
       {moviesInPage.length > 0 ? (
         moviesInPage.map((obj) => (
-          <li className={Style.conteiner} key={obj.movieId}>
-            <div className={Style.discription}>
-              <a target="blank" href={`${obj.trailerLink}`}>
+          <a key={obj.movieId} target="blank" href={`${obj.trailerLink}`}>
+            <li className={Style.conteiner}>
+              <div className={Style.discription}>
                 <h1>{obj.nameRU}</h1>
                 <p>{`${Math.floor(obj.duration / 60)}ч ${
                   obj.duration % 60
                 }м`}</p>
-              </a>
-              <button
-                onClick={() => saveMoviesButton(obj)}
-                className={
-                  obj.like
-                    ? `${Style.button} ${Style.like_active}`
-                    : `${Style.button} ${Style.like_off}`
-                }
-              ></button>
-            </div>
-            <img src={obj.image} alt={`заставка к фильму ${obj.nameRU}`} />
-          </li>
+
+                <button
+                  onClick={(evt) => saveMoviesButton(obj, evt)}
+                  className={
+                    obj.like
+                      ? `${Style.button} ${Style.like_active}`
+                      : `${Style.button} ${Style.like_off}`
+                  }
+                ></button>
+              </div>
+              <img src={obj.image} alt={`заставка к фильму ${obj.nameRU}`} />
+            </li>
+          </a>
         ))
       ) : showPreloader ? (
         <Preloader />
-      ) : 
-      swowNodFaund ? (
+      ) : swowNodFaund ? (
         <p>Ничего не найдено</p>
       ) : (
         ''

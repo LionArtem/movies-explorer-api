@@ -90,16 +90,20 @@ const moviesSlice = createSlice({
       let moviesSearch = action.payload.data.filter((element) =>
         element.nameRU.toLowerCase().includes(state.valueSearch.toLowerCase())
       );
-
       const arrMovies = [];
       moviesSearch.forEach((element) => {
         let like;
-        if (arrMoviesSaved.find((obj) => obj.movieId === element.id)) {
-          like = true;
-        } else {
-          like = false;
-        }
-        arrMoviesSaved.find((obj) => obj.movieId === element.id);
+        let _id;
+
+        arrMoviesSaved.forEach((obj) => {
+          if (obj.movieId === element.id) {
+            like = true;
+            _id = obj._id;
+          } else {
+            like = false;
+          }
+        });
+
         const discripshion = {
           country: element.country,
           director: element.director,
@@ -113,6 +117,7 @@ const moviesSlice = createSlice({
           thumbnail: `https://api.nomoreparties.co${element.image.url}`,
           movieId: element.id,
           like: like,
+          _id
         };
 
         arrMovies.push(discripshion);
