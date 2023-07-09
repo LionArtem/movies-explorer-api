@@ -32,7 +32,6 @@ class MainApi {
 
   getSavedMovies(token) {
     return fetch(this.baseUrl, {
-      // headers: this.headers,
       headers: {
         authorization: `Bearer ${
           localStorage.getItem('token') ? localStorage.getItem('token') : token
@@ -45,7 +44,6 @@ class MainApi {
   deleteSaveMovies(id,token) {
     return fetch(`${this.baseUrl}/${id}`, {
       method: 'DELETE',
-      // headers: this.headers,
       headers: {
         authorization: `Bearer ${
           localStorage.getItem('token') ? localStorage.getItem('token') : token
@@ -65,8 +63,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3000/movies',
- //baseUrl: 'https://api.movies.nomoredomains.rocks/movies',
+ // baseUrl: 'http://localhost:3000/movies',
+ baseUrl: 'https://api.movies.nomoredomains.rocks/movies',
   headers: {
     authorization: `Bearer ${localStorage.getItem('token')}`,
     'content-type': 'application/json',
