@@ -20,7 +20,7 @@ function App() {
   React.useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(setLoggedIn(true));
-      dispatch(fetchGatSavedMovies());
+      //dispatch(fetchGatSavedMovies());
     }
   }, [token]);
 

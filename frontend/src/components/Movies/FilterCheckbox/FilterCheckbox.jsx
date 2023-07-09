@@ -7,7 +7,7 @@ export default function FilterCheckbox({ stateTogl, isStateTogl }) {
   return (
     <section className={Style.conteiner}>
       <div
-        onClick={() => dispatch(isStateTogl())}
+        onClick={() => isStateTogl()}
         className={`${Style.checkbox} ${
           stateTogl ? Style.checkbox_on : Style.checkbox_off
         }`}

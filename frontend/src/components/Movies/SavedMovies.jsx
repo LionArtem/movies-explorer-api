@@ -13,7 +13,7 @@ import {
   selectSavedMovies,
   isErrText,
   isStateTogl,
-  addShortMovies
+  fetchGatSavedMovies,
 } from '../../redax/slices/MoviesSavedSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,8 +33,13 @@ export default function SavedMovies() {
   };
 
   React.useEffect(() => {
-    dispatch(addShortMovies())
-  }, [stateTogl]);
+    dispatch(fetchGatSavedMovies());
+  }, []);
+
+  const showMoviesTogl = () => {
+    dispatch(isStateTogl());
+    dispatch(fetchGatSavedMovies());
+  };
 
   return (
     <div>
@@ -46,7 +51,7 @@ export default function SavedMovies() {
           valueSearch={valueSearch}
           errorText={errorText}
         />
-        <FilterCheckbox stateTogl={stateTogl} isStateTogl={isStateTogl} />
+        <FilterCheckbox stateTogl={stateTogl} isStateTogl={showMoviesTogl} />
         <MoviesCardList>
           <MoviesCardSaved />
         </MoviesCardList>

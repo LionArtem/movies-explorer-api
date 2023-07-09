@@ -9,7 +9,10 @@ import {
   setAddMoviesInPage,
   addStateTogl,
   isStateTogl,
+  addShortMovies,
 } from '../../redax/slices/MoviesSlice';
+
+import { fetchGatSavedMovies } from '../../redax/slices/MoviesSavedSlice';
 
 import Footer from '../Footer/Footer';
 import HeaderMovies from './HeaderMovies/HeaderMovies';
@@ -26,11 +29,8 @@ export default function Movies() {
 
   React.useEffect(() => {
     if (localStorage.getItem('defaultMovies')) {
-      const { togl, value } = JSON.parse(
-        localStorage.getItem('defaultMovies')
-      );
+      const { togl, value } = JSON.parse(localStorage.getItem('defaultMovies'));
       dispatch(setValueSearch(value));
-      dispatch(setAddMoviesInPage());
       dispatch(addStateTogl(togl));
     }
   }, []);
@@ -47,9 +47,31 @@ export default function Movies() {
 
   React.useEffect(() => {
     if (localStorage.getItem('defaultMovies')) {
-      dispatch(fetchGetAllMovies());
+      dispatch(fetchGatSavedMovies()).then((res) => {
+        if (res.meta.requestStatus === 'fulfilled') {
+          dispatch(fetchGetAllMovies());
+        }
+      });
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (moviesAll.length > 0) {
+      if (stateTogl) {
+        dispatch(addShortMovies());
+      } else {
+        dispatch(fetchGatSavedMovies()).then((res) => {
+          if (res.meta.requestStatus === 'fulfilled') {
+            dispatch(fetchGetAllMovies());
+          }
+        });
+      }
     }
   }, [stateTogl]);
+
+  const showMoviesTogl = () => {
+    dispatch(isStateTogl());
+  };
 
   return (
     <>
@@ -61,7 +83,7 @@ export default function Movies() {
           valueSearch={valueSearch}
           errorText={errorText}
         />
-        <FilterCheckbox stateTogl={stateTogl} isStateTogl={isStateTogl} />
+        <FilterCheckbox stateTogl={stateTogl} isStateTogl={showMoviesTogl} />
         <MoviesCardList>
           <MoviesCard moviesInPage={moviesInPage} />
           <More moviesAll={moviesAll} moviesInPage={moviesInPage} />

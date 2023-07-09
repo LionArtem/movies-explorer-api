@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Style from './MoviesCard.module.scss';
 
-import Preloader from '../Preloader/Preloader';
+import Preloader from '../../Preloader/Preloader';
 
 import { addLike, selectMovies } from '../../../redax/slices/MoviesSlice';
 
@@ -12,8 +12,6 @@ import {
   fetchDeleteSavedMovies,
 } from '../../../redax/slices/MoviesSavedSlice';
 
-
-
 import { selectAuth } from '../../../redax/slices/authSlice';
 
 import { deleteLikeinPage } from '../../../utils/constants';
@@ -21,9 +19,8 @@ import { deleteLikeinPage } from '../../../utils/constants';
 export default function MoviesCard({ moviesInPage }) {
   const dispatch = useDispatch();
   const { token } = useSelector(selectAuth);
-  const { showPreloader, swowNodFaund, textAnswer, stateTogl } =
+  const { showPreloader, swowNodFaund, textAnswer } =
     useSelector(selectMovies);
-
   const saveMoviesButton = (obj) => {
     if (!obj.like) {
       dispatch(fetchAddMovies(obj, token)).then((res) => {
@@ -45,8 +42,6 @@ export default function MoviesCard({ moviesInPage }) {
       });
     }
   };
-
- 
 
   return (
     <ul className={Style.list}>
@@ -73,8 +68,9 @@ export default function MoviesCard({ moviesInPage }) {
           </li>
         ))
       ) : showPreloader ? (
-        [...new Array(7)].map((_, i) => <Preloader key={i} />)
-      ) : swowNodFaund ? (
+        <Preloader />
+      ) : 
+      swowNodFaund ? (
         <p>Ничего не найдено</p>
       ) : (
         ''

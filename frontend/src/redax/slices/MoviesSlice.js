@@ -35,21 +35,24 @@ const moviesSlice = createSlice({
       state.textAnswer = false;
       state.stateTogl = false;
     },
+    addShortMovies(state) {
+      state.moviesInPage = state.moviesAll.filter(
+        (element) => element.duration <= 40
+      );
+      state.moviesAll = state.moviesInPage;
+      localStorage.setItem(
+        'defaultMovies',
+        JSON.stringify({
+          togl: state.stateTogl,
+          value: state.valueSearch,
+        })
+      );
+    },
     addStateTogl(state, action) {
       state.stateTogl = action.payload;
     },
     isStateTogl(state) {
       state.stateTogl = !state.stateTogl;
-    },
-    resetMoviesInPage(state, action) {
-      state.moviesInPage = [];
-    },
-    setAddMoviesInPage(state, action) {
-      if (window.innerWidth > 320) {
-        state.moviesInPage = state.moviesAll.slice(0, 7);
-      } else {
-        state.moviesInPage = state.arrMovies.slice(0, 5);
-      }
     },
     addMoviesInPage(state, action) {
       const lenghtListMovies = state.moviesInPage.length;
@@ -146,8 +149,9 @@ const moviesSlice = createSlice({
       }
 
       state.showPreloader = !state.showPreloader;
-      if (arrMovies >= 0) {
-        state.swowNodFaund = !state.swowNodFaund;
+
+      if (state.moviesAll <= 0) {
+        state.swowNodFaund = true;
         state.textRezult = 'Не чего не найдено';
       }
     });
@@ -167,10 +171,9 @@ export const {
   addLike,
   addMoviesInPage,
   setAddMoviesInPage,
-  resetMoviesInPage,
   isStateTogl,
   addStateTogl,
   addShortMovies,
-  KillAllStateMovies
+  KillAllStateMovies,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;
