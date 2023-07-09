@@ -117,7 +117,7 @@ const moviesSlice = createSlice({
           thumbnail: `https://api.nomoreparties.co${element.image.url}`,
           movieId: element.id,
           like: like,
-          _id
+          _id,
         };
 
         arrMovies.push(discripshion);
@@ -164,6 +164,7 @@ const moviesSlice = createSlice({
       state.showPreloader = !state.showPreloader;
       state.textAnswer = !state.textAnswer;
       console.log('error get movies');
+      alert('error get movies');
     });
   },
 });

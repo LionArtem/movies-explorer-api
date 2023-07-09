@@ -50,6 +50,7 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchGetUser.rejected, (state, action) => {
       console.log('ошибка запроса данных профиля');
+      alert('ошибка запроса данных профиля');
     });
 
     builder.addCase(fetchPatchUser.pending, (state) => {

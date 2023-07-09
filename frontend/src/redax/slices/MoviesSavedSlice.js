@@ -79,12 +79,12 @@ const moviesSavedSlice = createSlice({
     });
     builder.addCase(fetchAddMovies.fulfilled, (state, { payload }) => {});
     builder.addCase(fetchAddMovies.rejected, (state, action) => {
-      console.log(action);
       console.log('error add movies');
+      alert('error add movies');
     });
 
     builder.addCase(fetchGatSavedMovies.pending, (state) => {
-      state.swowNodFaund = false
+      state.swowNodFaund = false;
       state.showPreloader = !state.showPreloader;
       console.log('get saved movies');
     });
@@ -102,6 +102,7 @@ const moviesSavedSlice = createSlice({
     builder.addCase(fetchGatSavedMovies.rejected, (state, action) => {
       state.showPreloader = false;
       console.log('error get saved movies');
+      alert('error get saved movies');
     });
 
     builder.addCase(fetchDeleteSavedMovies.pending, (state) => {
@@ -121,8 +122,8 @@ const moviesSavedSlice = createSlice({
     });
     builder.addCase(fetchDeleteSavedMovies.rejected, (state, action) => {
       state.textAnswer = true;
-      console.log(action);
       console.log('error delete saved movies');
+      alert('error delete saved movies');
     });
   },
 });

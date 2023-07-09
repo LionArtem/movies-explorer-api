@@ -20,7 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function SavedMovies() {
   const dispatch = useDispatch();
 
-  const { valueSearch, errorText, stateTogl } = useSelector(selectSavedMovies);
+  const { valueSearch, errorText, stateTogl } =
+    useSelector(selectSavedMovies);
 
   const searchMovies = (evt) => {
     evt.preventDefault();
@@ -52,6 +53,7 @@ export default function SavedMovies() {
           errorText={errorText}
         />
         <FilterCheckbox stateTogl={stateTogl} isStateTogl={showMoviesTogl} />
+
         <MoviesCardList>
           <MoviesCardSaved />
         </MoviesCardList>
