@@ -33,7 +33,7 @@ function App() {
       <Route path="/profile" element={loggedIn ? <Profile /> : <Main />} />
       <Route path="/signup" element={loggedIn ? <Main /> : <Register />} />
       <Route path="/signin" element={loggedIn ? <Main /> : <Logit />} />
-      <Route path="/not-found" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
