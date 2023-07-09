@@ -11,7 +11,6 @@ import Logit from './components/AuthForm/Logit';
 import NotFound from './components/NotFound/NotFound';
 import { useSelector } from 'react-redux';
 import { selectAuth, setLoggedIn } from './redax/slices/authSlice';
-import { fetchGatSavedMovies } from './redax/slices/MoviesSavedSlice';
 
 function App() {
   const { loggedIn, token } = useSelector(selectAuth);
@@ -20,7 +19,6 @@ function App() {
   React.useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(setLoggedIn(true));
-      //dispatch(fetchGatSavedMovies());
     }
   }, [token]);
 
@@ -33,8 +31,8 @@ function App() {
         element={loggedIn ? <SavedMovies /> : <Main />}
       />
       <Route path="/profile" element={loggedIn ? <Profile /> : <Main />} />
-      <Route path="/signup" element={<Register />} />
-      <Route path="/signin" element={<Logit />} />
+      <Route path="/signup" element={loggedIn ? <Main /> : <Register />} />
+      <Route path="/signin" element={loggedIn ? <Main /> : <Logit />} />
       <Route path="/not-found" element={<NotFound />} />
     </Routes>
   );
