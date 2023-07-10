@@ -63,14 +63,18 @@ const moviesSlice = createSlice({
     },
     addLike(state, action) {
       state.moviesInPage = action.payload;
-      const { togl, value } = JSON.parse(localStorage.getItem('defaultMovies'));
-      localStorage.setItem(
-        'defaultMovies',
-        JSON.stringify({
-          togl,
-          value,
-        })
-      );
+      if (JSON.parse(localStorage.getItem('defaultMovies'))) {
+        const { togl, value } = JSON.parse(
+          localStorage.getItem('defaultMovies')
+        );
+        localStorage.setItem(
+          'defaultMovies',
+          JSON.stringify({
+            togl,
+            value,
+          })
+        );
+      }
     },
     isErrText(state) {
       state.errorText = !state.errorText;

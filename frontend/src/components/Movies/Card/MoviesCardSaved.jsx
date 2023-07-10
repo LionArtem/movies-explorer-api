@@ -2,9 +2,8 @@ import React from 'react';
 import Style from './MoviesCard.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setValueSearch, addLike } from '../../../redax/slices/MoviesSlice';
+import { setValueSearch } from '../../../redax/slices/MoviesSlice';
 import {
-  fetchGatSavedMovies,
   selectSavedMovies,
   fetchDeleteSavedMovies,
 } from '../../../redax/slices/MoviesSavedSlice';
@@ -12,8 +11,6 @@ import {
 import { selectAuth } from '../../../redax/slices/authSlice';
 
 import Preloader from '../../Preloader/Preloader';
-
-import { deleteLikeinPage } from '../../../utils/constants';
 
 export default function MoviesCardSaved() {
   const dispatch = useDispatch();
@@ -29,9 +26,6 @@ export default function MoviesCardSaved() {
     evt.preventDefault();
     evt.stopPropagation();
     dispatch(fetchDeleteSavedMovies(obj._id, token)).then((res) => {
-      if (res.meta.requestStatus === 'fulfilled') {
-        dispatch(addLike(deleteLikeinPage(res, obj, moviesSaved)));
-      }
     });
   };
 

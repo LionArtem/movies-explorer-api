@@ -39,6 +39,10 @@ const moviesSavedSlice = createSlice({
   name: 'moviesSaved',
   initialState,
   reducers: {
+    deleteDataSearch(state) {
+      state.valueSearch = '';
+      state.stateTogl = false;
+    },
     killAllStateMoviesSaved(state) {
       state.moviesSaved = [];
       state.valueSearch = '';
@@ -136,5 +140,6 @@ export const {
   isErrText,
   isStateTogl,
   killAllStateMoviesSaved,
+  deleteDataSearch,
 } = moviesSavedSlice.actions;
 export default moviesSavedSlice.reducer;

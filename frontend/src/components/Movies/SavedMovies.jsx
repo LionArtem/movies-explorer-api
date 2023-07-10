@@ -14,14 +14,14 @@ import {
   isErrText,
   isStateTogl,
   fetchGatSavedMovies,
+  deleteDataSearch,
 } from '../../redax/slices/MoviesSavedSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SavedMovies() {
   const dispatch = useDispatch();
 
-  const { valueSearch, errorText, stateTogl } =
-    useSelector(selectSavedMovies);
+  const { valueSearch, errorText, stateTogl } = useSelector(selectSavedMovies);
 
   const searchMovies = (evt) => {
     evt.preventDefault();
@@ -32,6 +32,12 @@ export default function SavedMovies() {
       setTimeout(() => dispatch(isErrText()), 2000);
     }
   };
+
+  React.useEffect(() => {
+    return () => {
+      dispatch(deleteDataSearch());
+    };
+  }, []);
 
   React.useEffect(() => {
     dispatch(fetchGatSavedMovies());

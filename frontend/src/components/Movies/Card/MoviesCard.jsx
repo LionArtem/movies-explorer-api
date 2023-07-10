@@ -49,6 +49,8 @@ export default function MoviesCard({ moviesInPage }) {
     }
   };
 
+  
+
   return (
     <ul className={Style.list}>
       {moviesInPage.length > 0 ? (
