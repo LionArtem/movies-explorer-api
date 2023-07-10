@@ -25,32 +25,35 @@ export default function MoviesCardSaved() {
     dispatch(setValueSearch(''));
   }, []);
 
-  const deleteMoviesButton = (obj) => {
+  const deleteMoviesButton = (obj, evt) => {
+    evt.preventDefault();
+    evt.stopPropagation();
     dispatch(fetchDeleteSavedMovies(obj._id, token)).then((res) => {
       if (res.meta.requestStatus === 'fulfilled') {
         dispatch(addLike(deleteLikeinPage(res, obj, moviesSaved)));
       }
     });
   };
+
   return (
     <ul className={Style.list}>
       {moviesSaved.length > 0 ? (
         moviesSaved.map((obj) => (
-          <li className={Style.conteiner} key={obj.movieId}>
-            <div className={Style.discription}>
-              <a target="blank" href={`${obj.trailerLink}`}>
+          <a key={obj.movieId} target="blank" href={`${obj.trailerLink}`}>
+            <li className={Style.conteiner}>
+              <div className={Style.discription}>
                 <h1>{obj.nameRU}</h1>
                 <p>{`${Math.floor(obj.duration / 60)}ч ${
                   obj.duration % 60
                 }м`}</p>
-              </a>
-              <button
-                onClick={() => deleteMoviesButton(obj)}
-                className={`${Style.button} ${Style.delete}`}
-              ></button>
-            </div>
-            <img src={obj.image} alt={`заставка к фильму ${obj.nameRU}`} />
-          </li>
+                <button
+                  onClick={(evt) => deleteMoviesButton(obj, evt)}
+                  className={`${Style.button} ${Style.delete}`}
+                ></button>
+              </div>
+              <img src={obj.image} alt={`заставка к фильму ${obj.nameRU}`} />
+            </li>
+          </a>
         ))
       ) : showPreloader ? (
         <Preloader />

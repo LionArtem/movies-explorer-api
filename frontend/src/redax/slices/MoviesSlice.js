@@ -95,14 +95,12 @@ const moviesSlice = createSlice({
         let like;
         let _id;
 
-        arrMoviesSaved.forEach((obj) => {
-          if (obj.movieId === element.id) {
-            like = true;
-            _id = obj._id;
-          } else {
-            like = false;
-          }
-        });
+        if (arrMoviesSaved.find((obj) => obj.movieId === element.id)) {
+          like = true;
+          _id = arrMoviesSaved.find((obj) => obj.movieId === element.id)._id;
+        } else {
+          like = false;
+        }
 
         const discripshion = {
           country: element.country,
@@ -122,6 +120,7 @@ const moviesSlice = createSlice({
 
         arrMovies.push(discripshion);
       });
+
       if (state.stateTogl) {
         state.moviesAll = arrMovies.filter((element) => element.duration <= 40);
       } else {

@@ -41,8 +41,6 @@ export default function MoviesCard({ moviesInPage }) {
         }
       });
     } else {
-      console.log(obj);
-      console.log(obj._id);
       dispatch(fetchDeleteSavedMovies(obj._id)).then((res) => {
         if (res.meta.requestStatus === 'fulfilled') {
           dispatch(addLike(deleteLikeinPage(res, obj, moviesInPage)));
