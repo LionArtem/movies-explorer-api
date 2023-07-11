@@ -38,7 +38,11 @@ export default function Movies() {
   const getMovies = (evt) => {
     evt.preventDefault();
     if (evt.target.checkValidity()) {
-      dispatch(fetchGetAllMovies());
+      dispatch(fetchGatSavedMovies()).then((res) => {
+        if (res.meta.requestStatus === 'fulfilled') {
+          dispatch(fetchGetAllMovies());
+        }
+      });
     } else {
       dispatch(isErrText());
       setTimeout(() => dispatch(isErrText()), 2000);
