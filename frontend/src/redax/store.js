@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import message from './slices/messageSlice';
-import pagination from './slices/paginationSlice';
-import topics from './slices/topicSlice';
+
+import formValidetion from './slices/formValidetionSlice';
 import auth from './slices/authSlice';
+import movies from './slices/MoviesSlice';
+import moviesSaved from './slices/MoviesSavedSlice';
+import user from './slices/userSlice';
 
 export const store = configureStore({
-  reducer: { message, pagination, topics, auth },
+  reducer: { formValidetion, auth, movies, moviesSaved, user },
 });

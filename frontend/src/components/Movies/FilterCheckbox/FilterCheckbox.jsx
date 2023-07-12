@@ -1,12 +1,12 @@
 import React from 'react';
 import Style from './FilterCheckbox.module.scss';
 
-export default function FilterCheckbox() {
-  const [stateTogl, isStateTogl] = React.useState(true);
+export default function FilterCheckbox({ stateTogl, isStateTogl }) {
+  
   return (
     <section className={Style.conteiner}>
       <div
-        onClick={() => isStateTogl(!stateTogl)}
+        onClick={() => isStateTogl()}
         className={`${Style.checkbox} ${
           stateTogl ? Style.checkbox_on : Style.checkbox_off
         }`}

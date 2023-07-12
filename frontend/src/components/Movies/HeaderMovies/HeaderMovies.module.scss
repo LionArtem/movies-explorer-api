@@ -39,10 +39,10 @@
       font-size: 13px;
       line-height: 18px;
     }
-    .text_movie {
+    .text_movie_active {
       font-weight: 500;
     }
-    .text_save_movie {
+    .text_movie {
       font-weight: 400;
     }
     p:hover {
@@ -97,6 +97,7 @@
     height: 44px;
     margin: 0px 30px 0px auto;
   }
+  
   @media screen and (max-width: 320px) {
     .burger {
       margin-right: 14px;

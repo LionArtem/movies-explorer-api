@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import { auth } from '../../utils/Auth';
 
 export const fetchAddUser = createAsyncThunk(
   'page/fetchAddUser',
   async (params, thunkAPI) => {
-    const data = await auth.addUser(params.email, params.password);
+    const { formValidetion } = thunkAPI.getState();
+    const { name, email, password } = formValidetion.value;
+    const data = await auth.addUser(name, email, password);
     return data;
   }
 );
@@ -13,56 +14,73 @@ export const fetchAddUser = createAsyncThunk(
 export const fetchLoginUser = createAsyncThunk(
   'page/fetchLoginUser',
   async (params, thunkAPI) => {
-    const data = await auth.loginUser(params.email, params.password);
+    const { formValidetion } = thunkAPI.getState();
+    const { email, password } = formValidetion.value;
+    const data = await auth.loginUser(email, password);
     return data;
   }
 );
 
 const initialState = {
-  fopmReg: false,
-  fopmSign: false,
-  auth: localStorage.getItem('token'),
+  loggedIn: false,
+  errMessage: '',
+  textButtonRegister: 'Зарегистрироваться',
+  textButtonLogin: 'Войти',
+  token: '',
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setfopmReg(state) {
-      state.fopmReg = !state.fopmReg;
+    killAllStateAuth(state) {
+      state.loggedIn = false;
+      state.errMessage = '';
+      state.textButtonRegister = 'Зарегистрироваться';
+      state.textButtonLogin = 'Войти';
+      state.token = '';
     },
-    setFormSign(state) {
-      state.fopmSign = !state.fopmSign;
+    setLoggedIn(state, action) {
+      state.loggedIn = action.payload;
     },
-    setAuth(state) {
-      state.auth = '';
+    remuveErrMessage(state) {
+      state.errMessage = '';
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAddUser.pending, (state) => {
+      state.textButtonRegister = 'Регистрация...';
       console.log('запрос на регистрацию');
     });
     builder.addCase(fetchAddUser.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      state.user = { name: payload.name, email: payload.email };
+      state.loggedIn = true;
+      state.textButtonRegister = 'Регистрация';
     });
-    builder.addCase(fetchAddUser.rejected, (state) => {
-      console.log('ошибка регистрации');
+    builder.addCase(fetchAddUser.rejected, (state, action) => {
+      state.errMessage = JSON.parse(action.error.message).message;
+      state.textButtonRegister = 'Регистрация';
     });
 
     builder.addCase(fetchLoginUser.pending, (state) => {
-      console.log('запрос на авторизацию');
+      state.textButtonLogin = 'Вход...';
+      console.log('авторизация');
     });
-    builder.addCase(fetchLoginUser.fulfilled, (state, { payload }) => {
-      localStorage.setItem('token', payload.token);
-      state.auth = payload.token;
+    builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
+      localStorage.setItem('token', action.payload.token);
+      state.token = action.payload.token;
+      state.loggedIn = true;
+      state.textButtonLogin = 'Войти';
     });
-    builder.addCase(fetchLoginUser.rejected, (state) => {
-      console.log('ошибка авторизации');
+    builder.addCase(fetchLoginUser.rejected, (state, action) => {
+      state.errMessage = JSON.parse(action.error.message).message;
+      state.textButtonLogin = 'Войти';
     });
   },
 });
 
 export const selectAuth = (state) => state.auth;
 
-export const { setfopmReg, setFormSign, setAuth } = authSlice.actions;
+export const { setLoggedIn, remuveErrMessage, killAllStateAuth } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -44,22 +44,43 @@
     font-size: 11px;
     line-height: 13px;
     text-align: right;
-    border-bottom: 1px solid #e8e8e8;
   }
   @media screen and (max-width: 320px) {
     input {
       width: 260px;
     }
   }
-  .name {
-    padding: 0px 0px 16px;
+
+  .span {
+    min-height: 12px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #ff3055;
+    border-bottom: 1px solid #e8e8e8;
   }
-  .email {
+
+  .span_email {
     border-bottom: none;
   }
+
+  .span_err_request {
+    min-height: 24px;
+    border-bottom: none;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .span_seccses {
+    color: rgb(27, 148, 35);
+    font-size: 15px;
+  }
+
   button {
     all: unset;
-    margin: 220px 0px 16px;
+    margin: 146px 0px 16px;
     text-align: center;
     cursor: pointer;
     transition: text-shadow 0.3s linear;
@@ -72,16 +93,26 @@
   button:hover {
     text-shadow: 1px 1px #524e4e;
   }
+
+  .button_off {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  .button_off:hover {
+    text-shadow: 0px 0px rgba(19, 1, 1, 0.3);
+  }
+
   @media screen and (max-width: 768px) {
     button {
-      margin-top: 210px;
+      margin-top: 136px;
       font-size: 12px;
       line-height: 15px;
     }
   }
   @media screen and (max-width: 320px) {
     button {
-      margin-top: 379px;
+      margin-top: 305px;
     }
   }
 }
@@ -117,6 +148,6 @@
   .sign_out {
     margin-bottom: 40px;
     font-size: 12px;
-  line-height: 15px;
+    line-height: 15px;
   }
 }
