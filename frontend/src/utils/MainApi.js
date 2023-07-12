@@ -63,7 +63,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'http://localhost:3000/movies',
+  //baseUrl: 'http://localhost:3000/movies',
  baseUrl: 'https://api.movies.nomoredomains.rocks/movies',
   headers: {
     authorization: `Bearer ${localStorage.getItem('token')}`,

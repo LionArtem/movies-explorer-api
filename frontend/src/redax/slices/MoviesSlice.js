@@ -5,7 +5,7 @@ export const fetchGetAllMovies = createAsyncThunk(
   'page/fetchGetAllMovies',
   async (params, thunkAPI) => {
     const data = await moviesApi.getAllMovies();
-    const arrMoviesSaved = thunkAPI.getState().moviesSaved.moviesSaved;
+    const arrMoviesSaved = thunkAPI.getState().moviesSaved.moviesSavedAll;
     return { data, arrMoviesSaved };
   }
 );

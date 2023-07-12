@@ -29,7 +29,8 @@ const initialState = {
   swowNodFaund: false,
   showPreloader: false,
   textAnswer: false,
-  moviesSaved: [],
+  moviesSavedAll: [],
+  moviesSavedShow: [],
   valueSearch: '',
   errorText: true,
   stateTogl: false,
@@ -39,12 +40,22 @@ const moviesSavedSlice = createSlice({
   name: 'moviesSaved',
   initialState,
   reducers: {
+    addMoviesSavedShow(state) {
+      if (state.stateTogl) {
+        state.moviesSavedShow = state.moviesSavedAll.filter(
+          (element) => element.duration <= 40
+        );
+      } else {
+        state.moviesSavedShow = state.moviesSavedAll;
+      }
+    },
     deleteDataSearch(state) {
       state.valueSearch = '';
       state.stateTogl = false;
     },
     killAllStateMoviesSaved(state) {
-      state.moviesSaved = [];
+      state.moviesSavedAll = [];
+      state.moviesSavedShow = [];
       state.valueSearch = '';
       state.errorText = true;
       state.stateTogl = false;
@@ -62,17 +73,28 @@ const moviesSavedSlice = createSlice({
       state.valueSearch = action.payload;
     },
     findSearchMovies(state) {
-      state.moviesSaved = JSON.parse(
-        localStorage.getItem('savedMovies')
-      ).filter((element) =>
-        element.nameRU.toLowerCase().includes(state.valueSearch.toLowerCase())
-      );
-      if (state.stateTogl) {
-        state.moviesSaved = state.moviesSaved.filter(
-          (element) => element.duration <= 40
+      if (state.valueSearch.length > 0) {
+        state.moviesSavedShow = state.moviesSavedAll.filter((element) =>
+          element.nameRU.toLowerCase().includes(state.valueSearch.toLowerCase())
         );
       }
-      if (state.moviesSaved <= 0) {
+      if (state.stateTogl && state.moviesSavedShow.length > 0) {
+        console.log('kkk');
+        state.moviesSavedShow = state.moviesSavedShow.filter(
+          (element) => element.duration <= 40
+        );
+      } else {
+        if (state.valueSearch.length > 0) {
+          state.moviesSavedShow = state.moviesSavedAll.filter((element) =>
+            element.nameRU
+              .toLowerCase()
+              .includes(state.valueSearch.toLowerCase())
+          );
+        } else {
+          state.moviesSavedShow = state.moviesSavedAll;
+        }
+      }
+      if (state.moviesSavedShow <= 0) {
         state.swowNodFaund = true;
       }
     },
@@ -93,12 +115,10 @@ const moviesSavedSlice = createSlice({
       console.log('get saved movies');
     });
     builder.addCase(fetchGatSavedMovies.fulfilled, (state, { payload }) => {
-      if (state.stateTogl) {
-        state.moviesSaved = payload.filter((element) => element.duration <= 40);
-      } else {
-        state.moviesSaved = payload;
-      }
-      if (state.moviesSaved <= 0) {
+      state.moviesSavedAll = payload;
+      state.moviesSavedShow = payload;
+
+      if (state.moviesSavedAll <= 0) {
         state.swowNodFaund = true;
       }
       state.showPreloader = !state.showPreloader;
@@ -116,13 +136,13 @@ const moviesSavedSlice = createSlice({
     builder.addCase(fetchDeleteSavedMovies.fulfilled, (state, { payload }) => {
       state.showPreloader = false;
       const arrNewSavedMovies = [];
-      state.moviesSaved.forEach((element) => {
+      state.moviesSavedShow.forEach((element) => {
         if (element.movieId === payload.movieId) {
         } else {
           arrNewSavedMovies.push(element);
         }
       });
-      state.moviesSaved = arrNewSavedMovies;
+      state.moviesSavedShow = arrNewSavedMovies;
     });
     builder.addCase(fetchDeleteSavedMovies.rejected, (state, action) => {
       state.textAnswer = true;
@@ -141,5 +161,6 @@ export const {
   isStateTogl,
   killAllStateMoviesSaved,
   deleteDataSearch,
+  addMoviesSavedShow,
 } = moviesSavedSlice.actions;
 export default moviesSavedSlice.reducer;

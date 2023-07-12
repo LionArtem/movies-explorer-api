@@ -14,8 +14,13 @@ import Preloader from '../../Preloader/Preloader';
 
 export default function MoviesCardSaved() {
   const dispatch = useDispatch();
-  const { showPreloader, swowNodFaund, textAnswer, moviesSaved } =
-    useSelector(selectSavedMovies);
+  const {
+    showPreloader,
+    swowNodFaund,
+    textAnswer,
+    moviesSaved,
+    moviesSavedShow,
+  } = useSelector(selectSavedMovies);
   const { token } = useSelector(selectAuth);
 
   React.useEffect(() => {
@@ -25,14 +30,13 @@ export default function MoviesCardSaved() {
   const deleteMoviesButton = (obj, evt) => {
     evt.preventDefault();
     evt.stopPropagation();
-    dispatch(fetchDeleteSavedMovies(obj._id, token)).then((res) => {
-    });
+    dispatch(fetchDeleteSavedMovies(obj._id, token)).then((res) => {});
   };
 
   return (
     <ul className={Style.list}>
-      {moviesSaved.length > 0 ? (
-        moviesSaved.map((obj) => (
+      {moviesSavedShow.length > 0 ? (
+        moviesSavedShow.map((obj) => (
           <a key={obj.movieId} target="blank" href={`${obj.trailerLink}`}>
             <li className={Style.conteiner}>
               <div className={Style.discription}>

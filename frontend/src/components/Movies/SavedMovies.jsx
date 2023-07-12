@@ -45,7 +45,7 @@ export default function SavedMovies() {
 
   const showMoviesTogl = () => {
     dispatch(isStateTogl());
-    dispatch(fetchGatSavedMovies());
+    dispatch(findSearchMovies());
   };
 
   return (

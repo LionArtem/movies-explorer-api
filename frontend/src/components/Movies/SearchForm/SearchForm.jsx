@@ -3,6 +3,8 @@ import Style from './SearchForm.module.scss';
 
 import { useDispatch } from 'react-redux';
 
+import { addMoviesSavedShow } from '../../../redax/slices/MoviesSavedSlice';
+
 export default function SearchForm({
   showMovies,
   setValueSearch,
@@ -19,7 +21,12 @@ export default function SearchForm({
       >
         <input
           value={valueSearch}
-          onChange={(evt) => dispatch(setValueSearch(evt.target.value))}
+          onChange={(evt) => {
+            if (!evt.target.value) {
+              dispatch(addMoviesSavedShow());
+            }
+            dispatch(setValueSearch(evt.target.value));
+          }}
           required
           placeholder="Фильм"
         />
